@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profesional">
+            <h2><span>Profesional:</span> {{profesional.nombreProfesional}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dd>
+                    <div *ngIf="profesional.imagenProfesional">
+                        <a (click)="openFile(profesional.imagenProfesionalContentType, profesional.imagenProfesional)">
+                            <img [src]="'data:' + profesional.imagenProfesionalContentType + ';base64,' + profesional.imagenProfesional"
+                            style="width: 250px; height: 200px" alt="profesional image" />
+                        </a>
+                        {{profesional.imagenProfesionalContentType}}, {{byteSize(profesional.imagenProfesional)}}
+                    </div>
+                    <div *ngIf="!profesional.imagenProfesional" class="form-group">
+                        <img [src]="imagenUrl" style="width: 250px; height: 200px" />
+                    </div>
+                </dd>
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{profesional.nombreProfesional}}</span>
+                </dd>
+                <dt><span>Documento</span></dt>
+                <dd>
+                    <span>{{profesional.documentoProfesional}}</span>
+                </dd>
+                <dt><span>Dirección</span></dt>
+                <dd>
+                    <span>{{profesional.direccionProfesional}}</span>
+                </dd>
+                <dt><span>Teléfono</span></dt>
+                <dd>
+                    <span>{{profesional.telefonoProfesional}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{profesional.emailProfesional}}</span>
+                </dd>
+                <dt><span>Matrícula</span></dt>
+                <dd>
+                    <span>{{profesional.matriculaProfesional}}</span>
+                </dd>                
+                <dt><span>Título</span></dt>
+                <dd>
+                    <div *ngIf="profesional.tituloId">
+                        <a [routerLink]="['/titulo-short', profesional.tituloId, 'view']">{{profesional.tituloValor}}</a>
+                    </div>
+                </dd>
+                <dt><span>Obras sociales</span></dt>
+                <dd>
+                    <span *ngFor="let obrasocial of profesional.obrasocials; let last = last">
+                        <a [routerLink]="['/obra-social', obrasocial?.id, 'view' ]">{{obrasocial.siglaObraSocial}}</a>{{last
+                        ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Especialidades</span></dt>
+                <dd>
+                    <span *ngFor="let especialidad of profesional.especialidads; let last = last">
+                        <a [routerLink]="['/especialidad', especialidad?.id, 'view' ]">{{especialidad.nombreEspecialidad}}</a>{{last
+                        ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Localidad</span></dt>
+                <dd>
+                    <div *ngIf="profesional.codigoPostalId">
+                        <a [routerLink]="['/codigo-postal', profesional.codigoPostalId, 'view']">{{profesional.codigoPostalNombreCiudad}}</a>
+                    </div>
+                </dd>
+                <!--dt><span>Usuario</span></dt>
+                <dd>
+                    {{profesional.usuarioId}}
+                </dd-->
+            </dl>
+
+            <button type="submit" (click)="previousState()" class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Atrás</span>
+            </button>
+
+            <button type="button" [routerLink]="['/profesional', profesional.id, 'edit']" class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Editar</span>
+            </button>
+        </div>
+    </div>
+</div>

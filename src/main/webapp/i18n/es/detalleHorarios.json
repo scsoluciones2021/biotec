@@ -1,0 +1,34 @@
+
+{
+    "cpsjApp": {
+        "detalleHorarios" : {
+            "home": {
+                "title": "Detalle Horarios",
+                "createLabel": "Crear nuevo Detalle Horarios",
+                "createOrEditLabel": "Crear o editar Detalle Horarios"
+            },
+            "created": "Un nuevo Detalle Horarios ha sido creado con el identificador {{ param }}",
+            "updated": "Un Detalle Horarios ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Detalle Horarios ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Detalle Horarios {{ id }}?"
+            },
+            "detail": {
+                "title": "Detalle Horarios"
+            },
+            "idHorario": "Id Horario",
+            "horaDesde": "Hora Desde",
+            "horaHasta": "Hora Hasta",
+            "lunes": "Lunes",
+            "martes": "Martes",
+            "miercoles": "Miercoles",
+            "jueves": "Jueves",
+            "viernes": "Viernes",
+            "sabado": "Sabado",
+            "domingo": "Domingo",
+            "intervalo": "Intervalo",
+            "frecuencia": "Frecuencia",
+            "cantidadPacientes": "Cantidad Pacientes"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<div>
+    <h2 id="page-heading">
+        <span>Antecedentes Personales</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-antecedentes-personales" [routerLink]="['/antecedentes-personales/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Antecedentes Personales
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="antecedentesPersonales">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Tabaco</span></th>
+            <th><span>Tabaco Observ</span></th>
+            <th><span>Tecafe</span></th>
+            <th><span>Enfermedades</span></th>
+            <th><span>Alergias</span></th>
+            <th><span>Intolerancias</span></th>
+            <th><span>Regimenes</span></th>
+            <th><span>Ejercicios</span></th>
+            <th><span>Bebidas</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let antecedentesPersonales of antecedentesPersonales ;trackBy: trackId">
+                <td><a [routerLink]="['/antecedentes-personales', antecedentesPersonales.id, 'view' ]">{{antecedentesPersonales.id}}</a></td>
+                <td>{{antecedentesPersonales.tabaco}}</td>
+                <td>{{antecedentesPersonales.tabacoObserv}}</td>
+                <td>{{antecedentesPersonales.tecafe}}</td>
+                <td>
+                    <span *ngFor="let enfermedades of antecedentesPersonales.enfermedades; let last = last">
+                            <a class="form-control-static" [routerLink]="['../enfermedad', enfermedades?.id, 'view' ]">{{enfermedades.valor}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let alergias of antecedentesPersonales.alergias; let last = last">
+                            <a class="form-control-static" [routerLink]="['../alergia', alergias?.id, 'view' ]">{{alergias.valor}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let intolerancias of antecedentesPersonales.intolerancias; let last = last">
+                            <a class="form-control-static" [routerLink]="['../intolerancia', intolerancias?.id, 'view' ]">{{intolerancias.valor}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let regimenes of antecedentesPersonales.regimenes; let last = last">
+                            <a class="form-control-static" [routerLink]="['../regimen', regimenes?.id, 'view' ]">{{regimenes.valor}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <div *ngIf="antecedentesPersonales.ejerciciosId">
+                        <a [routerLink]="['../ejercicio', antecedentesPersonales.ejerciciosId , 'view' ]" >{{antecedentesPersonales.ejerciciosValor}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="antecedentesPersonales.bebidasId">
+                        <a [routerLink]="['../bebida', antecedentesPersonales.bebidasId , 'view' ]" >{{antecedentesPersonales.bebidasValor}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/antecedentes-personales', antecedentesPersonales.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/antecedentes-personales', antecedentesPersonales.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'antecedentes-personales/'+ antecedentesPersonales.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

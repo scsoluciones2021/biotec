@@ -1,0 +1,21 @@
+
+{
+    "cpsjApp": {
+        "calendario" : {
+            "home": {
+                "title": "Calendarios",
+                "createLabel": "Crear nuevo Calendario",
+                "createOrEditLabel": "Crear o editar Calendario"
+            },
+            "created": "Un nuevo Calendario ha sido creado con el identificador {{ param }}",
+            "updated": "Un Calendario ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Calendario ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Calendario {{ id }}?"
+            },
+            "detail": {
+                "title": "Calendario"
+            }
+        }
+    }
+}

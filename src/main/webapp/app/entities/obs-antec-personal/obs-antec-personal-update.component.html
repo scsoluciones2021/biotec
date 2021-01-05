@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-obs-antec-personal-heading">Create or edit a Obs Antec Personal</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!obsAntecPersonal.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="obsAntecPersonal.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idEspecialidad">Id Especialidad</label>
+                    <input type="number" class="form-control" name="idEspecialidad" id="field_idEspecialidad"
+                        [(ngModel)]="obsAntecPersonal.idEspecialidad" required/>
+                    <div [hidden]="!(editForm.controls.idEspecialidad?.dirty && editForm.controls.idEspecialidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.idEspecialidad?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.idEspecialidad?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idMedico">Id Medico</label>
+                    <input type="number" class="form-control" name="idMedico" id="field_idMedico"
+                        [(ngModel)]="obsAntecPersonal.idMedico" required/>
+                    <div [hidden]="!(editForm.controls.idMedico?.dirty && editForm.controls.idMedico?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.idMedico?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.idMedico?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_observaciones">Observaciones</label>
+                    <input type="text" class="form-control" name="observaciones" id="field_observaciones"
+                        [(ngModel)]="obsAntecPersonal.observaciones" required/>
+                    <div [hidden]="!(editForm.controls.observaciones?.dirty && editForm.controls.observaciones?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.observaciones?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fecha">Fecha</label>
+                    <div class="input-group">
+                        <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="obsAntecPersonal.fecha"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_antecedentesPersonales">Antecedentes Personales</label>
+                    <select class="form-control" id="field_antecedentesPersonales" name="antecedentesPersonales" [(ngModel)]="obsAntecPersonal.antecedentesPersonalesId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="antecedentesPersonalesOption.id" *ngFor="let antecedentesPersonalesOption of antecedentespersonales; trackBy: trackAntecedentesPersonalesById">{{antecedentesPersonalesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

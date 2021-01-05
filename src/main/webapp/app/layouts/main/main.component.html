@@ -1,0 +1,31 @@
+<!-- Menú -->
+<router-outlet name="navbar" *ngIf="isAuthenticated()"></router-outlet>
+<!-- Body -->
+<div id="container-fluid">
+
+    <div class="card jh-card" style="top: -12px; height: max-content;" *ngIf="isAuthenticated() || notRegistering">
+        <router-outlet></router-outlet>
+        <router-outlet name="popup"></router-outlet>
+    </div>
+    <div>
+            <div class="hero" *ngIf="!isAuthenticated() && !notRegistering">
+
+                <h1 style="color:chocolate;">CPSJ</h1>
+                    <h3 style="color:#1abc9c;">Consultorios Privados San Justo</h3>        
+      
+                   <a (click)="login()" class="btn btn-hero btn-lg">Turnos Online</a>
+              </div>
+        <ngb-carousel *ngIf="!isAuthenticated() && !notRegistering" #myCarousel="ngbCarousel">
+            <ng-template ngbSlide *ngFor="let image of images; let i = index" id="{{i}}">
+                <img [class.active]="i==1" [src]="image.source" alt="image.alt" class="d-block w-100" />
+                <!-- <div class="carousel-caption">
+                    <h3 class="h3-responsive">{{ image.alt }}</h3>
+                    <p>{{ image.title }}</p> 
+                </div> -->
+            </ng-template>
+        </ngb-carousel>
+    </div>
+
+ <!-- Pie de página -->
+    <jhi-footer *ngIf="isAuthenticated()"></jhi-footer>
+</div> 

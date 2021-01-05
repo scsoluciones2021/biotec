@@ -1,0 +1,38 @@
+{
+    "name": "Consulta",
+    "fields": [
+        {
+            "fieldName": "fechaConsulta",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "sintomasConsulta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "diagnosticoConsulta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "observacionesConsulta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tratamientoConsulta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "indicacionesConsulta",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20181001014151",
+    "entityTableName": "consulta",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

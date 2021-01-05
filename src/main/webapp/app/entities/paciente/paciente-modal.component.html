@@ -1,0 +1,139 @@
+<div class="modal-header">
+    <h4 class="modal-title">Nuevo Paciente</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="clear()">&times;</button>
+</div>
+<form name="editForm" role="form" novalidate (ngSubmit)="guardarPaciente()" #editForm="ngForm">
+    <div class="modal-body">
+            
+          
+            <div class="form-group">
+                <label class="form-control-label" for="field_nombrePaciente">Nombre</label>
+                <input type="text" class="form-control" name="nombrePaciente" id="field_nombrePaciente"
+                    [(ngModel)]="paciente.nombrePaciente" required/>
+                <div [hidden]="!(editForm.controls.nombrePaciente?.dirty && editForm.controls.nombrePaciente?.invalid)">
+                    <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.nombrePaciente?.errors?.required">
+                    Campo requerido.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_apellidoPaciente">Apellido</label>
+                <input type="text" class="form-control" name="apellidoPaciente" id="field_apellidoPaciente"
+                    [(ngModel)]="paciente.apellidoPaciente" required/>
+                <div [hidden]="!(editForm.controls.apellidoPaciente?.dirty && editForm.controls.apellidoPaciente?.invalid)">
+                    <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.apellidoPaciente?.errors?.required">
+                    Campo requerido.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_documentoPaciente">Documento</label>
+                <input type="text" class="form-control" name="documentoPaciente" id="field_documentoPaciente"
+                    [(ngModel)]="paciente.documentoPaciente" required/>
+                <div [hidden]="!(editForm.controls.documentoPaciente?.dirty && editForm.controls.documentoPaciente?.invalid)">
+                    <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.documentoPaciente?.errors?.required">
+                    Campo requerido.
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label class="form-control-label" for="field_fechaNacimiento">Fecha Nacimiento</label>
+                </div>
+                <div class="col-sm">
+                    <label class="form-control-label" for="edad">Edad (años)</label>
+                </div> 
+                <div class="col-sm">
+                        <label class="form-control-label" for="edad">meses</label>
+                </div>                    
+              </div>
+              <div class="row">
+                <div class="form-group col-sm">
+               
+
+                    <p-calendar id="field_fechaNacimiento" name="field_fechaNacimiento" [(ngModel)]="fechaNac" [showIcon]="true"
+                        placeholder="Fecha" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2030"  [maxDate]="maxDateValue"
+                        dateFormat="dd/mm/yy" [locale]="es" (onSelect)="seleccionDia($event)" ></p-calendar>
+                </div>
+                <div class="form-group col-sm">
+                            
+                    <input type="text" class="form-control" id="edad" name="edad" [(ngModel)]="paciente.edad" readonly />
+                </div>
+                <div class="form-group col-sm">
+                    <input type="text" class="form-control" id="meses" name="meses" [(ngModel)]="meses" readonly />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label" for="field_provincia">Provincia</label>
+                <select class="form-control" id="field_provincia" name="field_provincia" [(ngModel)]="paciente.provinciaId" required (change)="seleccionProvincia($event.target)" >
+                    <!--option [ngValue]="null"></option-->
+                    <option [value]="provincia.id" *ngFor="let provincia of provincias; trackBy: trackProvinciaById">{{
+                        provincia.nombreProvincia
+                    }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_codigoPostal">Localidad</label>                    
+                <p-autoComplete inputStyleClass="form-control" dataKey="codigoPostal.Id" field="nombreCiudad" id="field_codigoPostal" name="field_codigoPostal" [(ngModel)]="codigoPostal" [suggestions]="filteredCPSingle" (completeMethod)="filterCPSingle($event)" (onSelect)="seleccionCP($event)" (onUnselect)="borrarCP()" (onClear)="borrarCP()" field="nombreCiudad" [size]="30" placeholder="Buscar Ciudad" [minLength]="1" forceSelection = "true" inputId="codigoPostal.Id" required></p-autoComplete>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_direccionPaciente">Dirección</label>
+                <input type="text" class="form-control" name="direccionPaciente" id="field_direccionPaciente"
+                    [(ngModel)]="paciente.direccionPaciente" />
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_telefonoPaciente">Teléfono</label>
+                <input type="text" class="form-control" name="telefonoPaciente" id="field_telefonoPaciente"
+                    [(ngModel)]="paciente.telefonoPaciente" />
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_emailPaciente">Email</label>
+                <input type="text" class="form-control" name="emailPaciente" id="field_emailPaciente"
+                    [(ngModel)]="paciente.emailPaciente" required/>
+                <div [hidden]="!(editForm.controls.emailPaciente?.dirty && editForm.controls.emailPaciente?.invalid)">
+                    <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.emailPaciente?.errors?.required">
+                    Campo requerido.
+                    </small>
+                </div>
+            </div>
+
+            <!--div class="form-group">
+                <label class="form-control-label" for="field_pacienteObraSocial">Obra Social</label>
+                <select class="form-control" id="field_pacienteObraSocial" name="pacienteObraSocial" [(ngModel)]="paciente.obrasocials[0].id">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="obraSocialOption.id" *ngFor="let obraSocialOption of pacienteobrasocials; trackBy: trackObraSocialById">{{obraSocialOption.nombreObraSocial}}</option>
+                </select>
+            </div-->
+            <div class="form-group">
+                <label class="form-control-label" for="field_pacienteObraSocial">Obra Social</label>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12">
+                        <p-multiSelect id="field_pacienteObraSocial" name="field_pacienteObraSocial"
+                            styleClass="form-control" [options]="obrasocials" [(ngModel)]="obraSocSelecc"
+                            optionLabel="siglaObraSocial" defaultLabel="Obra Social" required></p-multiSelect>
+                    </div>
+                </div>
+            </div>
+            <!--div class="form-group">
+                <label class="form-control-label" for="field_usuario">Usuario</label>
+                <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="paciente.usuarioId" >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                </select>
+            </div-->
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>

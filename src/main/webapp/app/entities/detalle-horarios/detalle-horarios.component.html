@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cpsjApp.detalleHorarios.home.title">Detalle Horarios</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-detalle-horarios" [routerLink]="['/detalle-horarios/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="cpsjApp.detalleHorarios.home.createLabel">
+            Create new Detalle Horarios
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="detalleHorarios">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idHorario"><span jhiTranslate="cpsjApp.detalleHorarios.idHorario">Id Horario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="horaDesde"><span jhiTranslate="cpsjApp.detalleHorarios.horaDesde">Hora Desde</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="horaHasta"><span jhiTranslate="cpsjApp.detalleHorarios.horaHasta">Hora Hasta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lunes"><span jhiTranslate="cpsjApp.detalleHorarios.lunes">Lunes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="martes"><span jhiTranslate="cpsjApp.detalleHorarios.martes">Martes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="miercoles"><span jhiTranslate="cpsjApp.detalleHorarios.miercoles">Miercoles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="jueves"><span jhiTranslate="cpsjApp.detalleHorarios.jueves">Jueves</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="viernes"><span jhiTranslate="cpsjApp.detalleHorarios.viernes">Viernes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sabado"><span jhiTranslate="cpsjApp.detalleHorarios.sabado">Sabado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="domingo"><span jhiTranslate="cpsjApp.detalleHorarios.domingo">Domingo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="intervalo"><span jhiTranslate="cpsjApp.detalleHorarios.intervalo">Intervalo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="frecuencia"><span jhiTranslate="cpsjApp.detalleHorarios.frecuencia">Frecuencia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cantidadPacientes"><span jhiTranslate="cpsjApp.detalleHorarios.cantidadPacientes">Cantidad Pacientes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detalleHorarios of detalleHorarios ;trackBy: trackId">
+                <td><a [routerLink]="['/detalle-horarios', detalleHorarios.id, 'view' ]">{{detalleHorarios.id}}</a></td>
+                <td>{{detalleHorarios.idHorario}}</td>
+                <td>{{detalleHorarios.horaDesde}}</td>
+                <td>{{detalleHorarios.horaHasta}}</td>
+                <td>{{detalleHorarios.lunes}}</td>
+                <td>{{detalleHorarios.martes}}</td>
+                <td>{{detalleHorarios.miercoles}}</td>
+                <td>{{detalleHorarios.jueves}}</td>
+                <td>{{detalleHorarios.viernes}}</td>
+                <td>{{detalleHorarios.sabado}}</td>
+                <td>{{detalleHorarios.domingo}}</td>
+                <td>{{detalleHorarios.intervalo}}</td>
+                <td>{{detalleHorarios.frecuencia}}</td>
+                <td>{{detalleHorarios.cantidadPacientes}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/detalle-horarios', detalleHorarios.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-horarios', detalleHorarios.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'detalle-horarios/'+ detalleHorarios.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="detalleHorarios && detalleHorarios.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

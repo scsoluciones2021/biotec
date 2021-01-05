@@ -1,0 +1,22 @@
+{
+    "name": "Intolerancia",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181001014144",
+    "entityTableName": "intolerancia",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

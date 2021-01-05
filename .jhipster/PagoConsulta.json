@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "pagoturno",
+            "otherEntityName": "turno",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "monto",
+            "fieldType": "Double",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cupones",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20191103002439",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "pago_consulta",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

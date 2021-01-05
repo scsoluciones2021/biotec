@@ -1,0 +1,25 @@
+{
+    "cpsjApp": {
+        "pagoConsulta": {
+            "home": {
+                "title": "Pago Consultas",
+                "createLabel": "Create a new Pago Consulta",
+                "createOrEditLabel": "Create or edit a Pago Consulta",
+                "notFound": "No Pago Consultas found"
+            },
+            "created": "A new Pago Consulta is created with identifier {{ param }}",
+            "updated": "A Pago Consulta is updated with identifier {{ param }}",
+            "deleted": "A Pago Consulta is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pago Consulta {{ id }}?"
+            },
+            "detail": {
+                "title": "Pago Consulta"
+            },
+            "monto": "Monto",
+            "tipo": "Tipo",
+            "cupones": "Cupones",
+            "pagoturno": "Pagoturno"
+        }
+    }
+}

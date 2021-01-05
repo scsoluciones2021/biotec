@@ -1,0 +1,29 @@
+{
+    "name": "Ejercicio",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "antecedentesPersonales",
+            "otherEntityName": "antecedentesPersonales",
+            "otherEntityRelationshipName": "ejercicios"
+        }
+    ],
+    "changelogDate": "20181001014147",
+    "entityTableName": "ejercicio",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

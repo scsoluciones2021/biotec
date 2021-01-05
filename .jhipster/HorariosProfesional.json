@@ -1,0 +1,74 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "horario_prof_rel",
+            "otherEntityName": "profesional",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nombreProfesional"
+        },
+        {
+            "relationshipName": "horario_bloq_rel",
+            "otherEntityName": "bloqueo",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nombreBloqueo",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "horariosProfesional"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "consultorio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDesde",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaHasta",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "horaDesde",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "horaHasta",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "intervalo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "1"
+        }
+    ],
+    "changelogDate": "20190123212400",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "horarios_profesional",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

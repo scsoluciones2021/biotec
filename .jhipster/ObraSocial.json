@@ -1,0 +1,54 @@
+{
+    "name": "ObraSocial",
+    "fields": [
+        {
+            "fieldName": "codigoObraSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreObraSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "direccionObraSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonoObraSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailObraSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "siglaObraSocial",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "profesional",
+            "otherEntityName": "profesional",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "obrasocial"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "obrasocial",
+            "otherEntityName": "obrasocial",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "turno"
+        }
+    ],
+    "changelogDate": "20181001014137",
+    "entityTableName": "obra_social",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

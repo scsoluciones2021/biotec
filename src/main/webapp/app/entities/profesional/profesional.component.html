@@ -1,0 +1,100 @@
+<div>
+    <h2 id="page-heading">
+        <span>Profesionales</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profesional" [routerLink]="['/profesional/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Crear nuevo Profesional
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaA" placeholder="Apellido" aria-label="Apellido" #buscarPrA>
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaN" placeholder="Nombre" aria-label="Nombre"  #buscarPrN>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(buscarPrA.value, buscarPrN.value)">Buscar</button>
+    </div>
+    <div class="table-responsive" *ngIf="profesionals">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <!--th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <th jhiSortBy="nombreProfesional"><span>Apellido y Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="documentoProfesional"><span>Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccionProfesional"><span>Dirección</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoProfesional"><span>Teléfono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailProfesional"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="matriculaProfesional"><span>Matrícula</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--th jhiSortBy="imagenProfesional"><span>Imagen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioId"><span>Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tituloValor"><span>Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoPostalNombreCiudad"><span>Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let profesional of profesionals ;trackBy: trackId">
+                <!--td><a [routerLink]="['/profesional', profesional.id, 'view' ]">{{profesional.id}}</a></td-->
+                <td><a [routerLink]="['/profesional', profesional.id, 'view' ]">{{profesional.nombreProfesional}}</a></td>
+                <td>{{profesional.documentoProfesional}}</td>
+                <td>{{profesional.direccionProfesional}}</td>
+                <td>{{profesional.telefonoProfesional}}</td>
+                <td>{{profesional.emailProfesional}}</td>
+                <td>{{profesional.matriculaProfesional}}</td>
+                <!--td>
+                    <a *ngIf="profesional.imagenProfesional" (click)="openFile(profesional.imagenProfesionalContentType, profesional.imagenProfesional)">
+                        <img [src]="'data:' + profesional.imagenProfesionalContentType + ';base64,' + profesional.imagenProfesional" style="max-height: 30px;" alt="profesional image"/>
+                    </a>
+                    <span *ngIf="profesional.imagenProfesional">{{profesional.imagenProfesionalContentType}}, {{byteSize(profesional.imagenProfesional)}}</span>
+                </td>
+                <td>
+                    {{profesional.usuarioId}}
+                </td>
+                <td>
+                    <div *ngIf="profesional.tituloId">
+                        <a [routerLink]="['../titulo-short', profesional.tituloId , 'view' ]" >{{profesional.tituloValor}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="profesional.codigoPostalId">
+                        <a [routerLink]="['../codigo-postal', profesional.codigoPostalId , 'view' ]" >{{profesional.codigoPostalNombreCiudad}}</a>
+                    </div>
+                </td-->
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/profesional', profesional.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">Ver</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/profesional', profesional.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Editar</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'profesional/'+ profesional.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Borrar</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="profesionals && profesionals.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination  [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

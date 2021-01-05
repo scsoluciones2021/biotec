@@ -1,0 +1,98 @@
+{
+    "name": "Profesional",
+    "fields": [
+        {
+            "fieldName": "nombreProfesional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentoProfesional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccionProfesional",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonoProfesional",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailProfesional",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "matriculaProfesional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagenProfesional",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "profesional"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "titulo",
+            "otherEntityName": "tituloShort",
+            "otherEntityField": "valor",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "profesional"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ficha",
+            "otherEntityName": "ficha",
+            "otherEntityRelationshipName": "profesional"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "profesional",
+            "relationshipName": "obrasocial",
+            "otherEntityName": "obraSocial",
+            "otherEntityField": "nombreObraSocial",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "profesional",
+            "relationshipName": "especialidad",
+            "otherEntityName": "especialidad",
+            "otherEntityField": "codigoEspecialidad",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "codigoPostal",
+            "otherEntityName": "codigoPostal",
+            "otherEntityField": "nombreCiudad"
+        }
+    ],
+    "changelogDate": "20181001014139",
+    "entityTableName": "profesional",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

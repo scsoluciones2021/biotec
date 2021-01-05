@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="obsAntecFamiliar">
+            <h2><span>Obs Antec Familiar</span> {{obsAntecFamiliar.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Id Especialidad</span></dt>
+                <dd>
+                    <span>{{obsAntecFamiliar.idEspecialidad}}</span>
+                </dd>
+                <dt><span>Id Medico</span></dt>
+                <dd>
+                    <span>{{obsAntecFamiliar.idMedico}}</span>
+                </dd>
+                <dt><span>Observaciones</span></dt>
+                <dd>
+                    <span>{{obsAntecFamiliar.observaciones}}</span>
+                </dd>
+                <dt><span>Fecha</span></dt>
+                <dd>
+                    <span>{{obsAntecFamiliar.fecha}}</span>
+                </dd>
+                <dt><span>Antecedentes Familiares</span></dt>
+                <dd>
+                    <div *ngIf="obsAntecFamiliar.antecedentesFamiliaresId">
+                        <a [routerLink]="['/antecedentes-familiares', obsAntecFamiliar.antecedentesFamiliaresId, 'view']">{{obsAntecFamiliar.antecedentesFamiliaresId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/obs-antec-familiar', obsAntecFamiliar.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

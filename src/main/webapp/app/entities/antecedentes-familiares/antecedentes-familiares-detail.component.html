@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="antecedentesFamiliares">
+            <h2><span>Antecedentes Familiares</span> {{antecedentesFamiliares.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Vivo AF</span></dt>
+                <dd>
+                    <span>{{antecedentesFamiliares.vivoAF}}</span>
+                </dd>
+                <dt><span>Causa Muerte AF</span></dt>
+                <dd>
+                    <span>{{antecedentesFamiliares.causaMuerteAF}}</span>
+                </dd>
+                <dt><span>Parentezco</span></dt>
+                <dd>
+                    <div *ngIf="antecedentesFamiliares.parentezcoId">
+                        <a [routerLink]="['/familiar', antecedentesFamiliares.parentezcoId, 'view']">{{antecedentesFamiliares.parentezcoParentezco}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/antecedentes-familiares', antecedentesFamiliares.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

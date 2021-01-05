@@ -1,0 +1,80 @@
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 *ngIf="settingsAccount">Ajustes para el usuario [<b>{{settingsAccount.login}}</b>]</h2>
+
+            <div class="alert alert-success" *ngIf="success">
+                <strong>Settings saved!</strong>
+            </div>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <form name="form" role="form" (ngSubmit)="save()" #settingsForm="ngForm" *ngIf="settingsAccount" novalidate>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="firstName">Nombre</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Nombre"
+                           [(ngModel)]="settingsAccount.firstName" minlength=1 maxlength=50 #firstNameInput="ngModel" required>
+                    <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
+                        <small class="form-text text-danger"
+                           *ngIf="firstNameInput.errors.required">
+                            Campo requerido.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="firstNameInput.errors.minlength">
+                            El nombre debe contener al menos 1 caracter.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="firstNameInput.errors.maxlength">
+                            El nombre no debe contener más de 50 caracteres.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="lastName">Apellido</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellido"
+                           [(ngModel)]="settingsAccount.lastName" minlength=1 maxlength=50 #lastNameInput="ngModel" required>
+                    <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
+                        <small class="form-text text-danger"
+                           *ngIf="lastNameInput.errors.required">
+                            Campo requerido.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="lastNameInput.errors.minlength">
+                            El apellido debe contener al menos 1 caracter.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="lastNameInput.errors.maxlength">
+                            El apellido no debe contener más de 50 caracteres.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                           [(ngModel)]="settingsAccount.email" minlength="5" maxlength="254" #emailInput="ngModel" email required>
+                    <div *ngIf="emailInput.dirty && emailInput.invalid">
+                        <small class="form-text text-danger"
+                           *ngIf="emailInput.errors.required">
+                            Campo requerido.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="emailInput.errors.email">
+                            Email no válido.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="emailInput.errors.minlength">
+                            El email debe contener al menos 5 caracteres.
+                        </small>
+                        <small class="form-text text-danger"
+                           *ngIf="emailInput.errors.maxlength">
+                            El email no debe contener más de 100 caracteres.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="settingsForm.form.invalid" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>

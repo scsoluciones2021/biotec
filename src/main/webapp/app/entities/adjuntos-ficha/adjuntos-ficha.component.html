@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span>Adjuntos Fichas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-adjuntos-ficha" [routerLink]="['/adjuntos-ficha/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Adjuntos Ficha
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="adjuntos_fichas">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idFicha"><span>Id Ficha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idProfesional"><span>Id Profesional</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idPaciente"><span>Id Paciente</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idEspecialidad"><span>Id Especialidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ruta"><span>Ruta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreOriginal"><span>Nombre Original</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreActual"><span>Nombre Actual</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fecha"><span>Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuario"><span>Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let adjuntos_ficha of adjuntos_fichas ;trackBy: trackId">
+                <td><a [routerLink]="['/adjuntos-ficha', adjuntos_ficha.id, 'view' ]">{{adjuntos_ficha.id}}</a></td>
+                <td>{{adjuntos_ficha.idFicha}}</td>
+                <td>{{adjuntos_ficha.idProfesional}}</td>
+                <td>{{adjuntos_ficha.idPaciente}}</td>
+                <td>{{adjuntos_ficha.idEspecialidad}}</td>
+                <td>{{adjuntos_ficha.ruta}}</td>
+                <td>{{adjuntos_ficha.nombreOriginal}}</td>
+                <td>{{adjuntos_ficha.nombreActual}}</td>
+                <td>{{adjuntos_ficha.fecha | date:'medium'}}</td>
+                <td>{{adjuntos_ficha.usuario}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/adjuntos-ficha', adjuntos_ficha.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/adjuntos-ficha', adjuntos_ficha.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'adjuntos-ficha/'+ adjuntos_ficha.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="adjuntos_fichas && adjuntos_fichas.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

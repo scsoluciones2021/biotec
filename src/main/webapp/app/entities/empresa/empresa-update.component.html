@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-empresa-heading">Create or edit a Empresa</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!empresa.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="empresa.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreEmpresa">Nombre Empresa</label>
+                    <input type="text" class="form-control" name="nombreEmpresa" id="field_nombreEmpresa"
+                        [(ngModel)]="empresa.nombreEmpresa" required/>
+                    <div [hidden]="!(editForm.controls.nombreEmpresa?.dirty && editForm.controls.nombreEmpresa?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nombreEmpresa?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_direccionEmpresa">Direccion Empresa</label>
+                    <input type="text" class="form-control" name="direccionEmpresa" id="field_direccionEmpresa"
+                        [(ngModel)]="empresa.direccionEmpresa" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_telefonoEmpresa">Telefono Empresa</label>
+                    <input type="text" class="form-control" name="telefonoEmpresa" id="field_telefonoEmpresa"
+                        [(ngModel)]="empresa.telefonoEmpresa" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_emailEmpresa">Email Empresa</label>
+                    <input type="text" class="form-control" name="emailEmpresa" id="field_emailEmpresa"
+                        [(ngModel)]="empresa.emailEmpresa" required/>
+                    <div [hidden]="!(editForm.controls.emailEmpresa?.dirty && editForm.controls.emailEmpresa?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.emailEmpresa?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nroSucursal">Nro Sucursal</label>
+                    <input type="number" class="form-control" name="nroSucursal" id="field_nroSucursal"
+                        [(ngModel)]="empresa.nroSucursal" required/>
+                    <div [hidden]="!(editForm.controls.nroSucursal?.dirty && editForm.controls.nroSucursal?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nroSucursal?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.nroSucursal?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codigoPostal">Codigo Postal</label>
+                    <select class="form-control" id="field_codigoPostal" name="codigoPostal" [(ngModel)]="empresa.codigoPostalId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="codigoPostalOption.id" *ngFor="let codigoPostalOption of codigopostals; trackBy: trackCodigoPostalById">{{codigoPostalOption.nombreCiudad}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

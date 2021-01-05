@@ -1,0 +1,24 @@
+
+{
+    "consultoriosPrivadosSanJustoApp": {
+        "agrupadorOS" : {
+            "home": {
+                "title": "Agrupador OS",
+                "createLabel": "Crear nuevo Agrupador OS",
+                "createOrEditLabel": "Crear o editar Agrupador OS"
+            },
+            "created": "Un nuevo Agrupador ha sido creado con el identificador {{ param }}",
+            "updated": "Un Agrupador ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Agrupador ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Agrupador OS {{ id }}?"
+            },
+            "detail": {
+                "title": "Agrupador OS"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "agrupador_obrasocial": "Agrupador Obrasocial"
+        }
+    }
+}

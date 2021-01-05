@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Obras Sociales</span>
+        <button jhiTranslate="cpsjApp.obraSocial.home.createLabel" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-obra-social" [routerLink]="['/obra-social/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Obra Social
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="obraSocials">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoObraSocial"><span>Código</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreObraSocial"><span>Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccionObraSocial"><span>Dirección</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoObraSocial"><span>Teléfono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailObraSocial"><span>E-mail</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let obraSocial of obraSocials ;trackBy: trackId">
+                <td><a [routerLink]="['/obra-social', obraSocial.id, 'view' ]">{{obraSocial.id}}</a></td>
+                <td>{{obraSocial.codigoObraSocial}}</td>
+                <td>{{obraSocial.nombreObraSocial}}</td>
+                <td>{{obraSocial.direccionObraSocial}}</td>
+                <td>{{obraSocial.telefonoObraSocial}}</td>
+                <td>{{obraSocial.emailObraSocial}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/obra-social', obraSocial.id, 'view' ]"
+                                class="btn btn-info btn-sm"
+                                jhiTranslate="entity.action.view" >
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/obra-social', obraSocial.id, 'edit']"
+                                class="btn btn-primary btn-sm"
+                                jhiTranslate="entity.action.edit">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'obra-social/'+ obraSocial.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm"
+                                jhiTranslate="entity.action.delete">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="obraSocials && obraSocials.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

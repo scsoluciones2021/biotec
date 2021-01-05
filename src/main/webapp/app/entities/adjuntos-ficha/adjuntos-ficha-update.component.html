@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-adjuntos-ficha-heading">Create or edit a Adjuntos Ficha</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!adjuntos_ficha.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="adjuntos_ficha.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idFicha">Id Ficha</label>
+                    <input type="number" class="form-control" name="idFicha" id="field_idFicha"
+                        [(ngModel)]="adjuntos_ficha.idFicha" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idProfesional">Id Profesional</label>
+                    <input type="number" class="form-control" name="idProfesional" id="field_idProfesional"
+                        [(ngModel)]="adjuntos_ficha.idProfesional" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idPaciente">Id Paciente</label>
+                    <input type="number" class="form-control" name="idPaciente" id="field_idPaciente"
+                        [(ngModel)]="adjuntos_ficha.idPaciente" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idEspecialidad">Id Especialidad</label>
+                    <input type="number" class="form-control" name="idEspecialidad" id="field_idEspecialidad"
+                        [(ngModel)]="adjuntos_ficha.idEspecialidad" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ruta">Ruta</label>
+                    <input type="text" class="form-control" name="ruta" id="field_ruta"
+                        [(ngModel)]="adjuntos_ficha.ruta" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreOriginal">Nombre Original</label>
+                    <input type="text" class="form-control" name="nombreOriginal" id="field_nombreOriginal"
+                        [(ngModel)]="adjuntos_ficha.nombreOriginal" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreActual">Nombre Actual</label>
+                    <input type="text" class="form-control" name="nombreActual" id="field_nombreActual"
+                        [(ngModel)]="adjuntos_ficha.nombreActual" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" [(ngModel)]="fecha"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_usuario">Usuario</label>
+                    <input type="number" class="form-control" name="usuario" id="field_usuario"
+                        [(ngModel)]="adjuntos_ficha.usuario" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

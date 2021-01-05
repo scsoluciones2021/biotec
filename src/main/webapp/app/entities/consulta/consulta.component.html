@@ -1,0 +1,57 @@
+<div>
+    <h2 id="page-heading">
+        <span *jhiHasAnyAuthority="'ROLE_USER'">Consultas</span>
+        <span *jhiHasAnyAuthority="'ROLE_MEDICO'">Agenda</span>
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-consulta" [routerLink]="['/consulta/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Nueva
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="consultas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>Fecha</span></th>
+            <th><span>Paciente</span></th>
+            <th><span>Especialidad</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let consulta of consultas ;trackBy: trackId">
+                <!--td><a [routerLink]="['/consulta', consulta.id, 'view' ]">{{consulta.id}}</a></td-->
+                <td>{{consulta.fechaConsulta | date:'mediumDate'}}</td>
+                <td>{{consulta.observacionesConsulta}}</td>
+                <td>{{consulta.observacionesConsulta}}</td>
+                <!--td>
+                    <div *ngIf="consulta.constantesConsultaId">
+                        <a [routerLink]="['../constantes', consulta.constantesConsultaId , 'view' ]" >{{consulta.constantesConsultaId}}</a>
+                    </div>
+                </td-->
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/consulta', consulta.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Atender</span>
+                        </button>
+                        <!--button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'consulta/'+ consulta.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button-->
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

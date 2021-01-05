@@ -1,0 +1,228 @@
+<div>
+    <!--h2 id="page-heading">
+        <span jhiTranslate="cpsjApp.turno.home.title">Turnos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-turno" [routerLink]="['/turno/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span>
+                Nuevo Turno
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br /-->
+    
+    <ngb-tabset>
+        <ngb-tab title="Listado de Turnos">
+            <ng-template ngbTabContent>
+                <div class="container-fluid border">
+                    <!-- Filtros de búsqueda -->
+                    <div class="row">
+                    <div class="col-lg-12">
+                        <p-panel header="Filtros de búsqueda" [toggleable]="true" [style]="{ 'margin-bottom': '20px' }">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fas fa-id-card"></i></span> 
+                                        <!-- [pKeyFilter]="filtroDni" -->
+                                        <input type="text"  placeholder="DNI" [(ngModel)]="busqueda_dni"/>
+                                    </div>
+                                </div>
+
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" pKeyFilter="alpha" placeholder="Apellido" [(ngModel)]="busqueda_apellido"/>
+                                    </div>
+                                </div>
+
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                        <input type="text" placeholder="Nombre" [(ngModel)]="busqueda_nombre"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="ui-inputgroup">
+                                            <span class="ui-inputgroup-addon" style="height: fit-content !important;"><i class="fa fa-list"></i></span>
+                                            <p-multiSelect [options]="especialidades" [(ngModel)]="especialidadesSelecc" optionLabel="nombreEspecialidad" defaultLabel="Especialidad"></p-multiSelect>
+                                    </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="ui-inputgroup">
+                                        <span class="ui-inputgroup-addon" style="height: fit-content !important;"><i class="fa fa-user-md"></i></span>
+                                        <p-multiSelect [options]="profesionales" [(ngModel)]="profesionalesSelecc" optionLabel="nombreProfesional" defaultLabel="Profesional"></p-multiSelect>
+                                    </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-4">
+                                    <div class="col-lg-6" style="padding-left: initial;">
+                                        <p-calendar id="fecha_busqueda" name="fecha_busqueda" [(ngModel)]="busqueda_fecha" [showIcon]="true" placeholder="Fecha" dateFormat="dd/mm/yy" [locale]="es"></p-calendar>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p-footer>
+                                <button
+                                    pButton
+                                    type="button"
+                                    icon="pi pi-refresh"
+                                    label="Limpiar"
+                                    class="btn btn-primary"
+                                    style="margin-right: .25em;"
+                                    (click)="limpiarCampos()"
+                                ></button>
+                                <button pButton type="button" icon="pi pi-search" label="Buscar" class="btn btn-primary" (click)="search()"></button>
+                            </p-footer>
+                        </p-panel>
+                    </div>
+                    </div>
+
+                    <span><h4>Turnos</h4></span>
+                    <!-- Tabla con los turnos -->
+                    <div class="row col-12 justify-content-end" style="float:right;">
+                        <button pButton type="button" id="refresh" class="btn btn-secondary" icon="pi pi-refresh" label="Recargar" (click)="refresh()">
+                        </button>
+                        <button (click)="exportAsXLSX()"><i class="far fa-file-excel"></i></button>
+                    </div>
+                    <div class="row col-12">                           
+                        <div class="table-responsive" *ngIf="turnos">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <!--th jhiSortBy="id">
+                                            <span>Nº</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th-->
+                                        <th jhiSortBy="dni">
+                                            <span>Dni</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="apellido">
+                                            <span>Apellido</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="nombre">
+                                            <span>Nombre</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="telefono">
+                                            <span>Teléfono</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="email">
+                                            <span>Email</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="dia">
+                                            <span>Dia</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="hora">
+                                            <span>Hora</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <!--th jhiSortBy="idHorario">
+                                            <span jhiTranslate="cpsjApp.turno.idHorario">Id Horario</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th-->
+                                        <th jhiSortBy="tur_esp_relNombreEspecialidad">
+                                            <span>Especialidad</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <th jhiSortBy="tur_prof_relNombreProfesional">
+                                            <span>Profesional</span>
+                                            <fa-icon [icon]="'sort'"></fa-icon>
+                                        </th>
+                                        <!--th></th-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let turno of turnos; trackBy: trackId">
+                                        <!--td>
+                                            <a [routerLink]="['/turno', turno.id, 'view']">{{ turno.id }}</a>
+                                        </td-->
+                                        <td>{{ turno.dni }}</td>
+                                        <td>{{ turno.apellido }}</td>
+                                        <td>{{ turno.nombre }}</td>
+                                        <td>{{ turno.telefono }}</td>
+                                        <td>{{ turno.email }}</td>
+                                        <td>{{ turno.dia | date:'dd/MM/yyyy' }}</td>
+                                        <td>{{ turno.hora | date: 'HH:mm' }}</td>
+                                        <!--td>{{ turno.idHorario }}</td-->
+                                        <td>
+                                            <div *ngIf="turno.tur_esp_relId">
+                                                <a [routerLink]="['../especialidad', turno.tur_esp_relId, 'view']">{{
+                                                    turno.tur_esp_relNombreEspecialidad
+                                                }}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="turno.tur_prof_relId">
+                                                <a [routerLink]="['../profesional', turno.tur_prof_relId, 'view']">{{
+                                                    turno.tur_prof_relNombreProfesional
+                                                }}</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button
+                                                    type="button"
+                                                    (click)="confirmarTurno(turno.id, turno.dni)"
+                                                    class="btn btn-primary btn-sm"
+                                                >
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Confirmar</span>
+                                                </button>
+                                                <button
+                                                    type="submit"
+                                                    [routerLink]="['/', { outlets: { popup: 'turno/' + turno.id + '/delete' } }]"
+                                                    replaceUrl="true"
+                                                    queryParamsHandling="merge"
+                                                    class="btn btn-danger btn-sm"
+                                                >
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline">Cancelar</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin:0 auto !important" *ngIf="turnos && turnos.length">
+                            <div class="row justify-content-center">
+                                <jhi-item-count
+                                    [page]="page"
+                                    [total]="queryCount"
+                                    [maxSize]="5"
+                                    [itemsPerPage]="itemsPerPage"
+                                ></jhi-item-count>
+                            </div>
+                            <div class="row justify-content-center">
+                                <ngb-pagination
+                                    [collectionSize]="totalItems"
+                                    [(page)]="page"
+                                    [pageSize]="itemsPerPage"
+                                    [maxSize]="5"
+                                    [rotate]="true"
+                                    [boundaryLinks]="true"
+                                    (pageChange)="loadPage(page)"
+                                ></ngb-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <!-- Pestaña para dar turnos -->
+        <ngb-tab title="Otorgar turno">
+            <ng-template ngbTabContent>
+                <div class="container-fluid border">                    
+                    <jhi-turno-update></jhi-turno-update>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>

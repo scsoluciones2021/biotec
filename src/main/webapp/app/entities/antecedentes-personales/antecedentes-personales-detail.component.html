@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="antecedentesPersonales">
+            <h2><span>Antecedentes Personales</span> {{antecedentesPersonales.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tabaco</span></dt>
+                <dd>
+                    <span>{{antecedentesPersonales.tabaco}}</span>
+                </dd>
+                <dt><span>Tabaco Observ</span></dt>
+                <dd>
+                    <span>{{antecedentesPersonales.tabacoObserv}}</span>
+                </dd>
+                <dt><span>Tecafe</span></dt>
+                <dd>
+                    <span>{{antecedentesPersonales.tecafe}}</span>
+                </dd>
+                <dt><span>Enfermedades</span></dt>
+                <dd>
+                    <span *ngFor="let enfermedades of antecedentesPersonales.enfermedades; let last = last">
+                        <a [routerLink]="['/enfermedad', enfermedades?.id, 'view' ]">{{enfermedades.valor}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Alergias</span></dt>
+                <dd>
+                    <span *ngFor="let alergias of antecedentesPersonales.alergias; let last = last">
+                        <a [routerLink]="['/alergia', alergias?.id, 'view' ]">{{alergias.valor}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Intolerancias</span></dt>
+                <dd>
+                    <span *ngFor="let intolerancias of antecedentesPersonales.intolerancias; let last = last">
+                        <a [routerLink]="['/intolerancia', intolerancias?.id, 'view' ]">{{intolerancias.valor}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Regimenes</span></dt>
+                <dd>
+                    <span *ngFor="let regimenes of antecedentesPersonales.regimenes; let last = last">
+                        <a [routerLink]="['/regimen', regimenes?.id, 'view' ]">{{regimenes.valor}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Ejercicios</span></dt>
+                <dd>
+                    <div *ngIf="antecedentesPersonales.ejerciciosId">
+                        <a [routerLink]="['/ejercicio', antecedentesPersonales.ejerciciosId, 'view']">{{antecedentesPersonales.ejerciciosValor}}</a>
+                    </div>
+                </dd>
+                <dt><span>Bebidas</span></dt>
+                <dd>
+                    <div *ngIf="antecedentesPersonales.bebidasId">
+                        <a [routerLink]="['/bebida', antecedentesPersonales.bebidasId, 'view']">{{antecedentesPersonales.bebidasValor}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/antecedentes-personales', antecedentesPersonales.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

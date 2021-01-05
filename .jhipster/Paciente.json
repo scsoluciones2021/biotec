@@ -1,0 +1,80 @@
+{
+    "name": "Paciente",
+    "fields": [
+        {
+            "fieldName": "nombrePaciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "apellidoPaciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentoPaciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccionPaciente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonoPaciente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailPaciente",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "pacienteObraSocial",
+            "otherEntityName": "obraSocial",
+            "otherEntityField": "nombreObraSocial",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "paciente"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "paciente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ficha",
+            "otherEntityName": "ficha",
+            "otherEntityRelationshipName": "paciente"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "codigoPostal",
+            "otherEntityName": "codigoPostal",
+            "otherEntityField": "nombreCiudad"
+        }
+    ],
+    "changelogDate": "20181001014141",
+    "entityTableName": "paciente",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

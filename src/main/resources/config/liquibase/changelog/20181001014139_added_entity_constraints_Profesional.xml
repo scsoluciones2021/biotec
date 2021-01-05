@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Profesional.
+    -->
+    <changeSet id="20181001014139-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="profesional"
+                                 constraintName="fk_profesional_usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="titulo_id"
+                                 baseTableName="profesional"
+                                 constraintName="fk_profesional_titulo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="titulo_short"/>
+
+        <addForeignKeyConstraint baseColumnNames="profesionals_id"
+                                 baseTableName="profesional_obrasocial"
+                                 constraintName="fk_profesional_obrasocial_profesionals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profesional"/>
+        <addForeignKeyConstraint baseColumnNames="obrasocials_id"
+                                 baseTableName="profesional_obrasocial"
+                                 constraintName="fk_profesional_obrasocial_obrasocials_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="obra_social"/>
+        
+        <addForeignKeyConstraint baseColumnNames="profesionals_id"
+                                 baseTableName="profesional_especialidad"
+                                 constraintName="fk_profesional_especialidad_profesionals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profesional"/>
+        <addForeignKeyConstraint baseColumnNames="especialidads_id"
+                                 baseTableName="profesional_especialidad"
+                                 constraintName="fk_profesional_especialidad_especialidads_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialidad"/>
+        
+        <addForeignKeyConstraint baseColumnNames="codigo_postal_id"
+                                 baseTableName="profesional"
+                                 constraintName="fk_profesional_codigo_postal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="codigo_postal"/>
+
+    </changeSet>
+</databaseChangeLog>

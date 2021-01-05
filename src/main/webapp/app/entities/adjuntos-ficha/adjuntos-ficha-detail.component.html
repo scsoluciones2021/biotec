@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="adjuntos_ficha">
+            <h2><span>Adjuntos Ficha</span> {{adjuntos_ficha.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Id Ficha</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.idFicha}}</span>
+                </dd>
+                <dt><span>Id Profesional</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.idProfesional}}</span>
+                </dd>
+                <dt><span>Id Paciente</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.idPaciente}}</span>
+                </dd>
+                <dt><span>Id Especialidad</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.idEspecialidad}}</span>
+                </dd>
+                <dt><span>Ruta</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.ruta}}</span>
+                </dd>
+                <dt><span>Nombre Original</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.nombreOriginal}}</span>
+                </dd>
+                <dt><span>Nombre Actual</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.nombreActual}}</span>
+                </dd>
+                <dt><span>Fecha</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.fecha}}</span>
+                </dd>
+                <dt><span>Usuario</span></dt>
+                <dd>
+                    <span>{{adjuntos_ficha.usuario}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/adjuntos-ficha', adjuntos_ficha.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

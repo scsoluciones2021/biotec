@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pagoConsulta">
+            <h2><span jhiTranslate="cpsjApp.pagoConsulta.detail.title">Pago Consulta</span> {{pagoConsulta.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cpsjApp.pagoConsulta.monto">Monto</span></dt>
+                <dd>
+                    <span>{{pagoConsulta.monto}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.pagoConsulta.tipo">Tipo</span></dt>
+                <dd>
+                    <span>{{pagoConsulta.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.pagoConsulta.cupones">Cupones</span></dt>
+                <dd>
+                    <span>{{pagoConsulta.cupones}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.pagoConsulta.pagoturno">Pagoturno</span></dt>
+                <dd>
+                    <div *ngIf="pagoConsulta.pagoturnoId">
+                        <a [routerLink]="['/turno', pagoConsulta.pagoturnoId, 'view']">{{pagoConsulta.pagoturnoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/pago-consulta', pagoConsulta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

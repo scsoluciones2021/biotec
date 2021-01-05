@@ -1,0 +1,13 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20190127001257",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "calendario",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

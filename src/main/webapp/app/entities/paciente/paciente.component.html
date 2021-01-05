@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span>Pacientes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-paciente" [routerLink]="['/paciente/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Nuevo Paciente
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="form-inline my-2 my-lg-0">
+    <!-- (keyup.enter)="search(buscarApe.value) -->
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaApellido" placeholder="Apellido" aria-label="Apellido"  #buscarApe>
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaNombre" placeholder="Nombre" aria-label="Nombre"  #buscarNom>
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaDNI" placeholder="DNI" aria-label="DNI"  #buscarDni>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(buscarApe.value, buscarNom.value, buscarDni.value)">Buscar</button>
+    </div>
+    <div class="table-responsive" *ngIf="pacientes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <!--th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <th jhiSortBy="nombrePaciente"><span>Apellido y Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--th jhiSortBy="apellidoPaciente"><span>Apellido</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <th jhiSortBy="documentoPaciente"><span>Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccionPaciente"><span>Dirección</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoPaciente"><span>Teléfono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailPaciente"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--th jhiSortBy="pacienteObraSocialNombreObraSocial"><span>Obra Social</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <!--th jhiSortBy="usuarioId"><span>Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoPostalNombreCiudad"><span>Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paciente of pacientes ;trackBy: trackId">
+                <!--td><a [routerLink]="['/paciente', paciente.id, 'view' ]">{{paciente.id}}</a></td-->
+                <td><a [routerLink]="['/paciente', paciente.id, 'view' ]">{{ paciente.apellidoPaciente + ', ' + paciente.nombrePaciente}}</a></td>
+                <!--td>{{paciente.apellidoPaciente}}</td-->
+                <td>{{paciente.documentoPaciente}}</td>
+                <td>{{paciente.direccionPaciente}}</td>
+                <td>{{paciente.telefonoPaciente}}</td>
+                <td>{{paciente.emailPaciente}}</td>
+                <!--td>
+                    <div *ngIf="paciente.pacienteObraSocialId">
+                        <a [routerLink]="['../obra-social', paciente.pacienteObraSocialId , 'view' ]" >{{paciente.pacienteObraSocialNombreObraSocial}}</a>
+                    </div>
+                </td-->
+                <!--td>
+                    {{paciente.usuarioId}}
+                </td>
+                <td>
+                    <div *ngIf="paciente.codigoPostalId">
+                        <a [routerLink]="['../codigo-postal', paciente.codigoPostalId , 'view' ]" >{{paciente.codigoPostalNombreCiudad}}</a>
+                    </div>
+                </td-->
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/paciente', paciente.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">Ver</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/paciente', paciente.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Editar</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paciente/'+ paciente.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Borrar</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="pacientes && pacientes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

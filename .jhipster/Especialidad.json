@@ -1,0 +1,37 @@
+{
+    "name": "Especialidad",
+    "fields": [
+        {
+            "fieldName": "codigoEspecilidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombreEspecialidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "profesional",
+            "otherEntityName": "profesional",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "especialidad"
+        }
+    ],
+    "changelogDate": "20181001014140",
+    "entityTableName": "especialidad",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

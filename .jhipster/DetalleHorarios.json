@@ -1,0 +1,86 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idHorario",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "horaDesde",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "horaHasta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lunes",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "martes",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "miercoles",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "jueves",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "viernes",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sabado",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "domingo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "intervalo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "frecuencia",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cantidadPacientes",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "1"
+        }
+    ],
+    "changelogDate": "20190511234649",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "detalle_horarios",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-consulta-heading">Consulta - {{paciente.apellidoPaciente + ", " + paciente.nombrePaciente}}</h2>
+
+            <div class="card">
+                <div class="card-body">
+
+                </div>
+            </div>
+
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <!--div class="form-group" [hidden]="!consulta.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="consulta.id" readonly />
+                </div-->
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fechaConsulta">Fecha</label>
+                    <div class="input-group">
+                        <span>{{consulta.fechaConsulta | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-control-label" for="field_observacionesConsulta">Síntomas</label>
+                        <textarea class="form-control" rows="5" name="observacionesConsulta"
+                            id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label class="form-control-label" for="field_observacionesConsulta">Diagnóstico</label>
+                        <textarea class="form-control" rows="5" name="observacionesConsulta"
+                            id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_observacionesConsulta">Observaciones</label>
+                    <textarea class="form-control" rows="5" name="observacionesConsulta"
+                        id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                </div>
+
+                <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+                    <label class="form-control-label" for="field_observacionesConsulta">Medicamentos</label>
+                    <textarea class="form-control" rows="5" name="observacionesConsulta"
+                        id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                </div>
+
+                <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+                    <label class="form-control-label" for="field_observacionesConsulta">Indicaciones</label>
+                    <textarea class="form-control" rows="5" name="observacionesConsulta"
+                        id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                </div>
+
+                <!--div class="form-group">
+                    <label class="form-control-label" for="field_constantesConsulta">Constantes</label>
+                    <select
+                        class="form-control"
+                        id="field_constantesConsulta"
+                        name="constantesConsulta"
+                        [(ngModel)]="consulta.constantesConsultaId"
+                    >
+                        <option [ngValue]="null"></option>
+                        <option
+                            [ngValue]="constantesOption.id"
+                            *ngFor="let constantesOption of constantesconsultas; trackBy: trackConstantesById"
+                            >{{ constantesOption.id }}</option
+                        >
+                    </select>
+                </div-->
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()"
+                    jhiTranslate="entity.action.cancel">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
+                    class="btn btn-primary" jhiTranslate="entity.action.save">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

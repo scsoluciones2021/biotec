@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+    <div class="col-md-9">
+        <!-- jhiTranslate="home.title" -->
+        <h1 class="display-4" >¡Bienvenido!</h1>
+        <p class="lead">Ud. Se encuentra en la página de Inicio</p>
+        <div *jhiHasAnyAuthority="'ROLE_PACIENTE'" class="row justify-content-center align-items-center">
+            <form class="col-12">
+                <div class="row">
+    
+                    <div class="col-4">
+                        <div class="card text-white bg-info">
+                            <div class="card-body">
+                                <h3 class="card-title">Turnos</h3>
+                                <p class="card-text">Solicite el turno con su especialista</p>
+                                <a (click)="solicitudTurno()" class="btn text-white border-light">Turnos</a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-4">
+                        <div class="card text-white bg-dark">
+                            <div class="card-body">
+                                <h3 class="card-title">Pedidos</h3>
+                                <p class="card-text">Listado con los turnos pedidos</p>
+                                <a (click)="listadoTurnos()" class="btn text-white border-light">Listado</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *jhiHasAnyAuthority="'ROLE_MEDICO'" class="row justify-content-center align-items-center">
+                <form class="col-12">
+                    <div class="row">
+        
+                        <div class="col-4">
+                            <div class="card text-white bg-info">
+                                <div class="card-body">
+                                    <h3 class="card-title">FICHAS DE PACIENTES</h3>
+                                    <p class="card-text">Visualice la historia clínica de sus pacientes </p>
+                                    <a (click)="fichasPacientes()" class="btn text-white border-light">Fichas</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <div class="card text-white bg-dark">
+                                <div class="card-body">
+                                    <h3 class="card-title">AGENDA</h3>
+                                    <p class="card-text">Listado con los turnos</p>
+                                    <a (click)="agendas()" class="btn text-white border-light">Agenda</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+    
+</div>

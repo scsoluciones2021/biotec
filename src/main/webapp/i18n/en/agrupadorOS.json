@@ -1,0 +1,24 @@
+
+{
+    "cpsjApp": {
+        "agrupadorOS" : {
+            "home": {
+                "title": "Agrupador OS",
+                "createLabel": "Create a new Agrupador OS",
+                "createOrEditLabel": "Create or edit a Agrupador OS"
+            },
+            "created": "A new Agrupador OS is created with identifier {{ param }}",
+            "updated": "A Agrupador OS is updated with identifier {{ param }}",
+            "deleted": "A Agrupador OS is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Agrupador OS {{ id }}?"
+            },
+            "detail": {
+                "title": "Agrupador OS"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "agrupador_obrasocial": "Agrupador Obrasocial"
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "agrupador_obrasocial",
+            "otherEntityName": "obraSocial",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "agrupador"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190428172015",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "agrupadoros",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

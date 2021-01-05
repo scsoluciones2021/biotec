@@ -1,0 +1,141 @@
+<div class="row">
+    <jhi-alert-error></jhi-alert-error>
+    <div class="col-12">
+        <p-messages [(value)]="msgsOK" [hideTransitionOptions]="'0ms'"></p-messages>
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <div class="row">
+                    <div class="col-sm-3 border-right">
+                        <p-orderList
+                            #lista
+                            [value]="profesionales"
+                            [listStyle]="{ height: '250px' }"
+                            [style]="{ width: '300px' }"
+                            header="Profesionales"
+                            filter="filter"
+                            filterBy="nombreProfesional,nombreEspecialidades"
+                            filterPlaceholder="Filtro especialidad / profesional"
+                            (onSelectionChange)="seleccion($event)"
+                            [(selection)]="profesionalSelec"
+                        >
+                            <ng-template let-prof pTemplate="profesional">
+                                <div class="ui-helper-clearfix">
+                                    <div style="font-size:14px;margin:15px 5px 0 0">
+                                        <span style="color: black;">{{ prof.nombreProfesional }}</span>
+                                    <br>
+                                        <span style="color: brown;">{{ "(" + prof.nombreEspecialidades.split('|').join(',').slice(0, -1) + ")"  }} </span>
+                                        <!--span style="float:right;" class="badge badge-primary badge-pill">14</span-->
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-orderList>
+                    </div>
+                    <p-messages [hidden]="mostrar" [(value)]="msgs" id="mensaje" name="mensaje"></p-messages>    
+
+                    <div class="form-group col-lg-2 col-md-2 col-xl-2 col-sm-12" [hidden]="!mostrar">
+                        <label class="form-control-label" for="field_tur_esp_rel">Especialidad</label>
+                        <select class="form-control" id="field_tur_esp_rel" name="tur_esp_rel" [(ngModel)]="turno.tur_esp_relId"  (change)="seleccionEspecialidad($event)" required [disabled]="!mostrar">
+                            <option [ngValue]="especialidadOption.id" *ngFor="let especialidadOption of especialidads; trackBy: trackEspecialidadById">{{especialidadOption.nombreEspecialidad}}</option>
+                        </select>
+                    </div>
+                    <div [hidden]="!(editForm.controls.tur_esp_rel?.dirty && editForm.controls.tur_esp_rel?.invalid)">
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.tur_esp_rel?.errors?.required" >
+                            Campo requerido.
+                        </small>
+                    </div> 
+                    <div class="col-sm-2" [hidden]="!mostrarDias">                        
+                        <!--p-calendar id="calendario" name="calendario" [disabled]="!mostrarDias" [(ngModel)]="date14" [inline]="true" dateFormat="dd/mm/yy" [locale]="es" (onSelect)="seleccionDia($event)" [disabledDays]="diasSinTurnos" ></p-calendar-->
+                        <p-calendar id="calendario" name="calendario" [disabled]="!mostrarDias" [(ngModel)]="date14" 
+                        [inline]="true" dateFormat="dd/mm/yy" [locale]="es" 
+                        [minDate]="minDateValue"
+                        [maxDate]="maxDateValue"
+                        (onSelect)="seleccionDia($event)" [disabledDays]="diasSinTurnos"
+                        [disabledDates]='diasNoValidos' >
+                            <ng-template pTemplate="date" let-date >
+                                <!--span data-toggle="tooltip" [title]="queDiaEs(date.day)" [ngStyle]="{backgroundColor: (date.day < 21 && date.day > 10) ? '#7cc67c' : 'inherit'}" style="border-radius:50%">{{date.day}}</span-->
+                                <span data-toggle="tooltip" [title]="franjaHoraria" (mouseover)="horarioAtencion(date)" style="border-radius:50%">{{date.day}}</span>
+                            </ng-template>
+                        </p-calendar>
+                    </div>
+                    <div class="col-sm-4 col-lg-5" style="float: right;" [hidden]="!mostrarHorarios">
+                        <div class="form-group ui-g-12 ui-md-12">
+                            <p-multiSelect id="field_turno" name="field_turno" defaultLabel="Horario" [disabled]="!mostrarHorarios"
+                                    [options]="turnosDelDia" [(ngModel)]="turnosSeleccionados" [panelStyle]="{minWidth:'12em'}"
+                                    [style]="{minWidth:'12em'}" styleClass="form-control" required
+                                    (onChange)="seleccionHorarios($event)"></p-multiSelect>
+                            
+                        </div>
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <!-- pKeyFilter="filtroDni" -->
+                            <label class="form-control-label"  for="field_dni">Dni</label>
+                            <input type="text" class="form-control" name="dni" id="field_dni"
+                            [(ngModel)]="turno.dni"  required [disabled]="!habilitarCampos" #field_dni/>
+                            <div [hidden]="!(editForm.controls.dni?.dirty && editForm.controls.dni?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.dni?.errors?.required" >
+                                Campo requerido.
+                            </small>
+                        </div>
+                                <button type="button" id="search_pac" class="btn btn-secondary"  (click)="buscarExistenciaPaciente(field_dni.value)">
+                                    <fa-icon [icon]="'search'"></fa-icon>&nbsp;<span >Buscar</span>
+                                </button>
+                        </div>
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <label class="form-control-label" for="field_apellido">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="field_apellido"
+                                [(ngModel)]="turno.apellido" required [disabled]="!habilitarCampos"/>
+                            <div [hidden]="!(editForm.controls.apellido?.dirty && editForm.controls.apellido?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.apellido?.errors?.required">
+                                Campo requerido.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <label class="form-control-label" for="field_nombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                                [(ngModel)]="turno.nombre" required [disabled]="!habilitarCampos"/>
+                            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.nombre?.errors?.required" >
+                                Campo requerido.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <label class="form-control-label" for="field_telefono">Teléfono</label>
+                            <input type="text" class="form-control" name="telefono" id="field_telefono"
+                                [(ngModel)]="turno.telefono" [disabled]="!habilitarCampos"/>
+                        </div>
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <label class="form-control-label" for="field_email">Email</label>
+                            <input type="text" class="form-control" name="email" id="field_email"
+                                [(ngModel)]="turno.email" [disabled]="!habilitarCampos"/>
+                        </div>  
+                        <div class="form-group ui-g-12 ui-md-4">
+                            <label for="tur_obs_rel">Obras Sociales</label>
+               
+                            <p-multiSelect id="tur_obs_rel" name="tur_obs_rel" [options]="obrasocials" [(ngModel)]="obraSocSelecc" optionLabel="nombreObraSocial" defaultLabel="Obra Social" required></p-multiSelect>
+                        </div> 
+                        <br><br>
+                    </div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-sm-8 col-lg-8" [hidden]="!mostrarHorarios">
+                        <jhi-pago-consulta-update></jhi-pago-consulta-update>           
+                    </div>
+            </div>                               
+                
+            <div style="float: right !important" [hidden]="!mostrarHorarios">
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="limpiarCampos()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span >Limpiar</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+                </button>
+                <!--button type="button" id="imprimir-entity" class="btn btn-primary">
+                    <i class="fa fa-print" aria-hidden="true"></i>&nbsp;<span>Imprimir</span>
+                </button-->
+            </div>
+        </form>
+    </div>
+</div>

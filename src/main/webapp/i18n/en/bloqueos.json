@@ -1,0 +1,26 @@
+
+{
+    "cpsjApp": {
+        "bloqueos" : {
+            "home": {
+                "title": "Bloqueos",
+                "createLabel": "Crear nuevo Bloqueos",
+                "createOrEditLabel": "Crear o editar Bloqueos"
+            },
+            "created": "Un nuevo Bloqueos ha sido creado con el identificador {{ param }}",
+            "updated": "Un Bloqueos ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Bloqueos ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Bloqueos {{ id }}?"
+            },
+            "detail": {
+                "title": "Bloqueos"
+            },
+            "nombreBloqueo": "Nombre Bloqueo",
+            "fechaDesde": "Fecha Desde",
+            "fechaHasta": "Fecha Hasta",
+            "horaDesde": "Hora Desde",
+            "horaHasta": "Hora Hasta"
+        }
+    }
+}

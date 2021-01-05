@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-obra-social-heading">Create or edit a Obra Social</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!obraSocial.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="obraSocial.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codigoObraSocial">Código</label>
+                    <input type="text" class="form-control" name="codigoObraSocial" id="field_codigoObraSocial"
+                        [(ngModel)]="obraSocial.codigoObraSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreObraSocial">Nombre</label>
+                    <input type="text" class="form-control" name="nombreObraSocial" id="field_nombreObraSocial"
+                        [(ngModel)]="obraSocial.nombreObraSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_direccionObraSocial">Dirección</label>
+                    <input type="text" class="form-control" name="direccionObraSocial" id="field_direccionObraSocial"
+                        [(ngModel)]="obraSocial.direccionObraSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_telefonoObraSocial">Teléfono</label>
+                    <input type="text" class="form-control" name="telefonoObraSocial" id="field_telefonoObraSocial"
+                        [(ngModel)]="obraSocial.telefonoObraSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_emailObraSocial">E-mail</label>
+                    <input type="text" class="form-control" name="emailObraSocial" id="field_emailObraSocial"
+                        [(ngModel)]="obraSocial.emailObraSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agrupador">Agrupador</label>
+                    <select class="form-control" id="field_agrupador" name="agrupador" [(ngModel)]="obraSocial.agrupadorId" >
+                        <option [ngValue]="agrupadorOption.id" *ngFor="let agrupadorOption of agrupadores; trackBy: trackAgrupadorById">{{agrupadorOption.nombre}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div>
+                <button jhiTranslate="entity.action.cancel" type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button jhiTranslate="entity.action.save" type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

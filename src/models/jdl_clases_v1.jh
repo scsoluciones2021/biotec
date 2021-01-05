@@ -1,0 +1,239 @@
+//ENTIDADES
+entity CodigoPostal {
+	codigo String,
+    nombreCiudad String
+}
+
+entity Provincia{
+	nombreProvincia String,
+    codigo31662 String
+}
+
+entity ObraSocial{
+	codigoObraSocial String,
+    nombreObraSocial String,
+    siglaObraSocial String,
+    direccionObraSocial String,
+    telefonoObraSocial String,
+    emailObraSocial String,
+    webObraSocial String(255)
+}
+
+//Dr. Dra Tec. Lic. Ninguno
+entity TituloShort{
+    valor String required
+}
+
+entity Profesional{
+    nombreProfesional String required,	
+    apellidoProfesional String required,
+    documentoProfesional String required,
+    direccionProfesional String,
+    telefonoProfesional String,
+    emailProfesional String,
+    matriculaProfesional String required,
+    imagenProfesional ImageBlob
+}
+
+entity Especialidad{
+	codigoEspecialidad String required,
+	nombreEspecialidad String required
+}
+
+entity Paciente {
+	nombrePaciente String required,
+    apellidoPaciente String required,
+    documentoPaciente String required,
+    direccionPaciente String,
+    telefonoPaciente String,
+    emailPaciente String required,
+    fechaNacimiento Date,
+    edad Integer
+}
+
+entity Enfermedad{
+	valor String required
+}
+
+entity Alergia{
+	valor String required
+}
+
+entity Intolerancia{
+	valor String required
+}
+
+entity Regimen{
+	valor String required
+}
+
+entity Bebida{
+	valor String required
+}
+
+entity Ejercicio{
+	valor String required
+}
+
+entity AntecedentesPersonales{
+    tabaco Boolean,
+    tabacoObserv String,
+    tecafe Boolean
+}
+
+entity AntecedentesFamiliares{
+	vivoAF Boolean,
+    causaMuerteAF String
+}
+
+entity Constantes{
+    peso Long,
+    altura Long,
+    presionArterial Long
+}
+
+entity Consulta {
+	fechaConsulta LocalDate,
+    observacionesConsulta String    
+}
+
+entity Ficha{
+	fechaIngreso LocalDate
+}
+
+entity Personal{
+	nombrePersonal String required,
+    apellidoPersonal String required,
+    documentoPersonal String required,
+    direccionPersonal String,
+    telefonoPersonal String,
+    emailPersonal String required
+}
+
+entity Empresa{
+	nombreEmpresa String required,
+    direccionEmpresa String,
+    telefonoEmpresa String,
+    emailEmpresa String required,
+    nroSucursal Integer required
+} 
+
+entity ObsAntecFamiliar{
+idEspecialidad Integer required,
+idMedico Integer required,
+observaciones String required,
+fecha LocalDate
+} 
+entity ObsAntecPersonal{
+idEspecialidad Integer required,
+idMedico Integer required,
+observaciones String required,
+fecha LocalDate
+} 
+
+entity Diagnostico{
+	codigoDiagnostico String,
+    descripcionDiagnostico String
+}
+
+entity Familiar{
+	parentezco String
+}
+
+entity Estado{
+	nombreEstado String
+}
+
+entity Agrupador{
+    nombre String,
+    descripcion String
+}
+
+entity Adjuntos_ficha{
+    idFicha Long,
+    idProfesional Long,
+    idPaciente Long,
+    idEspecialidad Long,
+    ruta String,
+    nombreOriginal String,
+    nombreActual String,
+    fecha Date,
+    usuario Long
+}
+
+entity HorariosProfesional{
+    consultorio String,
+    fechaDesde Date,
+    fechaHasta Date
+}
+
+entity DetalleHorario{
+    horaDesde String,
+    horaHasta String,
+    lunes Integer,
+    martes Integer,
+    miercoles Integer,
+    jueves Integer,
+    viernes Integer,
+    sabado Integer,
+    domingo Integer,
+    intervalo Integer,
+    frecuencia Integer,
+    cantidadPacientes Integer,
+    deleted Integer
+}
+
+//El campo OSocial aparecerá como una lista en Paciente
+relationship OneToOne {
+	Paciente{pacienteObraSocial(nombreObraSocial)} to ObraSocial,
+    Profesional{usuario} to User,
+    Paciente{usuario} to User,
+    Personal{usuario} to User,
+    Profesional{titulo(valor)} to TituloShort,
+    Consulta{constantesConsulta} to Constantes,
+    HorariosProfesional{detalleHorario} to DetalleHorario
+}
+
+relationship OneToMany{
+	Provincia{codigopostal} to CodigoPostal{provincia(nombreProvincia)},
+    Paciente{ficha} to Ficha{paciente(nombrePaciente)} required,
+    Profesional{ficha} to Ficha{profesional(nombreProfesional)} required,
+    Empresa{personal} to Personal{empresa(nombreEmpresa)},
+    CodigoPostal{empresa} to Empresa{codigoPostal(nombreCiudad)},
+    CodigoPostal{paciente} to Paciente{codigoPostal(nombreCiudad)},
+    CodigoPostal{profesional} to Profesional{codigoPostal(nombreCiudad)},
+    CodigoPostal{obrasocial} to ObraSocial{codigoPostal(codigo)},
+    Provincia{paciente} to Paciente{provincia(nombreProvincia)},
+    Agrupador{obrasocial} to ObraSocial{agrupador(nombre)},
+    AntecedentesPersonales{obsantecPersonal} to ObsAntecPersonal,
+    AntecedentesFamiliares{obsantecFamiliar} to ObsAntecFamiliar,
+    Familiar to AntecedentesFamiliares{parentezco(parentezco)},
+    Ejercicio to AntecedentesPersonales{ejercicios(valor)},
+    Bebida to AntecedentesPersonales{bebidas(valor)},
+    Consulta{ficha} to Ficha{consulta}
+}
+
+relationship ManyToOne{
+	Profesional{obrasocial(nombre)} to Agrupador,
+}
+
+relationship ManyToMany{
+	Profesional{especialidad(codigoEspecialidad)} to Especialidad{profesional(nombreProfesional)},
+    AntecedentesPersonales{enfermedades(valor)} to Enfermedad,
+    AntecedentesPersonales{alergias(valor)} to Alergia,
+    AntecedentesPersonales{intolerancias(valor)} to Intolerancia,
+    AntecedentesPersonales{regimenes(valor)} to Regimen    
+}
+
+// Set pagination options
+//paginate CodigoPostal, ObraSocial with infinite-scroll
+paginate CodigoPostal, Paciente, Especialidad, Profesional, ObraSocial, Ficha, ObsAntecPersonal, ObsAntecFamiliar, Agrupador,
+HorariosProfesional, Provincia, TituloShort
+with pagination
+
+//dto Familiar, Diagnostico, ObsAntecPersonal, ObsAntecFamiliar, Empresa, Personal, Ficha, Consulta, Constantes, AntecedentesPersonales, AntecedentesFamiliares, Ejercicio, Bebida, Regimen, Alergia, Intolerancia, Enfermedad, Provincia, CodigoPostal, Especialidad, TituloShort, ObraSocial with mapstruct
+dto * with mapstruct
+// Set service options to all
+service all with serviceImpl
+// Set an angular suffix
+//angularSuffix * with cpsj_ang

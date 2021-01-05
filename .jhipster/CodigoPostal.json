@@ -1,0 +1,48 @@
+{
+    "name": "CodigoPostal",
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreCiudad",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "empresa",
+            "otherEntityName": "empresa",
+            "otherEntityRelationshipName": "codigoPostal"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "paciente",
+            "otherEntityName": "paciente",
+            "otherEntityRelationshipName": "codigoPostal"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "profesional",
+            "otherEntityName": "profesional",
+            "otherEntityRelationshipName": "codigoPostal"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "provincia",
+            "otherEntityName": "provincia",
+            "otherEntityField": "nombreProvincia"
+        }
+    ],
+    "changelogDate": "20181001014135",
+    "entityTableName": "codigo_postal",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

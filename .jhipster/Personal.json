@@ -1,0 +1,66 @@
+{
+    "name": "Personal",
+    "fields": [
+        {
+            "fieldName": "nombrePersonal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "apellidoPersonal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "documentoPersonal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccionPersonal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonoPersonal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailPersonal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personal"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "empresa",
+            "otherEntityName": "empresa",
+            "otherEntityField": "nombreEmpresa"
+        }
+    ],
+    "changelogDate": "20181001014153",
+    "entityTableName": "personal",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

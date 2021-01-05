@@ -1,0 +1,36 @@
+{
+    "name": "AntecedentesFamiliares",
+    "fields": [
+        {
+            "fieldName": "vivoAF",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "causaMuerteAF",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "obsantecFamiliar",
+            "otherEntityName": "obsAntecFamiliar",
+            "otherEntityRelationshipName": "antecedentesFamiliares"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "parentezco",
+            "otherEntityName": "familiar",
+            "otherEntityField": "parentezco"
+        }
+    ],
+    "changelogDate": "20181001014149",
+    "entityTableName": "antecedentes_familiares",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

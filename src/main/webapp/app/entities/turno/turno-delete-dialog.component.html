@@ -1,0 +1,19 @@
+<form name="deleteForm" (ngSubmit)="confirmDelete(turno.id)">
+    <div class="modal-header">
+        <h4 class="modal-title">Confirmar borrado de turno</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <p>¿Está seguro de eliminar el Turno?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" class="btn btn-danger">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span>Borrar</span>
+        </button>
+    </div>
+</form>

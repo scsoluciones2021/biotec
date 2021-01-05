@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Turno.
+    -->
+    <changeSet id="20190123231810-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tur_esp_rel_id"
+                                 baseTableName="turno"
+                                 constraintName="fk_turno_tur_esp_rel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialidad"/>
+
+        <addForeignKeyConstraint baseColumnNames="tur_prof_rel_id"
+                                 baseTableName="turno"
+                                 constraintName="fk_turno_tur_prof_rel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profesional"/>
+
+    </changeSet>
+</databaseChangeLog>

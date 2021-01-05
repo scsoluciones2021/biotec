@@ -1,0 +1,25 @@
+{
+    "cpsjApp": {
+        "pagoConsulta": {
+            "home": {
+                "title": "Pago Consultas",
+                "createLabel": "Crear nuevo Pago Consulta",
+                "createOrEditLabel": "Información adicional",
+                "notFound": "No Pago Consultas found"
+            },
+            "created": "Un nuevo Pago Consulta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pago Consulta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pago Consulta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pago Consulta {{ id }}?"
+            },
+            "detail": {
+                "title": "Pago Consulta"
+            },
+            "monto": "Monto",
+            "tipo": "Tipo",
+            "cupones": "Cupones",
+            "pagoturno": "Pagoturno"
+        }
+    }
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity AntecedentesPersonales.
+    -->
+    <changeSet id="20181001014148-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="antecedentes_personales_id"
+                                 baseTableName="antecedentes_personales_enfermedades"
+                                 constraintName="antecedentes_personales_enferme_antecedentes_personales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="antecedentes_personales"/>
+        <addForeignKeyConstraint baseColumnNames="enfermedades_id"
+                                 baseTableName="antecedentes_personales_enfermedades"
+                                 constraintName="fk_antecedentes_personales_enfermedades_enfermedades_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enfermedad"/>
+        
+        <addForeignKeyConstraint baseColumnNames="antecedentes_personales_id"
+                                 baseTableName="antecedentes_personales_alergias"
+                                 constraintName="fk_antecedentes_personales_alergias_antecedentes_personales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="antecedentes_personales"/>
+        <addForeignKeyConstraint baseColumnNames="alergias_id"
+                                 baseTableName="antecedentes_personales_alergias"
+                                 constraintName="fk_antecedentes_personales_alergias_alergias_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alergia"/>
+        
+        <addForeignKeyConstraint baseColumnNames="antecedentes_personales_id"
+                                 baseTableName="antecedentes_personales_intolerancias"
+                                 constraintName="antecedentes_personales_intoler_antecedentes_personales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="antecedentes_personales"/>
+        <addForeignKeyConstraint baseColumnNames="intolerancias_id"
+                                 baseTableName="antecedentes_personales_intolerancias"
+                                 constraintName="fk_antecedentes_personales_intolerancias_intolerancias_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="intolerancia"/>
+        
+        <addForeignKeyConstraint baseColumnNames="antecedentes_personales_id"
+                                 baseTableName="antecedentes_personales_regimenes"
+                                 constraintName="fk_antecedentes_personales_regimenes_antecedentes_personales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="antecedentes_personales"/>
+        <addForeignKeyConstraint baseColumnNames="regimenes_id"
+                                 baseTableName="antecedentes_personales_regimenes"
+                                 constraintName="fk_antecedentes_personales_regimenes_regimenes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="regimen"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ejercicios_id"
+                                 baseTableName="antecedentes_personales"
+                                 constraintName="fk_antecedentes_personales_ejercicios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ejercicio"/>
+
+        <addForeignKeyConstraint baseColumnNames="bebidas_id"
+                                 baseTableName="antecedentes_personales"
+                                 constraintName="fk_antecedentes_personales_bebidas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bebida"/>
+
+    </changeSet>
+</databaseChangeLog>

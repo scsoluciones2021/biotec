@@ -1,0 +1,57 @@
+{
+    "name": "Empresa",
+    "fields": [
+        {
+            "fieldName": "nombreEmpresa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccionEmpresa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefonoEmpresa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailEmpresa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nroSucursal",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "personal",
+            "otherEntityName": "personal",
+            "otherEntityRelationshipName": "empresa"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "codigoPostal",
+            "otherEntityName": "codigoPostal",
+            "otherEntityField": "nombreCiudad"
+        }
+    ],
+    "changelogDate": "20181001014154",
+    "entityTableName": "empresa",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

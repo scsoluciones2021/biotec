@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span>Obs Antec Familiars</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-obs-antec-familiar" [routerLink]="['/obs-antec-familiar/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Obs Antec Familiar
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="obsAntecFamiliars">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idEspecialidad"><span>Id Especialidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idMedico"><span>Id Medico</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="observaciones"><span>Observaciones</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fecha"><span>Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="antecedentesFamiliaresId"><span>Antecedentes Familiares</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let obsAntecFamiliar of obsAntecFamiliars ;trackBy: trackId">
+                <td><a [routerLink]="['/obs-antec-familiar', obsAntecFamiliar.id, 'view' ]">{{obsAntecFamiliar.id}}</a></td>
+                <td>{{obsAntecFamiliar.idEspecialidad}}</td>
+                <td>{{obsAntecFamiliar.idMedico}}</td>
+                <td>{{obsAntecFamiliar.observaciones}}</td>
+                <td>{{obsAntecFamiliar.fecha | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="obsAntecFamiliar.antecedentesFamiliaresId">
+                        <a [routerLink]="['../antecedentes-familiares', obsAntecFamiliar.antecedentesFamiliaresId , 'view' ]" >{{obsAntecFamiliar.antecedentesFamiliaresId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/obs-antec-familiar', obsAntecFamiliar.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/obs-antec-familiar', obsAntecFamiliar.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'obs-antec-familiar/'+ obsAntecFamiliar.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="obsAntecFamiliars && obsAntecFamiliars.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

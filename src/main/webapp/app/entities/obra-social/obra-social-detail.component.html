@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="obraSocial">
+            <h2><span>Obra Social - </span> {{obraSocial.nombreObraSocial}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Código</span></dt>
+                <dd>
+                    <span>{{obraSocial.codigoObraSocial}}</span>
+                </dd>
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{obraSocial.nombreObraSocial}}</span>
+                </dd>
+                <dt><span>Dirección</span></dt>
+                <dd>
+                    <span>{{obraSocial.direccionObraSocial}}</span>
+                </dd>
+                <dt><span>Teléfono</span></dt>
+                <dd>
+                    <span>{{obraSocial.telefonoObraSocial}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{obraSocial.emailObraSocial}}</span>
+                </dd>
+                <dt><span>Agrupador</span></dt>
+                <dd>
+                    
+                    <span> <a [routerLink]="['/agrupador-os', obraSocial.agrupadorId, 'view' ]">{{obraSocial.agrupadorNombre}}</a>
+                    </span>
+                </dd>
+            </dl>
+
+            <button jhiTranslate="entity.action.back"
+                    type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button jhiTranslate="entity.action.edit"
+                    type="button"
+                    [routerLink]="['/obra-social', obraSocial.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

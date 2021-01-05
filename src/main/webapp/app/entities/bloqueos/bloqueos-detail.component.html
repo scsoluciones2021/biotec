@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bloqueos">
+            <h2><span>Bloqueos</span> {{bloqueos.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nombre Bloqueo</span></dt>
+                <dd>
+                    <span>{{bloqueos.nombreBloqueo}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.bloqueos.fechaDesde">Fecha Desde</span></dt>
+                <dd>
+                    <span>{{bloqueos.fechaDesde}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.bloqueos.fechaHasta">Fecha Hasta</span></dt>
+                <dd>
+                    <span>{{bloqueos.fechaHasta}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.bloqueos.horaDesde">Hora Desde</span></dt>
+                <dd>
+                    <span>{{bloqueos.horaDesde}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.bloqueos.horaHasta">Hora Hasta</span></dt>
+                <dd>
+                    <span>{{bloqueos.horaHasta}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bloqueos', bloqueos.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

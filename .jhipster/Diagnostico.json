@@ -1,0 +1,23 @@
+{
+    "name": "Diagnostico",
+    "fields": [
+        {
+            "fieldName": "codigoDiagnostico",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcionDiagnostico",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181001014157",
+    "entityTableName": "diagnostico",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

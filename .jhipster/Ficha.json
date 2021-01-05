@@ -1,0 +1,32 @@
+{
+    "name": "Ficha",
+    "fields": [
+        {
+            "fieldName": "fechaIngreso",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paciente",
+            "otherEntityName": "paciente",
+            "otherEntityField": "nombrePaciente"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "profesional",
+            "otherEntityName": "profesional",
+            "otherEntityField": "nombreProfesional"
+        }
+    ],
+    "changelogDate": "20181001014152",
+    "entityTableName": "ficha",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

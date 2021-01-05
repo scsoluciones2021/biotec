@@ -1,0 +1,27 @@
+{
+    "name": "Constantes",
+    "fields": [
+        {
+            "fieldName": "peso",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "altura",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "presionArterial",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181001014150",
+    "entityTableName": "constantes",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

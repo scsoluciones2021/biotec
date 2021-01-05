@@ -1,0 +1,11 @@
+/* after changing this file run 'yarn run webpack:build' */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~primeng/resources/themes/omega/theme.css";
+@import "~primeng/resources/primeng.min.css";
+
+/* agregado para botón X en autocomplete primeng (Ej: para las especialidades) */
+@import "~primeicons/primeicons.css"; 
+/* Agregado para los íconos fa */
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+@import "~angular-calendar/css/angular-calendar.css";

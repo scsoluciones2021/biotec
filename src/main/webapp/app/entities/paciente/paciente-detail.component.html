@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paciente">
+            <h2><span>Paciente: </span> {{paciente.apellidoPaciente + ', ' + paciente.nombrePaciente}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Apellido y Nombre</span></dt>
+                <dd>
+                    <span>{{paciente.apellidoPaciente + ', ' + paciente.nombrePaciente}}</span>
+                </dd>               
+                <dt><span>Documento</span></dt>
+                <dd>
+                    <span>{{paciente.documentoPaciente}}</span>
+                </dd>
+                <dt><span>Fecha de Nacimiento</span></dt>
+                <dd>
+                    {{paciente.fechaNacimiento | date: 'dd/MM/yyyy'}}
+                </dd>
+                <dt><span>Direccion</span></dt>
+                <dd>
+                    <span>{{paciente.direccionPaciente}}</span>
+                </dd>
+                <dt><span>Telefono</span></dt>
+                <dd>
+                    <span>{{paciente.telefonoPaciente}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{paciente.emailPaciente}}</span>
+                </dd>
+                <dt><span>Obras sociales</span></dt>
+                <dd>
+                    <span *ngFor="let obrasocial of paciente.obrasocials; let last = last">
+                        <a [routerLink]="['/obra-social', obrasocial?.id, 'view' ]">{{obrasocial.siglaObraSocial}}</a>{{last
+                        ? '' : ', '}}
+                    </span>
+                </dd>              
+                <dt><span>Provincia</span></dt>
+                <dd>
+                    <div *ngIf="paciente.codigoPostalId">
+                        <a [routerLink]="['/codigo-postal', paciente.codigoPostalId, 'view']">{{paciente.provinciaNombreProvincia}}</a>
+                    </div>
+                </dd>
+                <dt><span>Ciudad</span></dt>
+                <dd>
+                    <div *ngIf="paciente.codigoPostalId">
+                        <a [routerLink]="['/codigo-postal', paciente.codigoPostalId, 'view']">{{paciente.codigoPostalNombreCiudad}}</a>
+                    </div>
+                </dd>
+                <!--<dt><span>Usuario</span></dt>
+                <dd>
+                    {{paciente.usuarioId}}
+                </dd>-->
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Atrás</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/paciente', paciente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Editar</span>
+            </button>
+        </div>
+    </div>
+</div>

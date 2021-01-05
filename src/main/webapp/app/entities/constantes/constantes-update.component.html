@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-constantes-heading">Create or edit a Constantes</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!constantes.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="constantes.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_peso">Peso</label>
+                    <input type="number" class="form-control" name="peso" id="field_peso"
+                        [(ngModel)]="constantes.peso" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_altura">Altura</label>
+                    <input type="number" class="form-control" name="altura" id="field_altura"
+                        [(ngModel)]="constantes.altura" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presionArterial">Presion Arterial</label>
+                    <input type="number" class="form-control" name="presionArterial" id="field_presionArterial"
+                        [(ngModel)]="constantes.presionArterial" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

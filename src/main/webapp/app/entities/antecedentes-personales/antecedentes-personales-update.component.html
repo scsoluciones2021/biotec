@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-antecedentes-personales-heading">Create or edit a Antecedentes Personales</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!antecedentesPersonales.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="antecedentesPersonales.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tabaco">Tabaco</label>
+                    <input type="checkbox" class="form-control" name="tabaco" id="field_tabaco"
+                        [(ngModel)]="antecedentesPersonales.tabaco" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tabacoObserv">Tabaco Observ</label>
+                    <input type="text" class="form-control" name="tabacoObserv" id="field_tabacoObserv"
+                        [(ngModel)]="antecedentesPersonales.tabacoObserv" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tecafe">Tecafe</label>
+                    <input type="checkbox" class="form-control" name="tecafe" id="field_tecafe"
+                        [(ngModel)]="antecedentesPersonales.tecafe" />
+                </div>
+
+                <div class="form-group">
+                    <label for="field_enfermedades">Enfermedades</label>
+                    <select class="form-control" id="field_enfermedades" multiple name="enfermedades" [(ngModel)]="antecedentesPersonales.enfermedades">
+                        <option [ngValue]="getSelected(antecedentesPersonales.enfermedades, enfermedadOption)" *ngFor="let enfermedadOption of enfermedads; trackBy: trackEnfermedadById">{{enfermedadOption.valor}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_alergias">Alergias</label>
+                    <select class="form-control" id="field_alergias" multiple name="alergias" [(ngModel)]="antecedentesPersonales.alergias">
+                        <option [ngValue]="getSelected(antecedentesPersonales.alergias, alergiaOption)" *ngFor="let alergiaOption of alergias; trackBy: trackAlergiaById">{{alergiaOption.valor}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_intolerancias">Intolerancias</label>
+                    <select class="form-control" id="field_intolerancias" multiple name="intolerancias" [(ngModel)]="antecedentesPersonales.intolerancias">
+                        <option [ngValue]="getSelected(antecedentesPersonales.intolerancias, intoleranciaOption)" *ngFor="let intoleranciaOption of intolerancias; trackBy: trackIntoleranciaById">{{intoleranciaOption.valor}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_regimenes">Regimenes</label>
+                    <select class="form-control" id="field_regimenes" multiple name="regimenes" [(ngModel)]="antecedentesPersonales.regimenes">
+                        <option [ngValue]="getSelected(antecedentesPersonales.regimenes, regimenOption)" *ngFor="let regimenOption of regimen; trackBy: trackRegimenById">{{regimenOption.valor}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ejercicios">Ejercicios</label>
+                    <select class="form-control" id="field_ejercicios" name="ejercicios" [(ngModel)]="antecedentesPersonales.ejerciciosId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ejercicioOption.id" *ngFor="let ejercicioOption of ejercicios; trackBy: trackEjercicioById">{{ejercicioOption.valor}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_bebidas">Bebidas</label>
+                    <select class="form-control" id="field_bebidas" name="bebidas" [(ngModel)]="antecedentesPersonales.bebidasId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="bebidaOption.id" *ngFor="let bebidaOption of bebidas; trackBy: trackBebidaById">{{bebidaOption.valor}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

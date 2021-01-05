@@ -1,0 +1,22 @@
+{
+    "name": "Regimen",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181001014145",
+    "entityTableName": "regimen",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

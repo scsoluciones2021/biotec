@@ -1,0 +1,199 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-profesional-heading">Profesional</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!profesional.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="profesional.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_imagenProfesional">Imagen</label>
+                    <div>
+                        <img
+                            [src]="'data:' + profesional.imagenProfesionalContentType + ';base64,' + profesional.imagenProfesional"
+                            style="width: 250px; height: 200px" 
+                            *ngIf="profesional.imagenProfesional"
+                            alt="profesional image"
+                        />
+                        <div *ngIf="profesional.imagenProfesional" class="form-text text-danger clearfix">
+                            <span class="pull-left"
+                                >{{ profesional.imagenProfesionalContentType }}, {{ byteSize(profesional.imagenProfesional) }}</span
+                            >
+                            <button
+                                type="button"
+                                (click)="clearInputImage('imagenProfesional', 'imagenProfesionalContentType', 'fileImage')"
+                                class="btn btn-secondary btn-xs pull-right"
+                            >
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <div *ngIf="!profesional.imagenProfesional" class="form-group">
+                            <img [src]="imagenUrl" style="width: 250px; height: 200px" />
+                        </div>
+                        <input
+                            type="file"
+                            id="file_imagenProfesional"
+                            (change)="setFileData($event, profesional, 'imagenProfesional', true)"
+                            accept="image/*"
+                        />
+                    </div>
+                    <input
+                        type="hidden"
+                        class="form-control"
+                        name="imagenProfesional"
+                        id="field_imagenProfesional"
+                        [(ngModel)]="profesional.imagenProfesional"
+                    />
+                    <input
+                        type="hidden"
+                        class="form-control"
+                        name="imagenProfesionalContentType"
+                        id="field_imagenProfesionalContentType"
+                        [(ngModel)]="profesional.imagenProfesionalContentType"
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreProfesional">Apellido, Nombre</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="nombreProfesional"
+                        id="field_nombreProfesional"
+                        [(ngModel)]="profesional.nombreProfesional"
+                        required
+                    />
+                    <div [hidden]="!(editForm.controls.nombreProfesional?.dirty && editForm.controls.nombreProfesional?.invalid)">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.nombreProfesional?.errors?.required">
+                            Campo requerido
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_documentoProfesional">Documento</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="documentoProfesional"
+                        id="field_documentoProfesional"
+                        pattern="[0-9]+"
+                        [(ngModel)]="profesional.documentoProfesional"
+                        required
+                    />
+                    <div [hidden]="!(editForm.controls.documentoProfesional?.dirty && editForm.controls.documentoProfesional?.invalid)">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.documentoProfesional?.errors?.required">
+                            Campo requerido
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_direccionProfesional">Dirección</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="direccionProfesional"
+                        id="field_direccionProfesional"
+                        [(ngModel)]="profesional.direccionProfesional"
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_telefonoProfesional">Teléfono</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="telefonoProfesional"
+                        id="field_telefonoProfesional"
+                        [(ngModel)]="profesional.telefonoProfesional"
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_emailProfesional">Email</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="emailProfesional"
+                        id="field_emailProfesional"
+                        [(ngModel)]="profesional.emailProfesional"
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_matriculaProfesional">Matrícula</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="matriculaProfesional"
+                        id="field_matriculaProfesional"
+                        [(ngModel)]="profesional.matriculaProfesional"
+                        required
+                    />
+                    <div [hidden]="!(editForm.controls.matriculaProfesional?.dirty && editForm.controls.matriculaProfesional?.invalid)">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.matriculaProfesional?.errors?.required">
+                            Campo requerido
+                        </small>
+                    </div>
+                </div>
+                <!--div class="form-group">
+                    <label class="form-control-label" for="field_usuario">Usuario</label>
+                    <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="profesional.usuarioId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{
+                            userOption.id
+                        }}</option>
+                    </select>
+                </div-->
+                <div class="form-group">
+                    <label class="form-control-label" for="field_titulo">Título</label>
+                    <select class="form-control" id="field_titulo" name="titulo" [(ngModel)]="profesional.tituloId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tituloShortOption.id" *ngFor="let tituloShortOption of titulos; trackBy: trackTituloShortById">{{
+                            tituloShortOption.valor
+                        }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_obrasocial">Obras Sociales</label>
+                    <p-autoComplete inputStyleClass="form-control"  field="nombreObraSocial" id="field_obrasocial" 
+                    name="field_obrasocial" [(ngModel)]="profesional.obrasocials" [suggestions]="obrasocials" 
+                    (onSelect)="seleccionObraSocial($event)"
+                    (completeMethod)="buscarObraSocial($event)" 
+                    placeholder="Buscar Obra Social" [minLength]="1" forceSelection = "true" inputId="obrasocial.Id"
+                    [multiple]="true"></p-autoComplete>
+                    <!--select class="form-control" id="field_obrasocial" multiple name="obrasocial" [(ngModel)]="profesional.obrasocials">
+                        <option
+                            [ngValue]="getSelected(profesional.obrasocials, obraSocialOption)"
+                            *ngFor="let obraSocialOption of obrasocials; trackBy: trackObraSocialById"
+                            >{{ obraSocialOption.nombreObraSocial }}</option
+                        >
+                    </select-->
+                </div>
+                <div class="form-group">
+                    <label for="field_especialidad">Especialidad</label>
+                    <p-autoComplete inputStyleClass="form-control"  field="nombreEspecialidad" id="field_especialidad" 
+                    name="field_especialidad" [(ngModel)]="profesional.especialidads" [suggestions]="especialidads" 
+                    (onSelect)="seleccionEspecialidad($event)"
+                    (completeMethod)="buscarEspecialidad($event)" 
+                    placeholder="Buscar Especialidad" [minLength]="1" forceSelection = "true" inputId="especilidad.Id"
+                    [multiple]="true"></p-autoComplete> 
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codigoPostal">Localidad</label>
+                    <p-autoComplete inputStyleClass="form-control" dataKey="codigoPostal.Id" id="field_codigoPostal" 
+                    name="field_codigoPostal" [(ngModel)]="codigoPostal" [suggestions]="filteredCPSingle" 
+                    (completeMethod)="filterCPSingle($event)" (onSelect)="seleccionCP($event)" 
+                    (onUnselect)="borrarCP()" (onClear)="borrarCP()"  field="nombreCiudad" [size]="30" 
+                    placeholder="Buscar Ciudad" [minLength]="1" forceSelection = "true" inputId="codigoPostal.Id"></p-autoComplete>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

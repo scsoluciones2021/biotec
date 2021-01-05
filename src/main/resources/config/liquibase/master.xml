@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+   <!-- <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181120224449_added_entity_Adjuntos_ficha.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190428172015_added_entity_AgrupadorOS.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014143_added_entity_Alergia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014148_added_entity_AntecedentesPersonales.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014149_added_entity_AntecedentesFamiliares.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014146_added_entity_Bebida.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190123212755_added_entity_Bloqueos.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014135_added_entity_CodigoPostal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014150_added_entity_Constantes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014151_added_entity_Consulta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190511234649_added_entity_DetalleHorarios.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014157_added_entity_Diagnostico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014147_added_entity_Ejercicio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014154_added_entity_Empresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014142_added_entity_Enfermedad.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014140_added_entity_Especialidad.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190119220039_added_entity_Estados.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014158_added_entity_Familiar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014152_added_entity_Ficha.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190123212400_added_entity_HorariosProfesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014144_added_entity_Intolerancia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014137_added_entity_ObraSocial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014156_added_entity_ObsAntecPersonal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014155_added_entity_ObsAntecFamiliar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014141_added_entity_Paciente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014153_added_entity_Personal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014139_added_entity_Profesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014136_added_entity_Provincia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014145_added_entity_Regimen.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181001014138_added_entity_TituloShort.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190123231810_added_entity_Turno.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190102210532_added_especialidad_to_ficha.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190427205045_added_horariosOcup_Turno.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190418142500__added_fecha_nac_to_paciente.xml" relativeToChangelogFile="false"/>
+    
+    <include file="config/liquibase/changelog/20190308142500__added_especialidad_to_HorariosProfesional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190501193300_added_field_agrupador_os.xml" relativeToChangelogFile="false"/>
+    
+    <include file="config/liquibase/changelog/20190418142500__added_fecha_nac_to_paciente.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20191103002439_added_entity_PagoConsulta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191103002439_added_entity_constraints_PagoConsulta.xml" relativeToChangelogFile="false"/>
+
+-->
+
+
+</databaseChangeLog>

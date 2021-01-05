@@ -1,0 +1,78 @@
+{
+    "name": "AntecedentesPersonales",
+    "fields": [
+        {
+            "fieldName": "tabaco",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tabacoObserv",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tecafe",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "obsantecPersonal",
+            "otherEntityName": "obsAntecPersonal",
+            "otherEntityRelationshipName": "antecedentesPersonales"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "enfermedades",
+            "otherEntityName": "enfermedad",
+            "otherEntityField": "valor",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "alergias",
+            "otherEntityName": "alergia",
+            "otherEntityField": "valor",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "intolerancias",
+            "otherEntityName": "intolerancia",
+            "otherEntityField": "valor",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "regimenes",
+            "otherEntityName": "regimen",
+            "otherEntityField": "valor",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ejercicios",
+            "otherEntityName": "ejercicio",
+            "otherEntityField": "valor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bebidas",
+            "otherEntityName": "bebida",
+            "otherEntityField": "valor"
+        }
+    ],
+    "changelogDate": "20181001014148",
+    "entityTableName": "antecedentes_personales",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

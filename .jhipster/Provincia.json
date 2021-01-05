@@ -1,0 +1,26 @@
+{
+    "name": "Provincia",
+    "fields": [
+        {
+            "fieldName": "nombreProvincia",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "codigopostal",
+            "otherEntityName": "codigoPostal",
+            "otherEntityRelationshipName": "provincia"
+        }
+    ],
+    "changelogDate": "20181001014136",
+    "entityTableName": "provincia",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

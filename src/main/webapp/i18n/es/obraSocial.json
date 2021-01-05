@@ -1,0 +1,27 @@
+
+{
+    "cpsjApp": {
+        "obraSocial" : {
+            "home": {
+                "title": "Obra Social",
+                "createLabel": "Crear nueva",
+                "createOrEditLabel": "Crear o editar"
+            },
+            "created": "Una nueva obra social ha sido creada con el identificador {{ param }}",
+            "updated": "Una obra social ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una obra social ha sido eliminada con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar la obra social {{ id }}?"
+            },
+            "detail": {
+                "title": "Obra Social"
+            },
+            "codigo": "Código",
+            "nombre": "Nombre",
+            "direccion": "Descripcion",
+            "telefono": "Teléfono",
+            "email": "E-mail",
+            "agrupador_obrasocial": "Agrupador Obrasocial"
+        }
+    }
+}

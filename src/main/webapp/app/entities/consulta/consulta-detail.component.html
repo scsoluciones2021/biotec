@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="consulta">
+            <h2><span>Consulta</span> {{consulta.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Fecha Consulta</span></dt>
+                <dd>
+                    <span>{{consulta.fechaConsulta}}</span>
+                </dd>
+                <dt><span>Observaciones Consulta</span></dt>
+                <dd>
+                    <span>{{consulta.observacionesConsulta}}</span>
+                </dd>
+                <dt><span>Constantes Consulta</span></dt>
+                <dd>
+                    <div *ngIf="consulta.constantesConsultaId">
+                        <a [routerLink]="['/constantes', consulta.constantesConsultaId, 'view']">{{consulta.constantesConsultaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/consulta', consulta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

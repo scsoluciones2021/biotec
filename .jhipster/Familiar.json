@@ -1,0 +1,26 @@
+{
+    "name": "Familiar",
+    "fields": [
+        {
+            "fieldName": "parentezco",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "antecedentesFamiliares",
+            "otherEntityName": "antecedentesFamiliares",
+            "otherEntityRelationshipName": "parentezco"
+        }
+    ],
+    "changelogDate": "20181001014158",
+    "entityTableName": "familiar",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

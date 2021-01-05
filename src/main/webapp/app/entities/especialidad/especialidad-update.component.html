@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-especialidad-heading">Especialidad</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!especialidad.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="especialidad.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codigoEspecilidad">Codigo</label>
+                    <input type="text" class="form-control" name="codigoEspecilidad" id="field_codigoEspecilidad"
+                        [(ngModel)]="especialidad.codigoEspecilidad" required/>
+                    <div [hidden]="!(editForm.controls.codigoEspecilidad?.dirty && editForm.controls.codigoEspecilidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.codigoEspecilidad?.errors?.required">
+                        Campo requerido
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreEspecialidad">Nombre</label>
+                    <input type="text" class="form-control" name="nombreEspecialidad" id="field_nombreEspecialidad"
+                        [(ngModel)]="especialidad.nombreEspecialidad" required/>
+                    <div [hidden]="!(editForm.controls.nombreEspecialidad?.dirty && editForm.controls.nombreEspecialidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nombreEspecialidad?.errors?.required">
+                        Campo requerido
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idFicha",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idProfesional",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idPaciente",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "idEspecialidad",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "ruta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreOriginal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreActual",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "usuario",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20181120224449",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "adjuntos_ficha",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

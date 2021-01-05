@@ -1,0 +1,184 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-detalle-horarios-heading" jhiTranslate="cpsjApp.detalleHorarios.home.createOrEditLabel">Create or edit a Detalle Horarios</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!detalleHorarios.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="detalleHorarios.id" readonly />
+                </div>
+                <div class="form-group" [hidden]="true">
+                    <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.idHorario" for="field_idHorario">Id Horario</label>
+                    <input type="number" class="form-control" name="idHorario" id="field_idHorario"
+                        [(ngModel)]="detalleHorarios.idHorario" required/>
+                    <div [hidden]="!(editForm.controls.idHorario?.dirty && editForm.controls.idHorario?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.idHorario?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.idHorario?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-2">                                       
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.horaDesde" for="field_horaDesde">Hora Desde</label>
+                        <p-inputMask size="5" [pattern]="'^([01]?[0-9]|2[0-3]):[0-5][0-9]+$'" id="field_horaDesde" name="field_horaDesde" [(ngModel)]="detalleHorarios.horaDesde" mask="99:99" [required]="true"></p-inputMask>
+                        <!--input type="text" class="form-control" name="horaDesde" id="field_horaDesde"
+                            [(ngModel)]="detalleHorarios.horaDesde" required/-->
+                        <div [hidden]="!(editForm.controls.horaDesde?.dirty && editForm.controls.horaDesde?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.horaDesde?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-2">
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.horaHasta" for="field_horaHasta">Hora Hasta</label>
+                        <p-inputMask size="5" [pattern]="'^([01]?[0-9]|2[0-3]):[0-5][0-9]+$'" id="field_horaHasta" name="field_horaDesde" [(ngModel)]="detalleHorarios.horaHasta" mask="99:99" [required]="true"></p-inputMask>
+                        
+                        <!--input type="text" class="form-control" name="horaHasta" id="field_horaHasta"
+                            [(ngModel)]="detalleHorarios.horaHasta" required/-->
+                        <div [hidden]="!(editForm.controls.horaHasta?.dirty && editForm.controls.horaHasta?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.horaHasta?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_lunes" [(ngModel)]="detalleHorarios.lunes" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.lunes" for="field_lunes">Lunes</label>
+                        <!--input type="number" class="form-control" name="lunes" id="field_lunes"
+                            [(ngModel)]="detalleHorarios.lunes" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_martes" [(ngModel)]="detalleHorarios.martes" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.martes" for="field_martes">Martes</label>
+                        <!--input type="number" class="form-control" name="martes" id="field_martes"
+                            [(ngModel)]="detalleHorarios.martes" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_miercoles" [(ngModel)]="detalleHorarios.miercoles" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.miercoles" for="field_miercoles">Miercoles</label>
+                        <!--input type="number" class="form-control" name="miercoles" id="field_miercoles"
+                            [(ngModel)]="detalleHorarios.miercoles" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_jueves" [(ngModel)]="detalleHorarios.jueves" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.jueves" for="field_jueves">Jueves</label>
+                        <!--input type="number" class="form-control" name="jueves" id="field_jueves"
+                            [(ngModel)]="detalleHorarios.jueves" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_viernes" [(ngModel)]="detalleHorarios.viernes" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.viernes" for="field_viernes">Viernes</label>
+                        <!--input type="number" class="form-control" name="viernes" id="field_viernes"
+                            [(ngModel)]="detalleHorarios.viernes" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_sabado" [(ngModel)]="detalleHorarios.sabado" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.sabado" for="field_sabado">Sabado</label>
+                        <!--input type="number" class="form-control" name="sabado" id="field_sabado"
+                            [(ngModel)]="detalleHorarios.sabado" /-->
+                    </div>
+                    <div class="form-group col-1">
+                        <p-checkbox #chkEnable name="field_domingo" [(ngModel)]="detalleHorarios.domingo" binary="true" ></p-checkbox>
+    
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.domingo" for="field_domingo">Domingo</label>
+                        <!--input type="number" class="form-control" name="domingo" id="field_domingo"
+                            [(ngModel)]="detalleHorarios.domingo" /-->
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-2">
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.intervalo" for="field_intervalo">Intervalo</label>
+                        <input type="number" class="form-control" name="intervalo" id="field_intervalo"
+                            [(ngModel)]="detalleHorarios.intervalo" required/>
+                        <div [hidden]="!(editForm.controls.intervalo?.dirty && editForm.controls.intervalo?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.intervalo?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.intervalo?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-2">
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.frecuencia" for="field_frecuencia">Frecuencia</label>
+                        <!--<input type="number" class="form-control" name="frecuencia" id="field_frecuencia"
+                            [(ngModel)]="detalleHorarios.frecuencia" required min="7"/> -->
+                            <select
+                            class="form-control"
+                            id="field_frecuencia"
+                            name="frecuencia"
+                            [(ngModel)]="detalleHorarios.frecuencia">
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="7">7</option>
+                            <option [ngValue]="15">15</option>
+                        </select>
+                        <div [hidden]="!(editForm.controls.frecuencia?.dirty && editForm.controls.frecuencia?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.frecuencia?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.frecuencia?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.frecuencia?.errors?.number" jhiTranslate="entity.validation.min">
+                                Min 7.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-2">
+                        <label class="form-control-label" jhiTranslate="cpsjApp.detalleHorarios.cantidadPacientes" for="field_cantidadPacientes">Cantidad Pacientes</label>
+                        <input type="number" class="form-control" name="cantidadPacientes" id="field_cantidadPacientes"
+                            [(ngModel)]="detalleHorarios.cantidadPacientes" required min="1" jhiMin="1"/>
+                        <div [hidden]="!(editForm.controls.cantidadPacientes?.dirty && editForm.controls.cantidadPacientes?.invalid)">
+                            <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cantidadPacientes?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.cantidadPacientes?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                                This field should be at least 1.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.cantidadPacientes?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="agrupadorOS">
+            <h2><span jhiTranslate="cpsjApp.agrupadorOS.detail.title">Agrupador OS</span> {{agrupadorOS.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cpsjApp.agrupadorOS.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{agrupadorOS.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="cpsjApp.agrupadorOS.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{agrupadorOS.descripcion}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/agrupador-os', agrupadorOS.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

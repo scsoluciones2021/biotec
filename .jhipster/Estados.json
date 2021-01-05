@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190119220039",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "estados",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity HorariosProfesional.
+    -->
+    <changeSet id="20190123212400-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="horario_prof_rel_id"
+                                 baseTableName="horarios_profesional"
+                                 constraintName="fk_horarios_profesional_horario_prof_rel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profesional"/>
+
+        <addForeignKeyConstraint baseColumnNames="horarios_profesionals_id"
+                                 baseTableName="horarios_profesional_horario_bloq_rel"
+                                 constraintName="horarios_profesional_horario_bl_horarios_profesionals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="horarios_profesional"/>
+        <addForeignKeyConstraint baseColumnNames="horario_bloq_rels_id"
+                                 baseTableName="horarios_profesional_horario_bloq_rel"
+                                 constraintName="fk_horarios_profesional_horario_bloq_rel_horario_bloq_rels_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bloqueo"/>
+        
+    </changeSet>
+</databaseChangeLog>

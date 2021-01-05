@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ficha">
+            <h2><span>Ficha</span> {{ficha.pacienteNombrePaciente}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Fecha Ingreso</span></dt>
+                <dd>
+                    <span>{{ficha.fechaIngreso | date: 'dd/MM/yyyy'}}</span>
+                </dd>
+                <dt><span>Paciente</span></dt>
+                <dd>
+                    <div *ngIf="ficha.pacienteId">
+                        <a [routerLink]="['/paciente', ficha.pacienteId, 'view']">{{ficha.pacienteNombrePaciente}}</a>
+                    </div>
+                </dd>
+                <dt><span>Especialidad</span></dt>
+                <dd>
+                    <div *ngIf="ficha.especialidadId">
+                        <a [routerLink]="['/especialidad', ficha.especialidadId, 'view']">{{ficha.especialidadNombreEspecialidad}}</a>
+                    </div>
+                </dd>
+                <dt><span>Profesional</span></dt>
+                <dd>
+                    <div *ngIf="ficha.profesionalId">
+                        <a [routerLink]="['/profesional', ficha.profesionalId, 'view']">{{ficha.profesionalNombreProfesional}}</a>
+                    </div>
+                </dd>
+                <!-- Acá debe ir una lista de las consultas asociadas a la ficha-->
+                <dt><span>Consultas</span></dt>
+                    <button type="button"
+                            (click)="consultaNueva()"
+                            class="btn btn-primary">
+                        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Nueva</span>
+                    </button>
+                    <!--<jhi-consulta-update [nroPaciente]="ficha.pacienteId"></jhi-consulta-update>-->
+                    <p-tree [value]="files"></p-tree>
+                <dd>
+                    <div *ngIf="ficha.consultaId">
+                        <a [routerLink]="['/consulta', ficha.consultaId, 'view']">{{ficha.consultaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+
+
+<!-- Subir archivos primeng -->
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<h3 class="first">Adjuntar Archivos a la ficha: </h3>
+
+<p-fileUpload #form name="demo[]"
+customUpload="true"
+(uploadHandler)="onUploadEnd($event, form)"
+        multiple="multiple" maxFileSize="5000000"
+        chooseLabel="Seleccionar"
+        accept="image/*" 
+        uploadLabel="Adjuntar"
+        cancelLabel="Cancelar">
+        <ng-template pTemplate="toolbar">
+            <div *ngIf="hayArchivosParaSubir" class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                    {{progress.percentage}}%</div>
+            </div>
+        </ng-template>
+        <ng-template let-file pTemplate="file">
+            <div class="ui-fileupload-row">
+                <div class="d-inline">{{file.name}}</div>
+                <div>{{getSizeInMegaBytes(file) | number:'1.2-2'}} MB</div>
+                <div class="d-inline">
+                    <button class="btn btn-danger" type="button" label="Remove" (click)="removeFile(file, form)">
+                            <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </div>
+          </ng-template>
+</p-fileUpload>
+<hr>
+
+<!-- Subir archivos -->
+<div>
+    <button class="btn btn-info" *ngIf='showFile' (click)='showFiles(false)'>Ocultar lista archivos</button>
+    
+    <button class="btn btn-danger" *ngIf='!showFile' (click)='showFiles(true)'>Mostrar lista archivos</button>
+    
+    <div [hidden]="!showFile" >
+        <div class="list-group border border-primary">
+            <div *ngFor="let file of fileUploads | async">
+                <div class="panel-body">
+                        <button type="button" (click)="descargarArchivo(file)" class="btn btn-link">{{file}}</button>
+                    <!--a target="_blank" [routerLink]="" (click)="descargarArchivo(file)" class="btn btn-link">{{file}}</a-->
+                </div>
+            </div>
+        </div>
+    </div>    
+    <hr>
+</div>
+<!-- Fin subir archivos -->
+<!-- Fin subir archivos primeng-->
+<div>
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Atrás</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/ficha', ficha.id, 'edit']"
+            class="btn btn-primary">
+        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Editar</span>
+    </button>
+</div>
+        </div>
+    </div>
+</div>

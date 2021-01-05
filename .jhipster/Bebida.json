@@ -1,0 +1,29 @@
+{
+    "name": "Bebida",
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "antecedentesPersonales",
+            "otherEntityName": "antecedentesPersonales",
+            "otherEntityRelationshipName": "bebidas"
+        }
+    ],
+    "changelogDate": "20181001014146",
+    "entityTableName": "bebida",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

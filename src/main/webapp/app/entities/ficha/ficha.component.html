@@ -1,0 +1,126 @@
+<div>
+    <h2 id="page-heading">
+        <span>Fichas</span>
+        <button *jhiHasAnyAuthority="'ROLE_USER'" id="jh-create-entity"
+            class="btn btn-primary float-right jh-create-entity create-ficha" [routerLink]="['/ficha/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span>
+                Nueva Ficha
+            </span>
+        </button>
+    </h2>
+    <p-panel header="Filtros de búsqueda" [toggleable]="true" [style]="{ 'margin-bottom': '20px' }">
+        <div class="ui-g ui-fluid">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input type="text" pKeyFilter="alpha" placeholder="Apellido" [(ngModel)]="busqueda_apellido"
+                    #buscarPxA />
+            </div>
+
+
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input type="text" placeholder="Nombre" [(ngModel)]="busqueda_nombre" #buscarPxN />
+            </div>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon" style="height: fit-content !important;"><i
+                        class="fa fa-list"></i></span>
+                <p-multiSelect [options]="especialidades" [(ngModel)]="especialidadesSelecc"
+                    optionLabel="nombreEspecialidad" defaultLabel="Especialidad"></p-multiSelect>
+            </div>
+            <div *jhiHasAnyAuthority="'ROLE_USER'" class="ui-inputgroup">
+                <span class="ui-inputgroup-addon" style="height: fit-content !important;"><i
+                        class="fa fa-user-md"></i></span>
+                <p-multiSelect [options]="profesionales" [(ngModel)]="profesionalesSelecc"
+                    optionLabel="nombreProfesional" defaultLabel="Profesional"></p-multiSelect>
+            </div>
+            <div class="ui-inputgroup">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                    (click)="search(buscarPxA.value, buscarPxN.value)">Buscar</button>
+            </div>
+        </div>
+    </p-panel>
+    <jhi-alert></jhi-alert>
+    <br />
+    <div class="table-responsive" *ngIf="fichas">
+        <table class="table table-striped">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                    <th jhiSortBy="id"><span>Nº Ficha</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <!--th jhiSortBy="fechaIngreso"><span>Fecha Ingreso</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+                    <th jhiSortBy="pacienteNombrePaciente"><span>Paciente</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="profesionalNombreProfesional"><span>Profesional</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="especialidadNombreEspecialidad"><span>Especialidad</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <!--th jhiSortBy="consultaId"><span>Consulta</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ficha of fichas ;trackBy: trackId">
+                    <!--td><a [routerLink]="['/ficha', ficha.id, 'view' ]">{{ficha.id}}</a></td-->
+                    <td>{{ficha.id}}</td>
+                    <!--td>{{ficha.fechaIngreso | date:'dd/MM/yyyy'}}</td-->
+                    <td>
+                        <div *ngIf="ficha.pacienteId">
+                            <a
+                                [routerLink]="['../paciente', ficha.pacienteId , 'view' ]">{{ficha.pacienteNombrePaciente}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="ficha.profesionalId">
+                            <a
+                                [routerLink]="['../profesional', ficha.profesionalId , 'view' ]">{{ficha.profesionalNombreProfesional}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="ficha.especialidadId">
+                            <a
+                                [routerLink]="['../especialidad', ficha.especialidadId , 'view' ]">{{ficha.especialidadNombreEspecialidad}}</a>
+                        </div>
+                    </td>
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button *jhiHasAnyAuthority="'ROLE_MEDICO'" type="submit"
+                                [routerLink]="['/ficha', ficha.id, 'view' ]" class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="d-none d-md-inline">Ver</span>
+                            </button>
+                            <button *jhiHasAnyAuthority="'ROLE_USER'" type="submit"
+                                [routerLink]="['/ficha', ficha.id, 'edit']" class="btn btn-primary btn-sm">
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                <span class="d-none d-md-inline">Editar</span>
+                            </button>
+                            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ficha/'+ ficha.id + '/delete'} }]"
+                                replaceUrl="true" queryParamsHandling="merge" class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                                <span class="d-none d-md-inline">Borrar</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="fichas && fichas.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage">
+            </jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+
+</div>

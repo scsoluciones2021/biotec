@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="horariosProfesional">
+            <h2><span>Horario </span>{{horariosProfesional.horario_prof_relNombreProfesional}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+
+            <div class="form-group">
+                <label class="form-control-label " for="field_horario_esp_rel">
+                    <h5>Especialidad</h5>
+                </label>
+                <select class="form-control" [disabled]="true"
+                    id="field_horario_esp_rel " name="field_horario_esp_rel"
+                    [(ngModel)]="horariosProfesional.horario_esp_relId" required>
+                    <option [ngValue]="especialidadOption.id "
+                        *ngFor="let especialidadOption of especialidades; trackBy: trackEspecialidadById ">
+                        {{especialidadOption.nombreEspecialidad}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="field_consultorio">Consultorio</label>
+                <input type="text" class="form-control" name="consultorio" id="field_consultorio"
+                    [(ngModel)]="horariosProfesional.consultorio" [disabled]="true"/>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_fechaDesde">Fecha Desde</label>
+                        <div>
+                            <p-calendar id="field_fechaDesde" name="field_fechaDesde" [(ngModel)]="dateD"
+                                dateFormat="dd/mm/yy" [locale]="es" [showIcon]="true" required yearRange="2010:2030" [disabled]="true">
+                            </p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_fechaHasta">Fecha Hasta</label>
+                        <div>
+                            <p-calendar id="field_fechaHasta" name="field_fechaHasta" [(ngModel)]="dateH"
+                                dateFormat="dd/mm/yy" [locale]="es" [showIcon]="true" [disabled]="true"></p-calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="d-none">Id</th>
+                            <th class="d-none">IdHorario</th>
+                            <th scope="col">Desde</th>
+                            <th scope="col">Hasta</th>
+                            <th scope="col">Días</th>
+                            <th scope="col">Intervalo</th>
+                            <th scope="col">Frecuencia(días)</th>
+                            <th scope="col">Cantidad de pacientes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let detalle of detalles">
+                                    <td class="d-none">{{detalle.id}}</td>
+                                    <td class="d-none">{{detalle.idHorario}}</td>
+                                    <td>{{detalle.horaDesde}}</td>
+                                    <td>{{detalle.horaHasta}}</td>
+                                    <td>{{detalle.lunes + " - " + detalle.martes}}</td>
+                                    <td>{{detalle.intervalo}}</td>
+                                    <td>{{detalle.frecuencia}}</td>
+                                    <td>{{detalle.cantidadPacientes}}</td>
+                            </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info">
+            <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Atrás</span>
+        </button>
+
+        <button type="button" [routerLink]="['/horarios-profesional', horariosProfesional.id, 'edit']"
+            class="btn btn-primary">
+            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Editar</span>
+        </button>
+    </div>
+</div>
