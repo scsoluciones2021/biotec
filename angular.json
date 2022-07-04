@@ -3,14 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CPSJ": {
+    "GESTWEB": {
       "root": "",
       "sourceRoot": "src/main/webapp",
       "projectType": "application",
       "architect": {}
     }
   },
-  "defaultProject": "CPSJ",
+  "defaultProject": "GESTWEB",
   "cli": {
     "packageManager": "yarn"
   },
