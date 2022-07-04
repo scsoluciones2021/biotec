@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Paciente;
 import rpt.repository.PacienteRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see PacienteResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class PacienteResourceIntTest {
 
     private static final String DEFAULT_NOMBRE_PACIENTE = "AAAAAAAAAA";

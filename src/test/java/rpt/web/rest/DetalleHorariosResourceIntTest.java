@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.DetalleHorarios;
 import rpt.repository.DetalleHorariosRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see DetalleHorariosResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class DetalleHorariosResourceIntTest {
 
     private static final Long DEFAULT_ID_HORARIO = 1L;

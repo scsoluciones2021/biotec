@@ -38,7 +38,7 @@ export class JhiMainComponent implements OnInit {
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'cpsjApp';
+        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'GestWebApp';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }
@@ -61,39 +61,36 @@ export class JhiMainComponent implements OnInit {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });
-        // this.sliderImagenes = this.mainService.getFiles();
 
         this.images = [];
-        if (window.innerWidth < 768) {
-            // this.isMobileResolution = true;
-            this.images.push({
-                source: './content/images/carrusel/DSC_6318_k9l6zb_c_scale,w_772.jpg',
-                alt: 'Consultorio Kinesiología',
-                title: ''
-            });
-            this.images.push({
-                source: './content/images/carrusel/DSC_6363_pa5tuk_c_scale,w_603.jpg',
-                alt: 'Consultorio Kinesiología',
-                title: ''
-            });
-            this.images.push({
-                source: './content/images/carrusel/DSC_6313_godfzt_c_scale,w_649.jpg',
-                alt: 'Consultorio Kinesiología',
-                title: ''
-            });
-            this.images.push({
-                source: './content/images/carrusel/DSC_6306_dikau0_c_scale,w_626.jpg',
-                alt: 'Consultorio Kinesiología',
-                title: ''
-            });
-        } else {
-            this.images.push({ source: './content/images/carrusel/DSC_6363.jpg', alt: 'Consultorio Kinesiología', title: '' });
-            this.images.push({ source: './content/images/carrusel/DSC_6306.jpg', alt: 'Segundo Slide', title: '' });
-            this.images.push({ source: './content/images/carrusel/DSC_6313.jpg', alt: 'Tercer Slide', title: '' });
-            this.images.push({ source: './content/images/carrusel/DSC_6318.jpg', alt: 'Cuarto Slide', title: '' });
-        }
-        //this.images.push({source: '/content/images/carrusel/DSC_6291.jpg', alt: '', title: ''});
-        //this.images.push({source: '/content/images/carrusel/DSC_6322.jpg', alt: '', title: ''});
+
+        // if (window.innerWidth < 768) {
+        //     this.images.push({
+        //         source: './content/images/carrusel/DSC_6318_k9l6zb_c_scale,w_772.jpg',
+        //         alt: 'Consultorio Kinesiología',
+        //         title: ''
+        //     });
+        //     this.images.push({
+        //         source: './content/images/carrusel/DSC_6363_pa5tuk_c_scale,w_603.jpg',
+        //         alt: 'Consultorio Kinesiología',
+        //         title: ''
+        //     });
+        //     this.images.push({
+        //         source: './content/images/carrusel/DSC_6313_godfzt_c_scale,w_649.jpg',
+        //         alt: 'Consultorio Kinesiología',
+        //         title: ''
+        //     });
+        //     this.images.push({
+        //         source: './content/images/carrusel/DSC_6306_dikau0_c_scale,w_626.jpg',
+        //         alt: 'Consultorio Kinesiología',
+        //         title: ''
+        //     });
+        // } else {
+        //     this.images.push({ source: './content/images/carrusel/DSC_6363.jpg', alt: 'Consultorio Kinesiología', title: '' });
+        //     this.images.push({ source: './content/images/carrusel/DSC_6306.jpg', alt: 'Segundo Slide', title: '' });
+        //     this.images.push({ source: './content/images/carrusel/DSC_6313.jpg', alt: 'Tercer Slide', title: '' });
+        //     this.images.push({ source: './content/images/carrusel/DSC_6318.jpg', alt: 'Cuarto Slide', title: '' });
+        // }
     }
 
     isAuthenticated() {

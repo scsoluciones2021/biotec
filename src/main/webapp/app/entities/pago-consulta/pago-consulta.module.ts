@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core/language/language.helper';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     PagoConsultaComponent,
     PagoConsultaDetailComponent,
@@ -17,7 +17,7 @@ import {
 const ENTITY_STATES = [...pagoConsultaRoute, ...pagoConsultaPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         PagoConsultaComponent,
         PagoConsultaDetailComponent,
@@ -35,7 +35,7 @@ const ENTITY_STATES = [...pagoConsultaRoute, ...pagoConsultaPopupRoute];
     exports: [PagoConsultaUpdateComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjPagoConsultaModule {
+export class GestWebPagoConsultaModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey) {

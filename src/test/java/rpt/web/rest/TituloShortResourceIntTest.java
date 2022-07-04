@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.TituloShort;
 import rpt.repository.TituloShortRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see TituloShortResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class TituloShortResourceIntTest {
 
     private static final String DEFAULT_VALOR = "AAAAAAAAAA";

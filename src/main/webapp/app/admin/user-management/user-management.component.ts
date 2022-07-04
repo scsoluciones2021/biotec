@@ -8,6 +8,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { Principal, UserService, User } from 'app/core';
 import { UserMgmtDeleteDialogComponent } from 'app/admin';
+import { ProfesionalService } from 'app/entities/profesional/profesional.service';
 
 @Component({
     selector: 'jhi-user-mgmt',
@@ -36,7 +37,8 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private eventManager: JhiEventManager,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private profesionalService: ProfesionalService
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -121,16 +123,10 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     deleteUser(user: User) {
+        var idUsuario = user.id;
         const modalRef = this.modalService.open(UserMgmtDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
         modalRef.componentInstance.user = user;
-        modalRef.result.then(
-            result => {
-                // Left blank intentionally, nothing to do here
-            },
-            reason => {
-                // Left blank intentionally, nothing to do here
-            }
-        );
+        modalRef.result.then(result => {}, reason => {});
     }
 
     private onSuccess(data, headers) {

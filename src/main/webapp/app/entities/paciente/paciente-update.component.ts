@@ -14,7 +14,7 @@ import { CodigoPostalService } from 'app/entities/codigo-postal';
 import { CodigoPostal } from '../../shared/model/codigo-postal.model';
 import { ProvinciaService } from '../provincia';
 import { IProvincia } from 'app/shared/model/provincia.model';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 
 @Component({
     selector: 'jhi-paciente-update',
@@ -73,20 +73,23 @@ export class PacienteUpdateComponent implements OnInit {
     }
     // PRIMENG
     // Código Postal
+
+    // filterCPSingle(event) { //esta función es para filtrar por provincia las localidades.
+    //     const query = event.query;
+    //     console.log(this.localidadesProvincia);
+    //     this.filteredCPSingle = this.filterCP(query, this.localidadesProvincia);
+    // }
     filterCPSingle(event) {
         const query = event.query;
-        this.filteredCPSingle = this.filterCP(query, this.localidadesProvincia);
-
-        /*this.codigoPostalService.buscarCP(query).subscribe(
-             (res: HttpResponse<ICodigoPostal[]>) => {
+        this.codigoPostalService.buscarCP(query).subscribe(
+            (res: HttpResponse<ICodigoPostal[]>) => {
                 this.filteredCPSingle = this.filterCP(query, res.body);
-             },
-             (res: HttpErrorResponse) => this.onError(res.message)
-         );*/
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     filterCP(query, cpPNG: any[]): any[] {
-        // in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
         const filtered: any[] = [];
         for (let i = 0; i < cpPNG.length; i++) {
             const codigoPostal = cpPNG[i];
@@ -141,9 +144,9 @@ export class PacienteUpdateComponent implements OnInit {
         // Fin calendario en español
 
         if (this.paciente.fechaNacimiento != null) {
-            this.fechaNac = moment(this.paciente.fechaNacimiento).toDate();
-            this.paciente.edad = moment().diff(this.paciente.fechaNacimiento, 'years');
-            this.meses = moment().diff(this.paciente.fechaNacimiento, 'months');
+            this.fechaNac = dayjs(this.paciente.fechaNacimiento).toDate();
+            this.paciente.edad = dayjs().diff(this.paciente.fechaNacimiento, 'years');
+            this.meses = dayjs().diff(this.paciente.fechaNacimiento, 'months');
         } else {
             this.paciente.edad = 0;
             this.meses = 0;
@@ -191,7 +194,7 @@ export class PacienteUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.paciente.obrasocials = this.obraSocSelecc;
-        this.paciente.fechaNacimiento = moment(this.fechaNac);
+        this.paciente.fechaNacimiento = dayjs(this.fechaNac);
 
         if (this.paciente.id !== undefined) {
             this.subscribeToSaveResponse(this.pacienteService.update(this.paciente));
@@ -247,7 +250,7 @@ export class PacienteUpdateComponent implements OnInit {
 
         const bdate = new Date(event);
         const bdateAnio = new Date(new Date().getFullYear(), mes, dia);
-        this.paciente.edad = moment().diff(bdate, 'years'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
-        this.meses = moment().diff(bdateAnio, 'months'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
+        this.paciente.edad = dayjs().diff(bdate, 'years'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
+        this.meses = dayjs().diff(bdateAnio, 'months'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
     }
 }

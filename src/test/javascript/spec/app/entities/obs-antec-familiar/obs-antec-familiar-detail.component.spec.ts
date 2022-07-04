@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { ObsAntecFamiliarDetailComponent } from 'app/entities/obs-antec-familiar/obs-antec-familiar-detail.component';
 import { ObsAntecFamiliar } from 'app/shared/model/obs-antec-familiar.model';
 
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [ObsAntecFamiliarDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })

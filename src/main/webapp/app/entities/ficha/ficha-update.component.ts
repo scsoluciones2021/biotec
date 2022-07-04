@@ -12,7 +12,7 @@ import { IProfesional } from 'app/shared/model/profesional.model';
 import { ProfesionalService } from 'app/entities/profesional';
 import { IConsulta } from 'app/shared/model/consulta.model';
 import { ConsultaService } from 'app/entities/consulta';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { of } from 'rxjs/observable/of';
 import { tap, map, debounceTime, switchMap, finalize, distinctUntilChanged, catchError } from 'rxjs/operators';
 import { AntecedentesFamiliaresUpdateComponent } from 'app/entities/antecedentes-familiares';
@@ -26,7 +26,7 @@ import { Especialidad } from '../../shared/model/especialidad.model';
 
 @Component({
     selector: 'jhi-ficha-update',
-    templateUrl: './ficha-update.component.html',
+    templateUrl: './ficha-update.component.html'
 })
 export class FichaUpdateComponent implements OnInit {
     private _ficha: IFicha;
@@ -49,10 +49,10 @@ export class FichaUpdateComponent implements OnInit {
     pacientesPNG: any[];
     filteredPacienteSingle: any[];
 
-   /* profesional: any;
+    /* profesional: any;
     especialidad: any;*/
     profesionalesPNG: any[];
-   // filteredProfesionalSingle: any[]; 
+    // filteredProfesionalSingle: any[];
 
     profesional: any;
     especialidad: any;
@@ -64,7 +64,7 @@ export class FichaUpdateComponent implements OnInit {
     // uploadfile
     uploadedFiles: any[] = [];
 
-private modalRef: NgbModalRef;
+    private modalRef: NgbModalRef;
 
     constructor(
         private jhiAlertService: JhiAlertService,
@@ -77,7 +77,7 @@ private modalRef: NgbModalRef;
         private router: Router,
         private modalService: NgbModal
     ) {}
-    
+
     // Modal para crear un nuevo paciente
     openFormModal() {
         this.modalRef = this.modalService.open(PacienteModalComponent as Component, { size: 'lg', backdrop: 'static' });
@@ -85,28 +85,32 @@ private modalRef: NgbModalRef;
         this.modalRef.componentInstance.paciente = of(new Paciente());
 
         // Qué hace al volver
-        this.modalRef.result.then(result => {
-            this.paciente = new Paciente();
-            this.paciente.id = result.idPac;
-            this.paciente.nombrePaciente = result.pacienteNombre;
-            this.ficha.pacienteId = result.idPac;
-            this.ficha.pacienteNombrePaciente = result.pacienteNombre;
-        }).catch(error => {
-          console.log(error);
-        });
+        this.modalRef.result
+            .then(result => {
+                this.paciente = new Paciente();
+                this.paciente.id = result.idPac;
+                this.paciente.nombrePaciente = result.pacienteNombre;
+                this.ficha.pacienteId = result.idPac;
+                this.ficha.pacienteNombrePaciente = result.pacienteNombre;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     // PRIMENG
     // Paciente
     filterPacienteSingle(event) {
-      // Original funcionando
+        // Original funcionando
         const query = event.query;
 
         this.pacienteService.buscarPaciente(query).subscribe(
             (res: HttpResponse<IPaciente[]>) => {
                 this.filteredPacienteSingle = this.filterPaciente(query, res.body);
             },
-            (res: HttpErrorResponse) => { console.log('paso por aca error'); this.onError(res.message); }
+            (res: HttpErrorResponse) => {
+                this.onError(res.message);
+            }
         );
         /*this.pacienteService.query({'nombrePaciente.contains': event.query}).subscribe(
             (res: HttpResponse<IPaciente[]>) => {
@@ -114,7 +118,6 @@ private modalRef: NgbModalRef;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );*/
-
     }
 
     filterPaciente(query, pacientesPNG: any[]): any[] {
@@ -142,70 +145,68 @@ private modalRef: NgbModalRef;
 
     // Profesional
     filterProfesionalSingle(idEsp) {
-       // con el true traigo también las relaciones
+        // con el true traigo también las relaciones
         this.profesionalService.query('true').subscribe(
             (res: HttpResponse<IProfesional[]>) => {
                 this.profesionales = this.filterProfesional(idEsp, res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
-            );
-            
-        }
-        
+        );
+    }
+
     filterProfesional(query, profesionalesPNG: any[]): any[] {
         const filtered: any[] = [];
         for (let i = 0; i < profesionalesPNG.length; i++) {
             const profesional = profesionalesPNG[i];
             profesional.especialidads.forEach(esp => {
-                if(esp.id == query) {
+                if (esp.id == query) {
                     filtered.push(profesional);
                 }
             });
         }
         return filtered;
     }
-    
-   // Especialidad
-   filterEspecialidadSingle(event) {
-       const query = event.query;
-       
-       this.especialidadService.query().subscribe(
-                (res: HttpResponse<IEspecialidad[]>) => {
-                    this.filteredEspecialidadSingle = this.filterEspecialidad(query, res.body);
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-    
-        }
-    
-        filterEspecialidad(query, especialidadesPNG: any[]): any[] {
-            const filtered: any[] = [];
-            for (let i = 0; i < especialidadesPNG.length; i++) {
-                const especialidad = especialidadesPNG[i];
-                if (especialidad.nombreEspecialidad.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                    filtered.push(especialidad);
-                }
+
+    // Especialidad
+    filterEspecialidadSingle(event) {
+        const query = event.query;
+
+        this.especialidadService.query().subscribe(
+            (res: HttpResponse<IEspecialidad[]>) => {
+                this.filteredEspecialidadSingle = this.filterEspecialidad(query, res.body);
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+
+    filterEspecialidad(query, especialidadesPNG: any[]): any[] {
+        const filtered: any[] = [];
+        for (let i = 0; i < especialidadesPNG.length; i++) {
+            const especialidad = especialidadesPNG[i];
+            if (especialidad.nombreEspecialidad.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(especialidad);
             }
-            return filtered;
         }
-    
-        seleccionEspecialidad(event) {
-            this.especialidad = event;
-            this.ficha.especialidadId = event.id;
-            this.ficha.especialidadNombreEspecialidad = event.nombreEspecialidad;
-            this.filterProfesionalSingle(event.id);
-            //this.profesionales = event.profesionales;
-        }
-    
-        borrarEspecialidad() {
-            this.especialidad = null;
-            this.ficha.especialidadId = null;
-            this.ficha.especialidadNombreEspecialidad = null;
-            this.ficha.profesionalId = null;
-            this.ficha.profesionalNombreProfesional = null;
-            this.profesionales = null;
-        }
-// PRIMENG FIN
+        return filtered;
+    }
+
+    seleccionEspecialidad(event) {
+        this.especialidad = event;
+        this.ficha.especialidadId = event.id;
+        this.ficha.especialidadNombreEspecialidad = event.nombreEspecialidad;
+        this.filterProfesionalSingle(event.id);
+        //this.profesionales = event.profesionales;
+    }
+
+    borrarEspecialidad() {
+        this.especialidad = null;
+        this.ficha.especialidadId = null;
+        this.ficha.especialidadNombreEspecialidad = null;
+        this.ficha.profesionalId = null;
+        this.ficha.profesionalNombreProfesional = null;
+        this.profesionales = null;
+    }
+    // PRIMENG FIN
 
     ngOnInit() {
         this.isSaving = false;
@@ -225,25 +226,12 @@ private modalRef: NgbModalRef;
             this.paciente.nombrePaciente = this.ficha.pacienteNombrePaciente;
         }
 
-     /*   if (this.ficha.profesionalId) {
-            this.profesional = new Profesional();
-            this.profesional.id = this.ficha.profesionalId;
-            this.profesional.nombreProfesional = this.ficha.profesionalNombreProfesional;
-        }
-
-        if (this.ficha.especialidadId) {
-            this.especialidad = new Especialidad();
-            this.especialidad.id = this.ficha.especialidadId;
-            this.especialidad.nombreEspecialidad = this.ficha.especialidadNombreEspecialidad;
-            this.especialidades = this.especialidad;
-        }*/
-
         if (this.ficha.especialidadId) {
             this.especialidad = new Especialidad();
             this.especialidad.id = this.ficha.especialidadId;
             this.especialidad.nombreEspecialidad = this.ficha.especialidadNombreEspecialidad;
         }
-        
+
         if (this.ficha.profesionalId) {
             this.profesional = new Profesional();
             this.profesional.id = this.ficha.profesionalId;
@@ -251,7 +239,6 @@ private modalRef: NgbModalRef;
             this.profesionales = new Array();
             this.profesionales.push(this.profesional);
         }
-
     }
 
     previousState() {
@@ -260,7 +247,6 @@ private modalRef: NgbModalRef;
     }
 
     save() {
-
         this.isSaving = true;
         if (this.ficha.id !== undefined) {
             this.subscribeToSaveResponse(this.fichaService.update(this.ficha));

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { EstadosComponent } from 'app/entities/estados/estados.component';
 import { EstadosService } from 'app/entities/estados/estados.service';
 import { Estados } from 'app/shared/model/estados.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [EstadosComponent],
                 providers: [
                     {

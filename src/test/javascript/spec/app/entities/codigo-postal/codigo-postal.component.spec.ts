@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { CodigoPostalComponent } from 'app/entities/codigo-postal/codigo-postal.component';
 import { CodigoPostalService } from 'app/entities/codigo-postal/codigo-postal.service';
 import { CodigoPostal } from 'app/shared/model/codigo-postal.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [CodigoPostalComponent],
                 providers: [
                     {

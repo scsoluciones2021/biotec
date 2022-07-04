@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Constantes;
 import rpt.repository.ConstantesRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ConstantesResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ConstantesResourceIntTest {
 
     private static final Long DEFAULT_PESO = 1L;

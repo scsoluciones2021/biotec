@@ -34,7 +34,7 @@
                     <div class="form-group col-lg-2 col-md-2 col-xl-2 col-sm-12" [hidden]="!mostrar">
                         <label class="form-control-label" for="field_tur_esp_rel">Especialidad</label>
                         <select class="form-control" id="field_tur_esp_rel" name="tur_esp_rel" [(ngModel)]="turno.tur_esp_relId"  (change)="seleccionEspecialidad($event)" required [disabled]="!mostrar">
-                            <option [ngValue]="especialidadOption.id" *ngFor="let especialidadOption of especialidads; trackBy: trackEspecialidadById">{{especialidadOption.nombreEspecialidad}}</option>
+                            <option [ngValue]="especialidadOption.id" *ngFor="let especialidadOption of especialidads;let i = index; trackBy: trackEspecialidadById" [selected]="!i">{{especialidadOption.nombreEspecialidad}}</option>
                         </select>
                     </div>
                     <div [hidden]="!(editForm.controls.tur_esp_rel?.dirty && editForm.controls.tur_esp_rel?.invalid)">

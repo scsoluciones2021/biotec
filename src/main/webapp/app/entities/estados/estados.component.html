@@ -1,9 +1,9 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="cpsjApp.estados.home.title">Estados</span>
+        <span jhiTranslate="GestWebApp.estados.home.title">Estados</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-estados" [routerLink]="['/estados/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="cpsjApp.estados.home.createLabel">
+            <span  jhiTranslate="GestWebApp.estados.home.createLabel">
             Create new Estados
             </span>
         </button>
@@ -15,7 +15,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombre"><span jhiTranslate="cpsjApp.estados.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="GestWebApp.estados.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>

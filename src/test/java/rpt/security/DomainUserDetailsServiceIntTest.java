@@ -1,6 +1,6 @@
 package rpt.security;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.User;
 import rpt.repository.UserRepository;
 
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see DomainUserDetailsService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 @Transactional
 public class DomainUserDetailsServiceIntTest {
 

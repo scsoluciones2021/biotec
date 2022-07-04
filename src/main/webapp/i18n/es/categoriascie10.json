@@ -1,0 +1,25 @@
+{
+    "gestWebApp": {
+        "categoriascie10": {
+            "home": {
+                "title": "Categoriascie 10 S",
+                "createLabel": "Crear nuevo Categoriascie 10",
+                "createOrEditLabel": "Crear o editar Categoriascie 10",
+                "notFound": "Ningún Categoriascie 10 S encontrado"
+            },
+            "created": "Un nuevo Categoriascie 10 ha sido creado con el identificador {{ param }}",
+            "updated": "Un Categoriascie 10 ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Categoriascie 10 ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Categoriascie 10 {{ id }}?"
+            },
+            "detail": {
+                "title": "Categoriascie 10"
+            },
+            "clave": "Clave",
+            "descripcion": "Descripcion",
+            "idsubgrupo": "Idsubgrupo",
+            "rel_subrupos_categorias_cie10": "Rel Subrupos Categorias Cie 10"
+        }
+    }
+}

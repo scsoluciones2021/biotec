@@ -13,7 +13,7 @@ import { IUser, UserService } from 'app/core';
 import { ICodigoPostal, CodigoPostal } from 'app/shared/model/codigo-postal.model';
 import { CodigoPostalService } from 'app/entities/codigo-postal';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { IProvincia } from 'app/shared/model/provincia.model';
 import { ProvinciaService } from '../provincia';
 
@@ -153,9 +153,9 @@ export class PacienteModalComponent implements OnInit {
         console.log(this.paciente);
         // Fin calendario en español
         if (this.paciente.fechaNacimiento != null) {
-            this.fechaNac = moment(this.paciente.fechaNacimiento).toDate();
-            this.paciente.edad = moment().diff(this.paciente.fechaNacimiento, 'years');
-            this.meses = moment().diff(this.paciente.fechaNacimiento, 'months');
+            this.fechaNac = dayjs(this.paciente.fechaNacimiento).toDate();
+            this.paciente.edad = dayjs().diff(this.paciente.fechaNacimiento, 'years');
+            this.meses = dayjs().diff(this.paciente.fechaNacimiento, 'months');
         } else {
             this.paciente.edad = 0;
             this.meses = 0;
@@ -197,8 +197,8 @@ export class PacienteModalComponent implements OnInit {
 
     guardarPaciente() {
         this.isSaving = true;
-        this.paciente.fechaNacimiento = moment(this.fechaNac);
-        this.paciente.edad = moment().diff(this.paciente.fechaNacimiento, 'years');
+        this.paciente.fechaNacimiento = dayjs(this.fechaNac);
+        this.paciente.edad = dayjs().diff(this.paciente.fechaNacimiento, 'years');
 
         if (this.paciente.id !== undefined) {
             this.subscribeToSaveResponse(this.pacienteService.update(this.paciente));
@@ -244,7 +244,7 @@ export class PacienteModalComponent implements OnInit {
 
     public seleccionDia(event) {
         const bdate = new Date(event);
-        this.paciente.edad = moment().diff(bdate, 'years'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
+        this.paciente.edad = dayjs().diff(bdate, 'years'); // Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
     }
 
     // Selección de provincia

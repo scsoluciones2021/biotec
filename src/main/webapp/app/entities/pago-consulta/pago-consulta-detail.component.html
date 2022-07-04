@@ -1,23 +1,23 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="pagoConsulta">
-            <h2><span jhiTranslate="cpsjApp.pagoConsulta.detail.title">Pago Consulta</span> {{pagoConsulta.id}}</h2>
+            <h2><span jhiTranslate="GestWebApp.pagoConsulta.detail.title">Pago Consulta</span> {{pagoConsulta.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="cpsjApp.pagoConsulta.monto">Monto</span></dt>
+                <dt><span jhiTranslate="GestWebApp.pagoConsulta.monto">Monto</span></dt>
                 <dd>
                     <span>{{pagoConsulta.monto}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.pagoConsulta.tipo">Tipo</span></dt>
+                <dt><span jhiTranslate="GestWebApp.pagoConsulta.tipo">Tipo</span></dt>
                 <dd>
                     <span>{{pagoConsulta.tipo}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.pagoConsulta.cupones">Cupones</span></dt>
+                <dt><span jhiTranslate="GestWebApp.pagoConsulta.cupones">Cupones</span></dt>
                 <dd>
                     <span>{{pagoConsulta.cupones}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.pagoConsulta.pagoturno">Pagoturno</span></dt>
+                <dt><span jhiTranslate="GestWebApp.pagoConsulta.pagoturno">Pagoturno</span></dt>
                 <dd>
                     <div *ngIf="pagoConsulta.pagoturnoId">
                         <a [routerLink]="['/turno', pagoConsulta.pagoturnoId, 'view']">{{pagoConsulta.pagoturnoId}}</a>

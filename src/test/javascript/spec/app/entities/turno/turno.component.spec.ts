@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { TurnoComponent } from 'app/entities/turno/turno.component';
 import { TurnoService } from 'app/entities/turno/turno.service';
 import { Turno } from 'app/shared/model/turno.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [TurnoComponent],
                 providers: [
                     {

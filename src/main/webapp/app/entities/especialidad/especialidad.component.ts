@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { IEspecialidad } from 'app/shared/model/especialidad.model';
 import { Principal } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { EspecialidadService } from './especialidad.service';
+import { JhiLanguageHelper } from 'app/core/language/language.helper';
 
 @Component({
     selector: 'jhi-especialidad',
@@ -41,8 +42,15 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private languageService: JhiLanguageService,
+        private languageHelper: JhiLanguageHelper
     ) {
+        this.languageHelper.language.subscribe((languageKey: string) => {
+            if (languageKey !== undefined) {
+                this.languageService.changeLanguage(languageKey);
+            }
+        });
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data.pagingParams.page;
@@ -50,11 +58,11 @@ export class EspecialidadComponent implements OnInit, OnDestroy {
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
         });
-         // Seteo de variable de búsqueda
-         this.currentSearch =
-         this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-             ? this.activatedRoute.snapshot.params['search']
-             : '';
+        // Seteo de variable de búsqueda
+        this.currentSearch =
+            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
+                ? this.activatedRoute.snapshot.params['search']
+                : '';
     }
 
     loadAll() {

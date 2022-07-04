@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        rpt: INFO
+        gestWeb: INFO
         io.github.jhipster: INFO
 
 spring:
@@ -31,7 +31,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/cpsj?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/gestWeb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
         username: Programado
         password: Pr0gr4m4d0r
         hikari:
@@ -54,10 +54,13 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
+        #username: biotecweb.app@gmail.com
         username: consprisanjusto@gmail.com
-        password: Pr0gr4m4d0r
-        properties:
+        password: edxnwzjryjjdlkge
+        #password: skkvhlvqiqhfynov
+        properties.mail.smtp:
             from: consprisanjusto@gmail.com
+            #from: biotecweb.app@gmail.com
             mail.smtp.auth: true
             mail.transport.protocol: smtp
             mail.smtp.starttls.enable: true
@@ -68,7 +71,7 @@ spring:
 
 # ===================================================================
 # To enable SSL, generate a certificate using:
-# keytool -genkey -alias Cpsj -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias GestWeb -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # https://maximilian-boehm.com/hp2121/Create-a-Java-Keystore-JKS-from-Let-s-Encrypt-Certificates.htm
@@ -81,12 +84,12 @@ spring:
 #        key-store: keystore.p12
 #        key-store-password: <your-password>
 #        key-store-type: PKCS12
-#        key-alias: Cpsj
+#        key-alias: GestWeb
 #        # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
 #        ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
 # ===================================================================
 server:
-    port: 8080
+    port: 8090
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json, application/hal+json
@@ -134,5 +137,8 @@ jhipster:
 # More documentation is available at:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
-
-# application:
+application:
+    client-data: 
+        name: CPSJ
+    ArchivoProperties: 
+        base-url: "upload\\Fichas"

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { BloqueosDetailComponent } from 'app/entities/bloqueos/bloqueos-detail.component';
 import { Bloqueos } from 'app/shared/model/bloqueos.model';
 
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [BloqueosDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })

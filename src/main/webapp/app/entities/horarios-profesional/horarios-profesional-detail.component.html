@@ -29,7 +29,7 @@
                         <label class="form-control-label" for="field_fechaDesde">Fecha Desde</label>
                         <div>
                             <p-calendar id="field_fechaDesde" name="field_fechaDesde" [(ngModel)]="dateD"
-                                dateFormat="dd/mm/yy" [locale]="es" [showIcon]="true" required yearRange="2010:2030" [disabled]="true">
+                                dateFormat="dd/mm/yy" [locale]="es" [showIcon]="true" required yearRange="2020:2060" [disabled]="true">
                             </p-calendar>
                         </div>
                     </div>
@@ -65,7 +65,13 @@
                                     <td class="d-none">{{detalle.idHorario}}</td>
                                     <td>{{detalle.horaDesde}}</td>
                                     <td>{{detalle.horaHasta}}</td>
-                                    <td>{{detalle.lunes + " - " + detalle.martes}}</td>
+                                    <td>{{(detalle.lunes==1?"L":"")
+                                        + " - " + (detalle.martes==1?"M":"")
+                                        + " - " + (detalle.miercoles==1?"X":"")
+                                        + " - " + (detalle.jueves==1?"J":"")
+                                        + " - " + (detalle.viernes==1?"V":"")
+                                        + " - " + (detalle.sabado==1?"S":"")
+                                        + " - " + (detalle.domingo==1?"D":"") }}</td>
                                     <td>{{detalle.intervalo}}</td>
                                     <td>{{detalle.frecuencia}}</td>
                                     <td>{{detalle.cantidadPacientes}}</td>

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { BebidaComponent } from 'app/entities/bebida/bebida.component';
 import { BebidaService } from 'app/entities/bebida/bebida.service';
 import { Bebida } from 'app/shared/model/bebida.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [BebidaComponent],
                 providers: []
             })

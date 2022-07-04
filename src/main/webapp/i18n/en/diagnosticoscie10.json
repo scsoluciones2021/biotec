@@ -1,0 +1,25 @@
+{
+    "gestWebApp": {
+        "diagnosticoscie10": {
+            "home": {
+                "title": "Diagnosticoscie 10 S",
+                "createLabel": "Create a new Diagnosticoscie 10",
+                "createOrEditLabel": "Create or edit a Diagnosticoscie 10",
+                "notFound": "No Diagnosticoscie 10 S found"
+            },
+            "created": "A new Diagnosticoscie 10 is created with identifier {{ param }}",
+            "updated": "A Diagnosticoscie 10 is updated with identifier {{ param }}",
+            "deleted": "A Diagnosticoscie 10 is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Diagnosticoscie 10 {{ id }}?"
+            },
+            "detail": {
+                "title": "Diagnosticoscie 10"
+            },
+            "clave": "Clave",
+            "descripcion": "Descripcion",
+            "idcategoria": "Idcategoria",
+            "rel_categorias_diagnosticos_cie10": "Rel Categorias Diagnosticos Cie 10"
+        }
+    }
+}

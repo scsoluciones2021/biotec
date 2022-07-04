@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -52,6 +52,8 @@ export class TurnoService {
     }
 
     private convertDateFromClient(turno: ITurno): ITurno {
+        turno.dia = dayjs(turno.dia);
+        turno.hora = dayjs(turno.hora);
         const copy: ITurno = Object.assign({}, turno, {
             dia: turno.dia != null && turno.dia.isValid() ? turno.dia.format(DATE_FORMAT) : null,
             hora: turno.hora != null && turno.hora.isValid() ? turno.hora.format('YYYY-MM-DDTHH:mm') : null
@@ -60,15 +62,15 @@ export class TurnoService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.dia = res.body.dia != null ? moment(res.body.dia) : null;
-        res.body.hora = res.body.hora != null ? moment(res.body.hora) : null;
+        res.body.dia = res.body.dia != null ? dayjs(res.body.dia) : null;
+        res.body.hora = res.body.hora != null ? dayjs(res.body.hora) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((turno: ITurno) => {
-            turno.dia = turno.dia != null ? moment(turno.dia) : null;
-            turno.hora = turno.hora != null ? moment(turno.hora) : null;
+            turno.dia = turno.dia != null ? dayjs(turno.dia) : null;
+            turno.hora = turno.hora != null ? dayjs(turno.hora) : null;
         });
         return res;
     }
@@ -117,6 +119,10 @@ export class TurnoService {
         const turnoProf: ITurnoProf = req['query'];
         const copy = this.convertDateFromClientP(turnoProf);
         return this.http.post<ITurno[]>(`${this.resourceUrl}/busqueda-medico`, copy, { observe: 'response' });
+    }
+
+    tieneConsulta(id: number): Observable<HttpResponse<any>> {
+        return this.http.get<any>(`${this.resourceUrl}/tieneconsulta/${id}`, { observe: 'response' });
     }
 
     private convertDateFromClientP(turno: ITurnoProf): ITurnoProf {

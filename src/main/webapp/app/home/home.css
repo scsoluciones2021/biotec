@@ -15,6 +15,7 @@ Main page styles
     width: 100%;
     height: 497px;
     background: url('../../content/images/Logo.jpg') no-repeat center top;
+    background-size: contain;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */

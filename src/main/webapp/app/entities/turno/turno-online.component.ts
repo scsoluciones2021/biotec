@@ -16,7 +16,7 @@ import { IHorariosProfesional } from '../../shared/model/horarios-profesional.mo
 import { Message } from 'primeng/components/common/message';
 import { DatePipe } from '@angular/common';
 // import {MessageService} from 'primeng/api';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { PacienteService } from '../paciente';
 import { IPaciente, Paciente } from 'app/shared/model/paciente.model';
 import { IObraSocial, ObraSocial } from 'app/shared/model/obra-social.model';
@@ -26,6 +26,7 @@ import { DetalleHorariosService } from '../detalle-horarios/detalle-horarios.ser
 import { Account, Principal } from 'app/core';
 import { UserService } from '../../core/user/user.service';
 import * as jsPDF from 'jspdf';
+import { BloqueosService } from '../bloqueos';
 
 @Component({
     selector: 'jhi-turno-online',
@@ -92,6 +93,7 @@ export class TurnoOnlineComponent implements OnInit {
         private pacienteService: PacienteService,
         private obraSocialService: ObraSocialService,
         private principal: Principal,
+        private bloqueosService: BloqueosService,
         private userService: UserService // private messageService: MessageService,
     ) {}
 
@@ -123,7 +125,7 @@ export class TurnoOnlineComponent implements OnInit {
             dateFormat: 'dd/mm/yy'
         };
         this.minDateValue = new Date();
-        this.maxDateValue = moment()
+        this.maxDateValue = dayjs()
             .add(5, 'M')
             .endOf('month')
             .toDate();
@@ -156,14 +158,14 @@ export class TurnoOnlineComponent implements OnInit {
         // Cargamos todos los campos necesarios para el turno
         this.turno.tur_prof_relId = this.profesional.id;
         this.turno.tur_prof_relNombreProfesional = this.profesional.nombreProfesional;
-        this.turno.dia = moment(this.fechaSeleccionada);
+        this.turno.dia = dayjs(this.fechaSeleccionada);
         this.turno.idHorario = this.idHorario;
         const horariosSeleccionados = this.obtenerHorariosSeleccionados(this.turnosSeleccionados);
         const min = horariosSeleccionados.sort()[0];
         const arrmin = min.split(':');
         this.fechaSeleccionada.setHours(parseInt(arrmin[0], 0));
         this.fechaSeleccionada.setMinutes(parseInt(arrmin[1], 0));
-        this.turno.hora = moment(this.fechaSeleccionada, 'HH:mm');
+        this.turno.hora = dayjs(this.fechaSeleccionada, 'HH:mm');
         this.turno.tipoPaciente = this.pacienteExistente;
         this.turno.horariosOcupados = horariosSeleccionados.join(';');
         this.turno.usuarioCarga = 0;
@@ -213,7 +215,6 @@ export class TurnoOnlineComponent implements OnInit {
         // guardo los datos del paciente
         this.pacienteService.buscarPacienteXDNI(this._turno.dni).subscribe(
             (res: HttpResponse<IPaciente>) => {
-                console.log('existe?: ' + res.body);
                 if (res.body === undefined) {
                     const paciente = new Paciente();
                     paciente.nombrePaciente = this.turno.nombre;
@@ -297,6 +298,8 @@ export class TurnoOnlineComponent implements OnInit {
                 } else {
                     this.especialidads = res.body;
                     this.mostrar = true;
+                    this.turno.tur_esp_relId = this.especialidads[0].id;
+                    this.seleccionEspecialidad(event);
                 }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -308,147 +311,8 @@ export class TurnoOnlineComponent implements OnInit {
         this.msgs = [];
     }
 
-    // Función para cuando selecciona la especialidad
-    /*    public seleccionEspecialidad(event) {
-    
-            // Buscamos los horarios para ese profesional para esa especialidad
-            this.horariosService.horarioProfesional(this.profesional.id, this.turno.tur_esp_relId).subscribe(
-                (resH: HttpResponse<IHorariosProfesional[]>) => {
-                    if (resH.body === undefined || resH.body.length === 0) {
-                        console.log("resH" + this.mostrarDias);
-                        // this.hide();
-                        this.mostrar = false;
-                        this.mostrarHorarios = false;
-                        this.limpiarCampos();
-                        this.msgs.push({ severity: 'warn', summary: 'Advertencia', detail: 'El profesional seleccionado no tiene horarios asignados.' });
-                        this.mostrarDias = false;
-                    } else {
-                        this.diasNoValidos = new Array();
-                        this.horariosXdia = new Array();
-                        this.detalleHorariosService.query({ 'idHorario': resH.body[0] }).subscribe(
-                            (detH: HttpResponse<IDetalleHorarios[]>) => {
-                                this.mostrar = true;
-    
-                                // Para deshabilitar los días que no tiene turnos el profesional
-                                // Ej: this.diasSinTurnos=[0,6];
-                                // recorro todos los detalles de horario del profesional
-                                for (let i = 0; i < detH.body.length; i++) {
-                                    const dhorario = detH.body[i];
-                                    // Si la frecuencia no es de 7 días, puede ser 15, 22, 29
-                                    // desde la fecha de inicio de la agenda debo buscar
-                                    // el primer lunes (si atiende los lunes por ej) activarlo
-                                    // y de ahí en adelante ir desactivando si es cada 15 el 7
-                                    // si es cada 22 el 7 y el 15
-                                    // si es cada 29, el 7, 15 y 22
-    
-                                    this.idHorario = dhorario.id;
-                                    const sinTurno = [];
-    
-                                    for (const name in dhorario) {
-                                        switch (name) {
-                                            case 'lunes':
-                                                (dhorario.lunes ? 0 : sinTurno[1] = 1);
-                                                if (dhorario.lunes) {
-                                                    this.rangoHorarioXdia(1, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 1, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'martes':
-                                                (dhorario.martes ? 0 : sinTurno[2] = 2);
-                                                if (dhorario.martes) {
-                                                    this.rangoHorarioXdia(2, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 2, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'miercoles':
-                                                (dhorario.miercoles ? 0 : sinTurno[3] = 3);
-                                                if (dhorario.miercoles) {
-                                                    this.rangoHorarioXdia(3, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 3, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'jueves':
-                                                (dhorario.jueves ? 0 : sinTurno[4] = 4);
-                                                if (dhorario.jueves) {
-                                                    this.rangoHorarioXdia(4, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 4, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'viernes':
-                                                (dhorario.viernes ? 0 : sinTurno[5] = 5);
-                                                if (dhorario.viernes) {
-                                                    this.rangoHorarioXdia(5, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 5, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'sabado':
-                                                (dhorario.sabado ? 0 : sinTurno[6] = 6);
-                                                if (dhorario.sabado) {
-                                                    this.rangoHorarioXdia(6, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 6, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                            case 'domingo':
-                                                (dhorario.domingo ? 0 : sinTurno[0] = 0);
-                                                if (dhorario.domingo) {
-                                                    this.rangoHorarioXdia(0, dhorario);
-                                                    if (dhorario.frecuencia > 7) {
-                                                        this.diasFrecuenciaDesactivar(resH.body[0].fechaDesde, 0, dhorario.frecuencia);
-                                                    }
-                                                }
-                                                break;
-                                        }
-    
-                                        // Revisar cómo hacerlo por detalle...
-                                        this.turnosXhorario = dhorario.cantidadPacientes;
-                                    }
-    
-                                    if (this.diasSinTurnos.length) {
-                                        this.diasSinTurnos = sinTurno.filter(x => this.diasSinTurnos.includes(x));
-                                    } else {
-                                        this.diasSinTurnos = sinTurno;
-                                    }
-    
-                                }
-                                // Acá es para filtar los feriados y vacaciones por ej
-                                // Se debe poner 1 día más del que se quiere bloquear
-                                // this.diasNoValidos = [new Date('2019-05-20')];
-                            },
-                            (res: HttpErrorResponse) => this.onError(res.message)
-                        );
-                        // Ver de deshabilitar feriados
-                        this.diasNoValidos = [new Date('2019-06-18'), new Date('2019-06-21'), new Date('2019-07-09'),
-                        new Date('2019-07-10'), new Date('2019-08-20'), new Date('2019-11-19'), new Date('2019-12-10'),
-                        new Date('2019-12-26')];
-                        // console.log(res.body);
-    
-                        // this.blockDocument();
-                        setTimeout(() => {
-                            this.mostrarDias = true;
-                        }, 500);
-                    }
-    
-                }),
-                (res: HttpErrorResponse) => this.onError(res.message);
-    
-        }
-    */
-
     public seleccionEspecialidad(event) {
         this.mostrarDias = true;
-
         this.horariosService
             .horarioProfesional(this.profesional.id, this.turno.tur_esp_relId)
             .subscribe((resH: HttpResponse<IHorariosProfesional[]>) => {
@@ -584,20 +448,36 @@ export class TurnoOnlineComponent implements OnInit {
                     );
                 }
 
-                // Ver de deshabilitar feriados
-                this.diasNoValidos = [
-                    new Date('2019-06-18'),
-                    new Date('2019-06-21'),
-                    new Date('2019-07-09'),
-                    new Date('2019-07-10'),
-                    new Date('2019-08-20'),
-                    new Date('2019-11-19'),
-                    new Date('2019-12-10'),
-                    new Date('2019-12-26')
-                ];
-                // console.log(res.body);
+                this.diasNoValidos = [];
+
+                var fechaHoy = new Date().toISOString().split('T')[0];
+
+                this.bloqueosService.obtenerBloqueosDesde(fechaHoy).subscribe((res: HttpResponse<any[]>) => {
+                    if (res.body.length > 0) {
+                        var bloq = res.body;
+                        for (let i = 0; i < bloq.length; i++) {
+                            const elemento = bloq[i];
+                            var desde = dayjs(elemento.fechaDesde);
+                            var hasta = dayjs(elemento.fechaHasta);
+                            var resultado = this.diasEntreFechas(desde, hasta);
+
+                            this.diasNoValidos = this.diasNoValidos.concat(resultado);
+                        }
+                    }
+                });
             }),
             (res: HttpErrorResponse) => this.onError(res.message);
+    }
+
+    public diasEntreFechas(desde, hasta) {
+        var dia_actual = desde.add(1, 'days');
+        hasta = hasta.add(1, 'days');
+        var fechas = [];
+        while (dia_actual.isSameOrBefore(hasta)) {
+            fechas.push(new Date(dia_actual.format('YYYY-MM-DD')));
+            dia_actual.add(1, 'days');
+        }
+        return fechas;
     }
 
     // Función para cuando selecciona el día en el calendario
@@ -796,13 +676,13 @@ export class TurnoOnlineComponent implements OnInit {
      * @param frecuencia
      */
     private diasFrecuenciaDesactivar(fechaDesdeDetalle, nroDiaDeLaSemana: number, frecuencia: number) {
-        const proximoDia = moment(this.getNextDayOfWeek(fechaDesdeDetalle.toDate(), nroDiaDeLaSemana));
+        const proximoDia = dayjs(this.getNextDayOfWeek(fechaDesdeDetalle.toDate(), nroDiaDeLaSemana));
         let fechaInicio = fechaDesdeDetalle;
         let frecDesactiva = [7];
         if (frecuencia === 22) {
             frecDesactiva = [7, 15];
         }
-        const ultimoDia = moment()
+        const ultimoDia = dayjs()
             .add(5, 'M')
             .endOf('month');
 
@@ -861,7 +741,7 @@ export class TurnoOnlineComponent implements OnInit {
 
         doc.text(50, 60, ' Atte., Consultorios Privados San Justo');
 
-        doc.save('turno_cpsj.pdf');
+        doc.save('turno_CPSJ.pdf');
     }
 }
 

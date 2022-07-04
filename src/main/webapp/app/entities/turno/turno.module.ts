@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     TurnoComponent,
     TurnoDetailComponent,
@@ -28,13 +28,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TurnoProfesionalComponent } from './turno-profesional.component';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core/language/language.helper';
-import { CpsjPagoConsultaModule } from '../pago-consulta/pago-consulta.module';
+import { GestWebPagoConsultaModule } from '../pago-consulta/pago-consulta.module';
 
 const ENTITY_STATES = [...turnoRoute, ...turnoPopupRoute];
 
 @NgModule({
     imports: [
-        CpsjSharedModule,
+        GestWebSharedModule,
         RouterModule.forChild(ENTITY_STATES),
         OrderListModule,
         PanelModule,
@@ -48,7 +48,7 @@ const ENTITY_STATES = [...turnoRoute, ...turnoPopupRoute];
         MessagesModule, // Para los mensajes
         ToastModule, // Para mensajes,
         ProgressSpinnerModule,
-        CpsjPagoConsultaModule
+        GestWebPagoConsultaModule
     ],
     declarations: [
         TurnoComponent,
@@ -72,7 +72,7 @@ const ENTITY_STATES = [...turnoRoute, ...turnoPopupRoute];
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [ExcelService]
 })
-export class ConsultoriosPrivadosSanJustoTurnoModule {
+export class GestWebTurnoModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey) {

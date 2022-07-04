@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -49,6 +49,11 @@ export class BloqueosService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
+    obtenerBloqueosDesde(fechaDesde: string): Observable<EntityArrayResponseType> {
+        const options = new HttpParams().set('fechaDesde', fechaDesde);
+        return this.http.get<IBloqueos[]>(`${this.resourceUrl}Desde`, { params: options, observe: 'response' });
+    }
+
     private convertDateFromClient(bloqueos: IBloqueos): IBloqueos {
         const copy: IBloqueos = Object.assign({}, bloqueos, {
             fechaDesde: bloqueos.fechaDesde != null && bloqueos.fechaDesde.isValid() ? bloqueos.fechaDesde.format(DATE_FORMAT) : null,
@@ -60,19 +65,19 @@ export class BloqueosService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fechaDesde = res.body.fechaDesde != null ? moment(res.body.fechaDesde) : null;
-        res.body.fechaHasta = res.body.fechaHasta != null ? moment(res.body.fechaHasta) : null;
-        res.body.horaDesde = res.body.horaDesde != null ? moment(res.body.horaDesde) : null;
-        res.body.horaHasta = res.body.horaHasta != null ? moment(res.body.horaHasta) : null;
+        res.body.fechaDesde = res.body.fechaDesde != null ? dayjs(res.body.fechaDesde) : null;
+        res.body.fechaHasta = res.body.fechaHasta != null ? dayjs(res.body.fechaHasta) : null;
+        res.body.horaDesde = res.body.horaDesde != null ? dayjs(res.body.horaDesde) : null;
+        res.body.horaHasta = res.body.horaHasta != null ? dayjs(res.body.horaHasta) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((bloqueos: IBloqueos) => {
-            bloqueos.fechaDesde = bloqueos.fechaDesde != null ? moment(bloqueos.fechaDesde) : null;
-            bloqueos.fechaHasta = bloqueos.fechaHasta != null ? moment(bloqueos.fechaHasta) : null;
-            bloqueos.horaDesde = bloqueos.horaDesde != null ? moment(bloqueos.horaDesde) : null;
-            bloqueos.horaHasta = bloqueos.horaHasta != null ? moment(bloqueos.horaHasta) : null;
+            bloqueos.fechaDesde = bloqueos.fechaDesde != null ? dayjs(bloqueos.fechaDesde) : null;
+            bloqueos.fechaHasta = bloqueos.fechaHasta != null ? dayjs(bloqueos.fechaHasta) : null;
+            bloqueos.horaDesde = bloqueos.horaDesde != null ? dayjs(bloqueos.horaDesde) : null;
+            bloqueos.horaHasta = bloqueos.horaHasta != null ? dayjs(bloqueos.horaHasta) : null;
         });
         return res;
     }

@@ -34,9 +34,9 @@ export const bloqueosRoute: Routes = [
             pagingParams: JhiResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
             defaultSort: 'id,asc',
-            pageTitle: 'cpsjApp.bloqueos.home.title'
+            pageTitle: 'GestWebApp.bloqueos.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -47,8 +47,8 @@ export const bloqueosRoute: Routes = [
             bloqueos: BloqueosResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.bloqueos.home.title'
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+            pageTitle: 'GestWebApp.bloqueos.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -59,8 +59,8 @@ export const bloqueosRoute: Routes = [
             bloqueos: BloqueosResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.bloqueos.home.title'
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+            pageTitle: 'GestWebApp.bloqueos.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -71,8 +71,8 @@ export const bloqueosRoute: Routes = [
             bloqueos: BloqueosResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.bloqueos.home.title'
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+            pageTitle: 'GestWebApp.bloqueos.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -86,8 +86,8 @@ export const bloqueosPopupRoute: Routes = [
             bloqueos: BloqueosResolve
         },
         data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.bloqueos.home.title'
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
+            pageTitle: 'GestWebApp.bloqueos.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.PagoConsulta;
 import rpt.repository.PagoConsultaRepository;
 import rpt.service.PagoConsultaService;
@@ -32,7 +32,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Integration tests for the {@link PagoConsultaResource} REST controller.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 
 public class PagoConsultaResourceIT {
 

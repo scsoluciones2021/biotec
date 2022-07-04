@@ -1,27 +1,34 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HttpResponse, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { JhiAlertService } from 'ng-jhipster';
 
-import { IConsulta } from 'app/shared/model/consulta.model';
+import { IConsulta, Consulta } from 'app/shared/model/consulta.model';
 import { ConsultaService } from './consulta.service';
 import { IConstantes } from 'app/shared/model/constantes.model';
 import { ConstantesService } from 'app/entities/constantes';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { PacienteService } from '../paciente/paciente.service';
 import { IPaciente } from 'app/shared/model/paciente.model';
+import { TurnoService } from '../turno';
 
 @Component({
     selector: 'jhi-consulta-update',
     templateUrl: './consulta-update.component.html'
 })
 export class ConsultaUpdateComponent implements OnInit {
+    // es el dni que viene desde el "atender" del turno
     private nroPaciente: number;
     paciente: IPaciente;
 
     private _consulta: IConsulta;
     isSaving: boolean;
+
+    private fechaBusqueda: Date;
+    private idTurno: number;
+    private idProfesional: number;
+    private idEspecialidad: number;
 
     constantesconsultas: IConstantes[];
     fechaConsultaDp: any;
@@ -37,7 +44,9 @@ export class ConsultaUpdateComponent implements OnInit {
         private consultaService: ConsultaService,
         private constantesService: ConstantesService,
         private pacienteService: PacienteService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+        private turnoService: TurnoService
     ) {
         this.activatedRoute.queryParams.subscribe(params => {
             this.nroPaciente = params['nroPaciente'];
@@ -46,53 +55,89 @@ export class ConsultaUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ consulta }) => {
-            this.consulta = consulta;
-        });
-        this.pacienteService.find(this.nroPaciente).subscribe(
-            (pac: HttpResponse<IPaciente>) => {
-                this.paciente = pac.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.constantesService.query({ filter: 'consulta-is-null' }).subscribe(
-            (res: HttpResponse<IConstantes[]>) => {
-                if (!this.consulta.constantesConsultaId) {
-                    this.constantesconsultas = res.body;
-                    this.consulta.fechaConsulta = moment(new Date());
-                } else {
-                    this.constantesService.find(this.consulta.constantesConsultaId).subscribe(
-                        (subRes: HttpResponse<IConstantes>) => {
-                            this.constantesconsultas = [subRes.body].concat(res.body);
-                        },
-                        (subRes: HttpErrorResponse) => this.onError(subRes.message)
-                    );
+        this.activatedRoute.queryParams.subscribe(params => {
+            this.nroPaciente = params['nroPaciente'];
+            this.fechaBusqueda = params['fechaBusqueda'];
+            this.idTurno = params['idTurno'];
+            this.idEspecialidad = params['idEspecialidad'];
+            this.idProfesional = params['idProfesional'];
+
+            this.activatedRoute.data.subscribe(({ consulta }) => {
+                this.consulta = consulta;
+                if (this.consulta.fechaConsulta === undefined) {
+                    this.consulta.fechaConsulta = dayjs();
                 }
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+            });
+        });
+
+        this.pacienteService
+            .buscarPacienteXDNI(this.nroPaciente)
+            .toPromise()
+            .then(
+                (pac: HttpResponse<IPaciente>) => {
+                    this.paciente = pac.body;
+                },
+                (pac: HttpErrorResponse) => this.onError(pac.message)
+            );
     }
 
     previousState() {
-        window.history.back();
+        // window.history.back();
+        this.router.navigate(['/turno-profesional']);
     }
 
     save() {
         this.isSaving = true;
+        // controlar si tiene ficha --> si tiene directamente guardar relación consulta-ficha
+        // si no tiene, crear ficha y luego crear la relación
         if (this.consulta.id !== undefined) {
-            this.subscribeToSaveResponse(this.consultaService.update(this.consulta));
+            this.subscribeToSaveResponse(this.consultaService.update(this.consulta), 2);
         } else {
-            this.subscribeToSaveResponse(this.consultaService.create(this.consulta));
+            this.subscribeToSaveResponse(this.consultaService.create(this.consulta), 1);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IConsulta>>) {
-        result.subscribe((res: HttpResponse<IConsulta>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<IConsulta>>, tipo: number) {
+        result.subscribe(
+            (res: HttpResponse<IConsulta>) => {
+                // tipo = 1 consulta nueva
+                // tipo = 2 actualización
+                console.log(tipo);
+                console.log('hola');
+                console.log(res.body);
+                console.log(this.paciente);
+                console.log(this.idProfesional);
+                console.log(this.idEspecialidad);
+                if (tipo == 1) {
+                    this.consultaService
+                        .setFichaConsulta(res.body.id, this.paciente.id, this.idProfesional, this.idTurno, this.idEspecialidad)
+                        .subscribe(
+                            response => {
+                                console.log('llego al ok');
+                            },
+                            (res: HttpErrorResponse) => this.onSaveError()
+                        );
+                }
+                this.onSaveSuccess();
+                console.log('chau');
+            },
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
 
     private onSaveSuccess() {
         this.isSaving = false;
-        this.previousState();
+        //this.previousState();
+
+        this.turnoService.cambiarEstado(this.idTurno, 4).subscribe(response => {
+            let navigationExtras: NavigationExtras = {
+                queryParams: {
+                    fechaBusqueda: this.fechaBusqueda
+                },
+                skipLocationChange: true
+            };
+            this.router.navigate([this.activatedRoute.snapshot.paramMap.get('previousUrl')], navigationExtras);
+        });
     }
 
     private onSaveError() {
@@ -128,7 +173,6 @@ export class ConsultaUpdateComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-                console.log('File is completely uploaded!');
                 this.delay(3000).then(any => {
                     this.currentFileUpload = null;
                     this.progress.percentage = 0;
@@ -150,6 +194,6 @@ export class ConsultaUpdateComponent implements OnInit {
 
     // Función para que el progressbar se muestre un ratito...
     async delay(ms: number) {
-        await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
+        await new Promise<void>(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
     }
 }

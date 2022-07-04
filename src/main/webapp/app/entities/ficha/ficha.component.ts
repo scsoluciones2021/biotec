@@ -54,9 +54,8 @@ export class FichaComponent implements OnInit, OnDestroy {
         private router: Router,
         private eventManager: JhiEventManager,
         private especialidadService: EspecialidadService,
-        private profesionalService: ProfesionalService
-    ) // private modal: NgbModal
-    {
+        private profesionalService: ProfesionalService // private modal: NgbModal
+    ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data.pagingParams.page;
@@ -190,20 +189,20 @@ export class FichaComponent implements OnInit, OnDestroy {
         if (
             !prApe &&
             !prNom &&
-            this.especialidadesSelecc != undefined &&
-            this.especialidadesSelecc == [] &&
-            this.profesionalesSelecc != undefined &&
-            this.profesionalesSelecc == []
+            this.especialidadesSelecc !== undefined &&
+            this.especialidadesSelecc === [] &&
+            this.profesionalesSelecc !== undefined &&
+            this.profesionalesSelecc === []
         ) {
             return this.clear();
         }
-        if (this.especialidadesSelecc != undefined) {
+        if (this.especialidadesSelecc !== undefined) {
             this.busqueda_especialidades = new Array();
             this.especialidadesSelecc.forEach(especialidad => {
                 this.busqueda_especialidades.push(especialidad.id);
             });
         }
-        if (this.profesionalesSelecc != undefined) {
+        if (this.profesionalesSelecc !== undefined) {
             this.busqueda_profesionales = new Array();
             this.profesionalesSelecc.forEach(profesionales => {
                 this.busqueda_profesionales.push(profesionales.id);
@@ -212,10 +211,6 @@ export class FichaComponent implements OnInit, OnDestroy {
         this.page = 0;
         this.busqueda_apellido = prApe;
         this.busqueda_nombre = prNom;
-        console.log(this.busqueda_especialidades);
-        console.log(this.busqueda_apellido);
-        console.log(this.busqueda_nombre);
-        console.log(this.busqueda_profesionales);
 
         this.loadAll();
     }

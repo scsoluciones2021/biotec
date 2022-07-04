@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.Authority;
 import rpt.domain.User;
 import rpt.repository.UserRepository;
@@ -42,7 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class UserResourceIntTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

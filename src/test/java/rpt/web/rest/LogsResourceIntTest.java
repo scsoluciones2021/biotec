@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

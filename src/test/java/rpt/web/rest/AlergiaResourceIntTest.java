@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Alergia;
 import rpt.repository.AlergiaRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AlergiaResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class AlergiaResourceIntTest {
 
     private static final String DEFAULT_VALOR = "AAAAAAAAAA";

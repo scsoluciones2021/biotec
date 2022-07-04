@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -57,14 +57,29 @@ export class AdjuntosFichaService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fecha = res.body.fecha != null ? moment(res.body.fecha) : null;
+        res.body.fecha = res.body.fecha != null ? dayjs(res.body.fecha) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((adjuntos_ficha: IAdjuntosFicha) => {
-            adjuntos_ficha.fecha = adjuntos_ficha.fecha != null ? moment(adjuntos_ficha.fecha) : null;
+            adjuntos_ficha.fecha = adjuntos_ficha.fecha != null ? dayjs(adjuntos_ficha.fecha) : null;
         });
         return res;
+    }
+
+    getFileToDownload(nombreArchivo: string): Observable<HttpResponse<Blob>> {
+        // const options = new HttpParams().set('filename', nombreArchivo);
+        const httpOptions = {
+            headers: new HttpHeaders().append('Accept', 'application/octet-stream'),
+            observe: 'response',
+            responseType: 'blob'
+        };
+
+        return this.http.get(`${this.resourceUrl}/files/` + nombreArchivo, {
+            headers: new HttpHeaders().append('Accept', 'application/octet-stream'),
+            observe: 'response',
+            responseType: 'blob'
+        });
     }
 }

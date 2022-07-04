@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { EspecialidadDetailComponent } from 'app/entities/especialidad/especialidad-detail.component';
 import { Especialidad } from 'app/shared/model/especialidad.model';
 
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [EspecialidadDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })

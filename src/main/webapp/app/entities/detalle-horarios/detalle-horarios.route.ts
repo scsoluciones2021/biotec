@@ -37,7 +37,7 @@ export const detalleHorariosRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
-            pageTitle: 'cpsjApp.detalleHorarios.home.title'
+            pageTitle: 'GestWebApp.detalleHorarios.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -49,7 +49,7 @@ export const detalleHorariosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.detalleHorarios.home.title'
+            pageTitle: 'GestWebApp.detalleHorarios.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -61,7 +61,7 @@ export const detalleHorariosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.detalleHorarios.home.title'
+            pageTitle: 'GestWebApp.detalleHorarios.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -73,7 +73,7 @@ export const detalleHorariosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.detalleHorarios.home.title'
+            pageTitle: 'GestWebApp.detalleHorarios.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -88,7 +88,7 @@ export const detalleHorariosPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.detalleHorarios.home.title'
+            pageTitle: 'GestWebApp.detalleHorarios.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

@@ -36,7 +36,7 @@ export const pagoConsultaRoute: Routes = [
         component: PagoConsultaComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.pagoConsulta.home.title'
+            pageTitle: 'GestWebApp.pagoConsulta.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -48,7 +48,7 @@ export const pagoConsultaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.pagoConsulta.home.title'
+            pageTitle: 'GestWebApp.pagoConsulta.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -60,7 +60,7 @@ export const pagoConsultaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.pagoConsulta.home.title'
+            pageTitle: 'GestWebApp.pagoConsulta.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -72,7 +72,7 @@ export const pagoConsultaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.pagoConsulta.home.title'
+            pageTitle: 'GestWebApp.pagoConsulta.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -87,7 +87,7 @@ export const pagoConsultaPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.pagoConsulta.home.title'
+            pageTitle: 'GestWebApp.pagoConsulta.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

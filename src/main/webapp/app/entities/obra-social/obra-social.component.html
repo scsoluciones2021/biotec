@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span>Obras Sociales</span>
-        <button jhiTranslate="cpsjApp.obraSocial.home.createLabel" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-obra-social" [routerLink]="['/obra-social/new']">
+        <button jhiTranslate="GestWebApp.obraSocial.home.createLabel" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-obra-social" [routerLink]="['/obra-social/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
             Create new Obra Social
@@ -10,6 +10,10 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+    <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaNombre" placeholder="Nombre" aria-label="Nombre"  #buscarNom>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(buscarNom.value)">Buscar</button>
+        </div>
     <div class="table-responsive" *ngIf="obraSocials">
         <table class="table table-striped">
             <thead>
@@ -36,25 +40,25 @@
                         <button type="submit"
                                 [routerLink]="['/obra-social', obraSocial.id, 'view' ]"
                                 class="btn btn-info btn-sm"
-                                jhiTranslate="entity.action.view" >
+                                >
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/obra-social', obraSocial.id, 'edit']"
                                 class="btn btn-primary btn-sm"
-                                jhiTranslate="entity.action.edit">
+                                >
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'obra-social/'+ obraSocial.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm"
-                                jhiTranslate="entity.action.delete">
+                                >
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>

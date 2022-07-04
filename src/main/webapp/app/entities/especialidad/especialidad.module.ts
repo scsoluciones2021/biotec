@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     EspecialidadComponent,
     EspecialidadDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...especialidadRoute, ...especialidadPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         EspecialidadComponent,
         EspecialidadDetailComponent,
@@ -31,4 +31,4 @@ const ENTITY_STATES = [...especialidadRoute, ...especialidadPopupRoute];
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjEspecialidadModule {}
+export class GestWebEspecialidadModule {}

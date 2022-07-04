@@ -16,7 +16,7 @@ import { IHorariosProfesional } from '../../shared/model/horarios-profesional.mo
 import { Message } from 'primeng/components/common/message';
 import { DatePipe } from '@angular/common';
 // import {MessageService} from 'primeng/api';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { PacienteService } from '../paciente';
 import { IPaciente } from 'app/shared/model/paciente.model';
 import { IObraSocial, ObraSocial } from 'app/shared/model/obra-social.model';
@@ -26,6 +26,7 @@ import { DetalleHorariosService } from '../detalle-horarios/detalle-horarios.ser
 import { Principal } from '../../core/auth/principal.service';
 import { UserService } from '../../core/user/user.service';
 import { PagoConsultaUpdateComponent } from '../pago-consulta/pago-consulta-update.component';
+import { BloqueosService } from '../bloqueos';
 
 @Component({
     selector: 'jhi-turno-update',
@@ -92,6 +93,7 @@ export class TurnoUpdateComponent implements OnInit {
         private pacienteService: PacienteService,
         private obraSocialService: ObraSocialService,
         private principal: Principal,
+        private bloqueosService: BloqueosService,
         private userService: UserService // private messageService: MessageService,
     ) {}
 
@@ -123,7 +125,7 @@ export class TurnoUpdateComponent implements OnInit {
             dateFormat: 'dd/mm/yy'
         };
         this.minDateValue = new Date();
-        this.maxDateValue = moment()
+        this.maxDateValue = dayjs()
             .add(5, 'M')
             .endOf('month')
             .toDate();
@@ -155,14 +157,14 @@ export class TurnoUpdateComponent implements OnInit {
         // Cargamos todos los campos necesarios para el turno
         this.turno.tur_prof_relId = this.profesional.id;
         this.turno.tur_prof_relNombreProfesional = this.profesional.nombreProfesional;
-        this.turno.dia = moment(this.fechaSeleccionada);
+        this.turno.dia = dayjs(this.fechaSeleccionada);
         this.turno.idHorario = this.idHorario;
         const horariosSeleccionados = this.obtenerHorariosSeleccionados(this.turnosSeleccionados);
         const min = horariosSeleccionados.sort()[0];
         const arrmin = min.split(':');
         this.fechaSeleccionada.setHours(parseInt(arrmin[0], 0));
         this.fechaSeleccionada.setMinutes(parseInt(arrmin[1], 0));
-        this.turno.hora = moment(this.fechaSeleccionada, 'HH:mm');
+        this.turno.hora = dayjs(this.fechaSeleccionada, 'HH:mm');
         this.turno.tipoPaciente = this.pacienteExistente;
         this.turno.horariosOcupados = horariosSeleccionados.join(';');
         this.turno.estado = 1; //1:"Otorgado", 2:"Presentado", 3:"En Atención", 4:"Finalizado", 5:"Cancelado"
@@ -264,6 +266,8 @@ export class TurnoUpdateComponent implements OnInit {
                 } else {
                     this.especialidads = res.body;
                     this.mostrar = true;
+                    this.turno.tur_esp_relId = this.especialidads[0].id;
+                    this.seleccionEspecialidad(event);
                 }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -410,20 +414,37 @@ export class TurnoUpdateComponent implements OnInit {
                     );
                 }
 
-                // Ver de deshabilitar feriados
-                this.diasNoValidos = [
-                    new Date('2019-06-18'),
-                    new Date('2019-06-21'),
-                    new Date('2019-07-09'),
-                    new Date('2019-07-10'),
-                    new Date('2019-08-20'),
-                    new Date('2019-11-19'),
-                    new Date('2019-12-10'),
-                    new Date('2019-12-26')
-                ];
+                this.diasNoValidos = [];
+
+                var fechaHoy = new Date().toISOString().split('T')[0];
+
+                this.bloqueosService.obtenerBloqueosDesde(fechaHoy).subscribe((res: HttpResponse<any[]>) => {
+                    if (res.body.length > 0) {
+                        var bloq = res.body;
+                        for (let i = 0; i < bloq.length; i++) {
+                            const elemento = bloq[i];
+                            var desde = dayjs(elemento.fechaDesde);
+                            var hasta = dayjs(elemento.fechaHasta);
+                            var resultado = this.diasEntreFechas(desde, hasta);
+
+                            this.diasNoValidos = this.diasNoValidos.concat(resultado);
+                        }
+                    }
+                });
                 // console.log(res.body);
             }),
             (res: HttpErrorResponse) => this.onError(res.message);
+    }
+
+    public diasEntreFechas(desde, hasta) {
+        var dia_actual = desde.add(1, 'days');
+        hasta = hasta.add(1, 'days');
+        var fechas = [];
+        while (dia_actual.isSameOrBefore(hasta)) {
+            fechas.push(new Date(dia_actual.format('YYYY-MM-DD')));
+            dia_actual.add(1, 'days');
+        }
+        return fechas;
     }
 
     public seleccionDia(event) {
@@ -638,13 +659,13 @@ export class TurnoUpdateComponent implements OnInit {
      * @param frecuencia
      */
     private diasFrecuenciaDesactivar(fechaDesdeDetalle, nroDiaDeLaSemana: number, frecuencia: number) {
-        const proximoDia = moment(this.getNextDayOfWeek(fechaDesdeDetalle.toDate(), nroDiaDeLaSemana));
+        const proximoDia = dayjs(this.getNextDayOfWeek(fechaDesdeDetalle.toDate(), nroDiaDeLaSemana));
         let fechaInicio = fechaDesdeDetalle;
         let frecDesactiva = [7];
         if (frecuencia === 22) {
             frecDesactiva = [7, 15];
         }
-        const ultimoDia = moment()
+        const ultimoDia = dayjs()
             .add(5, 'M')
             .endOf('month');
 

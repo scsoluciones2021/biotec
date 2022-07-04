@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { ProfesionalComponent } from 'app/entities/profesional/profesional.component';
 import { ProfesionalService } from 'app/entities/profesional/profesional.service';
 import { Profesional } from 'app/shared/model/profesional.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [ProfesionalComponent],
                 providers: [
                     {

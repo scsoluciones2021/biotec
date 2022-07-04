@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { EjercicioComponent } from 'app/entities/ejercicio/ejercicio.component';
 import { EjercicioService } from 'app/entities/ejercicio/ejercicio.service';
 import { Ejercicio } from 'app/shared/model/ejercicio.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [EjercicioComponent],
                 providers: []
             })

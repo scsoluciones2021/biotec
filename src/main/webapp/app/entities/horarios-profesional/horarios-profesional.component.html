@@ -10,6 +10,11 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+    <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaNombre" placeholder="Nombre" aria-label="Nombre"  #buscarNom>
+        <input class="form-control mr-sm-2" type="text" [(ngModel)]="busquedaEspecialidad" placeholder="Especialidad" aria-label="Especialidad" #buscarEsp>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search(buscarNom.value, buscarEsp.value)">Buscar</button>
+    </div>
     <div class="table-responsive" *ngIf="horariosProfesionals">
         <table class="table table-striped">
             <thead>
@@ -63,7 +68,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Borrar</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>

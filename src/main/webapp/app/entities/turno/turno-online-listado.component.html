@@ -84,7 +84,7 @@
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
                         <!--th jhiSortBy="idHorario">
-                            <span jhiTranslate="cpsjApp.turno.idHorario">Id Horario</span>
+                            <span jhiTranslate="GestWebApp.turno.idHorario">Id Horario</span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th-->
                         <th jhiSortBy="tur_esp_relNombreEspecialidad">
@@ -125,36 +125,6 @@
                                 }}</a>
                             </div>
                         </td>
-                        <!--<td class="text-right">
-                            <div class="btn-group flex-btn-group-container">
-                                <button
-                                    type="submit"
-                                    [routerLink]="['/turno', turno.id, 'view']"
-                                    class="btn btn-info btn-sm"
-                                >
-                                    <fa-icon [icon]="'eye'"></fa-icon>
-                                    <span class="d-none d-md-inline">Ver</span>
-                                </button>
-                                <button
-                                    type="submit"
-                                    [routerLink]="['/turno', turno.id, 'edit']"
-                                    class="btn btn-primary btn-sm"
-                                >
-                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                                    <span class="d-none d-md-inline">Editar</span>
-                                </button>
-                                <button
-                                    type="submit"
-                                    [routerLink]="['/', { outlets: { popup: 'turno/' + turno.id + '/delete' } }]"
-                                    replaceUrl="true"
-                                    queryParamsHandling="merge"
-                                    class="btn btn-danger btn-sm"
-                                >
-                                    <fa-icon [icon]="'times'"></fa-icon>
-                                    <span class="d-none d-md-inline">Borrar</span>
-                                </button>
-                            </div>
-                        </td> -->
                     </tr>
                 </tbody>
             </table>

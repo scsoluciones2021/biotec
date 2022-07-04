@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity PagoConsulta.
     -->
-    <changeSet id="20191103002439-2" author="jhipster">
+    <!-- <changeSet id="20191103002439-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="pagoturno_id"
                                  baseTableName="pago_consulta"
@@ -14,5 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="turno"/>
 
-    </changeSet>
+    </changeSet> -->
 </databaseChangeLog>

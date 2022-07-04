@@ -486,4 +486,10 @@ img {
     }
 }
 
+/** Cambios para modal de consultas***/
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
 /* fin cambios*/

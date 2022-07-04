@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { PagoConsultaComponent } from 'app/entities/pago-consulta/pago-consulta.component';
 import { PagoConsultaService } from 'app/entities/pago-consulta/pago-consulta.service';
 import { PagoConsulta } from 'app/shared/model/pago-consulta.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [PagoConsultaComponent],
                 providers: [
                     {

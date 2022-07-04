@@ -1,0 +1,32 @@
+
+{
+    "GestWebApp": {
+        "usuario" : {
+            "home": {
+                "title": "Usuarios",
+                "createLabel": "Crear nuevo",
+                "createOrEditLabel": "Crear o editar"
+            },
+            "created": "Un nuevo usuario ha sido creado con el identificador {{ param }}",
+            "updated": "Un usuario ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un usuario ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar usuario {{ id }}?"
+            },
+            "detail": {
+                "title": "Usuarios"
+            },
+            "activated": "Activo",
+            "user": "Usuario",
+            "profile": "Perfil",
+            "created-date": "Fecha Creacion",
+            "modification-date": "Fecha Modificacion",
+            "user-modification": "Modificado por:",
+            "first-name": "Nombre",
+            "lastname": "Apellido",
+            "messages": {
+                "profesional-ocupado": "<strong>Profesional ocupado</strong> Por favor, seleccioná otro profesional."
+            }
+        }
+    }
+}

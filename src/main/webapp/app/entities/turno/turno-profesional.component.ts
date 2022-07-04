@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, empty } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiLanguageService } from 'ng-jhipster';
 
 import { ITurno } from 'app/shared/model/turno.model';
@@ -18,7 +18,11 @@ import { ExcelService } from 'app/shared/util/excel.service';
 import { JhiLanguageHelper } from 'app/core/language/language.helper';
 import { TurnoProf } from 'app/shared/model/turno-profesional.model';
 import { ITurnoProf } from '../../shared/model/turno-profesional.model';
-import moment = require('moment');
+import { FichaService } from '../ficha/ficha.service';
+import { IFicha, Ficha } from '../../shared/model/ficha.model';
+import { PacienteService } from '../paciente/paciente.service';
+import { IPaciente } from '../../shared/model/paciente.model';
+import dayjs = require('dayjs');
 
 @Component({
     selector: 'jhi-turno-profesional',
@@ -57,6 +61,7 @@ export class TurnoProfesionalComponent implements OnInit, OnDestroy {
     listaturnos: ITurno[];
     usuarioCarga: string;
     profesional: IProfesional;
+    fechaBusqueda: any;
 
     constructor(
         private turnoService: TurnoService,
@@ -68,6 +73,8 @@ export class TurnoProfesionalComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private profesionalService: ProfesionalService,
         private especialidadService: EspecialidadService,
+        private fichaService: FichaService,
+        private pacienteService: PacienteService,
         private excelService: ExcelService,
         private languageService: JhiLanguageService,
         private languageHelper: JhiLanguageHelper
@@ -83,6 +90,10 @@ export class TurnoProfesionalComponent implements OnInit, OnDestroy {
             this.previousPage = data.pagingParams.page;
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
+        });
+
+        this.activatedRoute.queryParams.subscribe(params => {
+            this.fechaBusqueda = params['fechaBusqueda'];
         });
 
         // Seteo de variable de búsqueda
@@ -105,7 +116,7 @@ export class TurnoProfesionalComponent implements OnInit, OnDestroy {
         fech = datePipe.transform(this.busqueda_fecha, 'yyyy-MM-dd');
 
         this.turnoP = new TurnoProf();
-        this.turnoP.fecha = moment(fech);
+        this.turnoP.fecha = dayjs(fech);
         this.turnoP.profesional = this.profesional.id;
         this.turnoP.retorno = 'turno-profesional';
         this.turnoP.especialidades = this.especialidadesSelecc;
@@ -295,18 +306,56 @@ export class TurnoProfesionalComponent implements OnInit, OnDestroy {
             );
     }
 
-    //1:"Otorgado", 2:"Presentado", 3:"En Atención", 4:"Finalizado", 5:"Cancelado", 6:"No Presentado"
+    // 1:"Otorgado", 2:"Presentado", 3:"En Atención", 4:"Finalizado", 5:"Cancelado", 6:"No Presentado"
     // Función para colocar el turno en estado "En atención" y crear la consulta
     atender(turnoAatender: ITurno) {
-        this.turnoService.update(turnoAatender).subscribe();
+        turnoAatender.dia = dayjs(turnoAatender.dia);
+        turnoAatender.hora = dayjs(turnoAatender.hora, 'HH:mm');
+        this.turnoService.cambiarEstado(turnoAatender.id, 3).subscribe();
         // Agregamos skipLocationChange: true para que no se vean los parámetros en la url
-        let navigationExtras: NavigationExtras = {
+        const navigationExtras: NavigationExtras = {
             queryParams: {
-                nroPaciente: turnoAatender.id
+                nroPaciente: turnoAatender.dni,
+                fechaBusqueda: turnoAatender.dia,
+                idTurno: turnoAatender.id,
+                idProfesional: turnoAatender.tur_prof_relId,
+                idEspecialidad: turnoAatender.tur_esp_relId
             },
             skipLocationChange: true
         };
-        this.router.navigate(['/consulta/new']);
+        // Obtenemos los datos del paciente
+        this.pacienteService.buscarPacienteXDNI(turnoAatender.dni).subscribe((respac: HttpResponse<IPaciente>) => {
+            // Chequeamos si el paciente tiene ficha. Si no tiene ficha, le creamos una
+            this.fichaService.existeFichaIdPac(respac.body.id).subscribe((data: HttpResponse<any>) => {
+                if (data.body === 0) {
+                    let nuevaFicha: IFicha;
+                    nuevaFicha = new Ficha();
+                    nuevaFicha.especialidadId = turnoAatender.tur_esp_relId;
+                    nuevaFicha.especialidadNombreEspecialidad = turnoAatender.tur_esp_relNombreEspecialidad;
+                    nuevaFicha.fechaIngreso = dayjs(turnoAatender.dia);
+                    nuevaFicha.pacienteId = respac.body.id;
+                    nuevaFicha.pacienteNombrePaciente = turnoAatender.nombre;
+                    nuevaFicha.profesionalId = turnoAatender.tur_prof_relId;
+                    nuevaFicha.profesionalNombreProfesional = turnoAatender.tur_prof_relNombreProfesional;
+
+                    this.fichaService.create(nuevaFicha).subscribe(respuesta => {
+                        console.log('se crea la ficha');
+                    });
+                }
+            });
+        });
+
+        // Revisamos si no hay ya una consulta abierta para la combinación turno-paciente-profesional-especialidad
+        this.turnoService.tieneConsulta(turnoAatender.id).subscribe(
+            (res: HttpResponse<any>) => {
+                if (res.body === 0) {
+                    this.router.navigate(['/consulta/new', { previousUrl: '/turno-profesional' }], navigationExtras);
+                } else {
+                    this.router.navigate(['/consulta/' + res.body + '/edit', { previousUrl: '/turno-profesional' }], navigationExtras);
+                }
+            }
+            // (res: HttpResponse<void>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.router.navigate(['/consulta/new'], navigationExtras)
+        );
     }
 
     // Cambiamos el turno a "No Presentado"

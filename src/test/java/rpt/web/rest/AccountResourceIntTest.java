@@ -1,7 +1,7 @@
 package rpt.web.rest;
 
 import rpt.config.Constants;
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.Authority;
 import rpt.domain.User;
 import rpt.repository.AuthorityRepository;
@@ -48,7 +48,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class AccountResourceIntTest {
 
     @Autowired

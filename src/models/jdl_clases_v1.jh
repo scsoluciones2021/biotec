@@ -236,4 +236,4 @@ dto * with mapstruct
 // Set service options to all
 service all with serviceImpl
 // Set an angular suffix
-//angularSuffix * with cpsj_ang
+//angularSuffix * with GestWeb_ang

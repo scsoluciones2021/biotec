@@ -1,27 +1,27 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="bloqueos">
-            <h2><span>Bloqueos</span> {{bloqueos.id}}</h2>
+            <h2><span>Feriados y días no laborables</span> {{bloqueos.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span>Nombre Bloqueo</span></dt>
+                <dt><span>Nombre</span></dt>
                 <dd>
                     <span>{{bloqueos.nombreBloqueo}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.bloqueos.fechaDesde">Fecha Desde</span></dt>
+                <dt><span jhiTranslate="GestWebApp.bloqueos.fechaDesde">Fecha Desde</span></dt>
                 <dd>
                     <span>{{bloqueos.fechaDesde}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.bloqueos.fechaHasta">Fecha Hasta</span></dt>
+                <dt><span jhiTranslate="GestWebApp.bloqueos.fechaHasta">Fecha Hasta</span></dt>
                 <dd>
                     <span>{{bloqueos.fechaHasta}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.bloqueos.horaDesde">Hora Desde</span></dt>
+                <dt><span jhiTranslate="GestWebApp.bloqueos.horaDesde">Hora Desde</span></dt>
                 <dd>
                     <span>{{bloqueos.horaDesde}}</span>
                 </dd>
-                <dt><span jhiTranslate="cpsjApp.bloqueos.horaHasta">Hora Hasta</span></dt>
+                <dt><span jhiTranslate="GestWebApp.bloqueos.horaHasta">Hora Hasta</span></dt>
                 <dd>
                     <span>{{bloqueos.horaHasta}}</span>
                 </dd>

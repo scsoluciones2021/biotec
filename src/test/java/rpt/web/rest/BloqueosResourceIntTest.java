@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Bloqueos;
 import rpt.repository.BloqueosRepository;
@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see BloqueosResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class BloqueosResourceIntTest {
 
     private static final String DEFAULT_NOMBRE_BLOQUEO = "AAAAAAAAAA";

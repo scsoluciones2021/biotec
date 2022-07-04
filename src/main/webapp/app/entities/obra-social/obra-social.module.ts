@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     ObraSocialComponent,
     ObraSocialDetailComponent,
@@ -17,7 +17,7 @@ import { JhiLanguageHelper } from 'app/core/language/language.helper';
 const ENTITY_STATES = [...obraSocialRoute, ...obraSocialPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         ObraSocialComponent,
         ObraSocialDetailComponent,
@@ -28,7 +28,7 @@ const ENTITY_STATES = [...obraSocialRoute, ...obraSocialPopupRoute];
     entryComponents: [ObraSocialComponent, ObraSocialUpdateComponent, ObraSocialDeleteDialogComponent, ObraSocialDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjObraSocialModule {
+export class GestWebObraSocialModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
          if (languageKey !== undefined) {

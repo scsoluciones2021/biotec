@@ -1,7 +1,7 @@
 package rpt.service;
 import rpt.config.Constants;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class MailServiceIntTest {
 
     @Autowired

@@ -85,7 +85,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let turno of turnos; trackBy: trackId">
+                    <tr *ngFor="let turno of turnos; trackBy: trackId" [style.background-color]="turno.estado == 3 ? '#fbf28e' : turno.estado == 4? 'bisque': 'white'">
                         <td>{{ turno.dni }}</td>
                         <td>{{ turno.apellido }}</td>
                         <td>{{ turno.nombre }}</td>
@@ -103,7 +103,7 @@
                                 {{turno.tur_prof_relNombreProfesional}}
                             </div>
                         </td>
-                        <td class="text-right">
+                        <td class="text-right" *ngIf="turno.estado != 4">
                             <div class="btn-group flex-btn-group-container">
                                 <button
                                     type="button"

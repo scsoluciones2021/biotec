@@ -5,6 +5,7 @@ import { IEspecialidad } from 'app/shared/model//especialidad.model';
 export interface IProfesional {
     id?: number;
     nombreProfesional?: string;
+    apellidoProfesional?: string;
     documentoProfesional?: string;
     direccionProfesional?: string;
     telefonoProfesional?: string;
@@ -26,6 +27,7 @@ export class Profesional implements IProfesional {
     constructor(
         public id?: number,
         public nombreProfesional?: string,
+        public apellidoProfesional?: string,
         public documentoProfesional?: string,
         public direccionProfesional?: string,
         public telefonoProfesional?: string,
@@ -56,6 +58,6 @@ export class ProfesionalTurno implements IProfesional {
         public id?: number,
         public nombreProfesional?: string,
         public idsEspecialidades?: string,
-        public nombreEspecialidades?: string,
+        public nombreEspecialidades?: string
     ) {}
 }

@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Profesional;
 import rpt.repository.ProfesionalRepository;
@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ProfesionalResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ProfesionalResourceIntTest {
 
     private static final String DEFAULT_NOMBRE_PROFESIONAL = "AAAAAAAAAA";

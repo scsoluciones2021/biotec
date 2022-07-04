@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.domain.User;
 import rpt.repository.UserRepository;
 import rpt.security.jwt.TokenProvider;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
  * @see UserJWTController
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class UserJWTControllerIntTest {
 
     @Autowired

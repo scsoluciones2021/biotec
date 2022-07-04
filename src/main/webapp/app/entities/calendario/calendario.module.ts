@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     CalendarioComponent,
     CalendarioDetailComponent,
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 const ENTITY_STATES = [...calendarioRoute, ...calendarioPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES),
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES),
         CommonModule,
     FormsModule,
     NgbModalModule,
@@ -43,4 +43,4 @@ const ENTITY_STATES = [...calendarioRoute, ...calendarioPopupRoute];
     entryComponents: [CalendarioComponent, CalendarioUpdateComponent, CalendarioDeleteDialogComponent, CalendarioDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjCalendarioModule {}
+export class GestWebCalendarioModule {}

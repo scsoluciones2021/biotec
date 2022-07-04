@@ -1,8 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
-import { CpsjAdminModule } from 'app/admin/admin.module';
+import { GestWebSharedModule } from 'app/shared';
+import { GestWebAdminModule } from 'app/admin/admin.module';
 import {
     PersonalComponent,
     PersonalDetailComponent,
@@ -16,7 +16,7 @@ import {
 const ENTITY_STATES = [...personalRoute, ...personalPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, CpsjAdminModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, GestWebAdminModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         PersonalComponent,
         PersonalDetailComponent,
@@ -27,4 +27,4 @@ const ENTITY_STATES = [...personalRoute, ...personalPopupRoute];
     entryComponents: [PersonalComponent, PersonalUpdateComponent, PersonalDeleteDialogComponent, PersonalDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjPersonalModule {}
+export class GestWebPersonalModule {}

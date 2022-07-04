@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ProdConfig } from './blocks/config/prod.config';
-import { CpsjAppModule } from './app.module';
+import { GestWebAppModule } from './app.module';
 
 ProdConfig();
 
@@ -9,6 +9,6 @@ if (module['hot']) {
 }
 
 platformBrowserDynamic()
-    .bootstrapModule(CpsjAppModule, { preserveWhitespaces: true })
+    .bootstrapModule(GestWebAppModule, { preserveWhitespaces: true })
     .then(success => console.log(`Application started`))
     .catch(err => console.error(err));

@@ -16,8 +16,6 @@
                 <input type="text" pKeyFilter="alpha" placeholder="Apellido" [(ngModel)]="busqueda_apellido"
                     #buscarPxA />
             </div>
-
-
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
                 <input type="text" placeholder="Nombre" [(ngModel)]="busqueda_nombre" #buscarPxN />
@@ -65,13 +63,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let ficha of fichas ;trackBy: trackId">
-                    <!--td><a [routerLink]="['/ficha', ficha.id, 'view' ]">{{ficha.id}}</a></td-->
                     <td>{{ficha.id}}</td>
-                    <!--td>{{ficha.fechaIngreso | date:'dd/MM/yyyy'}}</td-->
                     <td>
                         <div *ngIf="ficha.pacienteId">
                             <a
-                                [routerLink]="['../paciente', ficha.pacienteId , 'view' ]">{{ficha.pacienteNombrePaciente}}</a>
+                                [routerLink]="['../paciente', ficha.pacienteId , 'view' ]">{{ficha.pacienteApellidoPaciente.concat(", ").concat(ficha.pacienteNombrePaciente)}}</a>
                         </div>
                     </td>
                     <td>

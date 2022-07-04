@@ -36,7 +36,7 @@ export const estadosRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
-            pageTitle: 'cpsjApp.estados.home.title'
+            pageTitle: 'GestWebApp.estados.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -48,7 +48,7 @@ export const estadosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.estados.home.title'
+            pageTitle: 'GestWebApp.estados.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -60,7 +60,7 @@ export const estadosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.estados.home.title'
+            pageTitle: 'GestWebApp.estados.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -72,7 +72,7 @@ export const estadosRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.estados.home.title'
+            pageTitle: 'GestWebApp.estados.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -87,7 +87,7 @@ export const estadosPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.estados.home.title'
+            pageTitle: 'GestWebApp.estados.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

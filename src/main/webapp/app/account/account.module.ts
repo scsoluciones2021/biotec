@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 
 import {
     PasswordStrengthBarComponent,
@@ -15,7 +15,7 @@ import {
 } from './';
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(accountState)],
+    imports: [GestWebSharedModule, RouterModule.forChild(accountState)],
     declarations: [
         ActivateComponent,
         RegisterComponent,
@@ -27,4 +27,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjAccountModule {}
+export class GestWebAccountModule {}

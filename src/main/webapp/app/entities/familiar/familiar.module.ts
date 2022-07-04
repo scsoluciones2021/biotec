@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     FamiliarComponent,
     FamiliarDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...familiarRoute, ...familiarPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         FamiliarComponent,
         FamiliarDetailComponent,
@@ -26,4 +26,4 @@ const ENTITY_STATES = [...familiarRoute, ...familiarPopupRoute];
     entryComponents: [FamiliarComponent, FamiliarUpdateComponent, FamiliarDeleteDialogComponent, FamiliarDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjFamiliarModule {}
+export class GestWebFamiliarModule {}

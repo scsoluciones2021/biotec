@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -58,31 +58,37 @@ export class HorariosProfesionalService {
             fechaHasta:
                 horariosProfesional.fechaHasta != null && horariosProfesional.fechaHasta.isValid()
                     ? horariosProfesional.fechaHasta.format(DATE_FORMAT)
-                    : null,
+                    : null
         });
         return copy;
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fechaDesde = res.body.fechaDesde != null ? moment(res.body.fechaDesde) : null;
-        res.body.fechaHasta = res.body.fechaHasta != null ? moment(res.body.fechaHasta) : null;
+        res.body.fechaDesde = res.body.fechaDesde != null ? dayjs(res.body.fechaDesde) : null;
+        res.body.fechaHasta = res.body.fechaHasta != null ? dayjs(res.body.fechaHasta) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((horariosProfesional: IHorariosProfesional) => {
-            horariosProfesional.fechaDesde = horariosProfesional.fechaDesde != null ? moment(horariosProfesional.fechaDesde) : null;
-            horariosProfesional.fechaHasta = horariosProfesional.fechaHasta != null ? moment(horariosProfesional.fechaHasta) : null;
+            horariosProfesional.fechaDesde = horariosProfesional.fechaDesde != null ? dayjs(horariosProfesional.fechaDesde) : null;
+            horariosProfesional.fechaHasta = horariosProfesional.fechaHasta != null ? dayjs(horariosProfesional.fechaHasta) : null;
         });
         return res;
     }
 
     // Métodos adicionales
     // Búsqueda de horarios por profesional
-    horarioProfesional(idProfesional: number, idEspecialidad: number):  Observable<EntityArrayResponseType>  {
+    horarioProfesional(idProfesional: number, idEspecialidad: number): Observable<EntityArrayResponseType> {
         const options = new HttpParams().set('idProfesional', idProfesional.toString()).set('idEspecialidad', idEspecialidad.toString());
-        return this.http.get<IHorariosProfesional[]>(`${this.resourceUrl}/hor-profesional`, { params: options, observe: 'response' })
-        .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+        return this.http
+            .get<IHorariosProfesional[]>(`${this.resourceUrl}/hor-profesional`, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
+    searchHorarios(req?: any): Observable<EntityArrayResponseType> {
+        const options = new HttpParams().set('nombre', req.query[0]).set('especialidad', req.query[1]);
+
+        return this.http.get<IHorariosProfesional[]>(`${this.resourceUrl}/busqueda-general`, { params: options, observe: 'response' });
+    }
 }

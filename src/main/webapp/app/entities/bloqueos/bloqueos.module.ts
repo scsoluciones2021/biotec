@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     BloqueosComponent,
     BloqueosDetailComponent,
@@ -16,7 +16,7 @@ import { JhiLanguageService } from 'ng-jhipster/src/language';
 const ENTITY_STATES = [...bloqueosRoute, ...bloqueosPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         BloqueosComponent,
         BloqueosDetailComponent,
@@ -27,7 +27,7 @@ const ENTITY_STATES = [...bloqueosRoute, ...bloqueosPopupRoute];
     entryComponents: [BloqueosComponent, BloqueosUpdateComponent, BloqueosDeleteDialogComponent, BloqueosDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjBloqueosModule {
+export class GestWebBloqueosModule {
    /* constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {

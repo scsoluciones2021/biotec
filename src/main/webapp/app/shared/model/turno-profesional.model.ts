@@ -1,8 +1,8 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 import { IEspecialidad } from './especialidad.model';
 
 export interface ITurnoProf {
-    fecha?: Moment;
+    fecha?: Dayjs;
     especialidades?: IEspecialidad[];
     profesional?: number;
     estado?: number;
@@ -11,7 +11,7 @@ export interface ITurnoProf {
 
 export class TurnoProf implements ITurnoProf {
     constructor(
-        public fecha?: Moment,
+        public fecha?: Dayjs,
         public especialidades?: IEspecialidad[],
         public profesional?: number,
         public estado?: number,

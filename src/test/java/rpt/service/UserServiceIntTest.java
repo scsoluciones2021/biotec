@@ -1,6 +1,6 @@
 package rpt.service;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.config.Constants;
 import rpt.domain.User;
 import rpt.repository.UserRepository;
@@ -37,7 +37,7 @@ import static org.mockito.Mockito.when;
  * @see UserService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 @Transactional
 public class UserServiceIntTest {
 

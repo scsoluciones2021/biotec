@@ -4,7 +4,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profesional" [routerLink]="['/profesional/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
-            Crear nuevo Profesional
+            Nuevo Profesional
             </span>
         </button>
     </h2>
@@ -18,74 +18,57 @@
     <div class="table-responsive" *ngIf="profesionals">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <!--th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
-            <th jhiSortBy="nombreProfesional"><span>Apellido y Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="documentoProfesional"><span>Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="direccionProfesional"><span>Dirección</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="telefonoProfesional"><span>Teléfono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="emailProfesional"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="matriculaProfesional"><span>Matrícula</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <!--th jhiSortBy="imagenProfesional"><span>Imagen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioId"><span>Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tituloValor"><span>Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="codigoPostalNombreCiudad"><span>Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th-->
-            <th></th>
-            </tr>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="nombreProfesional"><span>Apellido y Nombre</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="documentoProfesional"><span>Documento</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="direccionProfesional"><span>Dirección</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="telefonoProfesional"><span>Teléfono</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="emailProfesional"><span>Email</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="matriculaProfesional"><span>Matrícula</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let profesional of profesionals ;trackBy: trackId">
-                <!--td><a [routerLink]="['/profesional', profesional.id, 'view' ]">{{profesional.id}}</a></td-->
-                <td><a [routerLink]="['/profesional', profesional.id, 'view' ]">{{profesional.nombreProfesional}}</a></td>
-                <td>{{profesional.documentoProfesional}}</td>
-                <td>{{profesional.direccionProfesional}}</td>
-                <td>{{profesional.telefonoProfesional}}</td>
-                <td>{{profesional.emailProfesional}}</td>
-                <td>{{profesional.matriculaProfesional}}</td>
-                <!--td>
-                    <a *ngIf="profesional.imagenProfesional" (click)="openFile(profesional.imagenProfesionalContentType, profesional.imagenProfesional)">
-                        <img [src]="'data:' + profesional.imagenProfesionalContentType + ';base64,' + profesional.imagenProfesional" style="max-height: 30px;" alt="profesional image"/>
-                    </a>
-                    <span *ngIf="profesional.imagenProfesional">{{profesional.imagenProfesionalContentType}}, {{byteSize(profesional.imagenProfesional)}}</span>
-                </td>
-                <td>
-                    {{profesional.usuarioId}}
-                </td>
-                <td>
-                    <div *ngIf="profesional.tituloId">
-                        <a [routerLink]="['../titulo-short', profesional.tituloId , 'view' ]" >{{profesional.tituloValor}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="profesional.codigoPostalId">
-                        <a [routerLink]="['../codigo-postal', profesional.codigoPostalId , 'view' ]" >{{profesional.codigoPostalNombreCiudad}}</a>
-                    </div>
-                </td-->
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/profesional', profesional.id, 'view' ]"
+                <tr *ngFor="let profesional of profesionals ;trackBy: trackId">
+                    <td><a [routerLink]="['/profesional', profesional.id, 'view' ]"> {{profesional.apellidoProfesional}},{{profesional.nombreProfesional}}</a></td>
+                    <td>{{profesional.documentoProfesional}}</td>
+                    <td>{{profesional.direccionProfesional}}</td>
+                    <td>{{profesional.telefonoProfesional}}</td>
+                    <td>{{profesional.emailProfesional}}</td>
+                    <td>{{profesional.matriculaProfesional}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['/profesional', profesional.id, 'view' ]"
                                 class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">Ver</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/profesional', profesional.id, 'edit']"
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="d-none d-md-inline">Ver</span>
+                            </button>
+                            <button type="submit" [routerLink]="['/profesional', profesional.id, 'edit']"
                                 class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline">Editar</span>
-                        </button>
-                        <button type="submit"
+                                <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                <span class="d-none d-md-inline">Editar</span>
+                            </button>
+                            <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'profesional/'+ profesional.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Borrar</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                                replaceUrl="true" queryParamsHandling="merge" class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                                <span class="d-none d-md-inline">Borrar</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

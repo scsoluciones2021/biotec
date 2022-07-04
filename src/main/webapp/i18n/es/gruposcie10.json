@@ -1,0 +1,23 @@
+{
+    "gestWebApp": {
+        "gruposcie10": {
+            "home": {
+                "title": "Grupos CIE 10",
+                "createLabel": "Crear nuevo Grupos CIE 10",
+                "createOrEditLabel": "Crear o editar Grupos CIE 10",
+                "notFound": "Ningún Gruposcie 10 encontrado"
+            },
+            "created": "Un nuevo Grupos CIE 10 ha sido creado con el identificador {{ param }}",
+            "updated": "Un Grupos CIE 10 ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Grupos CIE 10 ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Grupos CIE 10 {{ id }}?"
+            },
+            "detail": {
+                "title": "Grupos CIE 10"
+            },
+            "clave": "Clave",
+            "descripcion": "Descripcion"
+        }
+    }
+}

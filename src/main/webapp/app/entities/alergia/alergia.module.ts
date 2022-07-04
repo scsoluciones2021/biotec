@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     AlergiaComponent,
     AlergiaDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...alergiaRoute, ...alergiaPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         AlergiaComponent,
         AlergiaDetailComponent,
@@ -26,4 +26,4 @@ const ENTITY_STATES = [...alergiaRoute, ...alergiaPopupRoute];
     entryComponents: [AlergiaComponent, AlergiaUpdateComponent, AlergiaDeleteDialogComponent, AlergiaDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjAlergiaModule {}
+export class GestWebAlergiaModule {}

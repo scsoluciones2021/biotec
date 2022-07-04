@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { FichaDeleteDialogComponent } from 'app/entities/ficha/ficha-delete-dialog.component';
 import { FichaService } from 'app/entities/ficha/ficha.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [FichaDeleteDialogComponent]
             })
                 .overrideTemplate(FichaDeleteDialogComponent, '')

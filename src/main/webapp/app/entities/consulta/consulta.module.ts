@@ -1,7 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { ToggleButtonComponent } from '../../layouts/toogle-button/toggle-button.component';
+import { GestWebSharedModule } from 'app/shared';
 import {
     ConsultaComponent,
     ConsultaDetailComponent,
@@ -11,19 +12,27 @@ import {
     consultaRoute,
     consultaPopupRoute
 } from './';
-
+import { ConsultaModalComponent } from './consulta-modal.component';
 const ENTITY_STATES = [...consultaRoute, ...consultaPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         ConsultaComponent,
         ConsultaDetailComponent,
         ConsultaUpdateComponent,
         ConsultaDeleteDialogComponent,
-        ConsultaDeletePopupComponent
+        ConsultaDeletePopupComponent,
+        ConsultaModalComponent,
+        ToggleButtonComponent
     ],
-    entryComponents: [ConsultaComponent, ConsultaUpdateComponent, ConsultaDeleteDialogComponent, ConsultaDeletePopupComponent],
+    entryComponents: [
+        ConsultaComponent,
+        ConsultaUpdateComponent,
+        ConsultaDeleteDialogComponent,
+        ConsultaDeletePopupComponent,
+        ConsultaModalComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjConsultaModule {}
+export class GestWebConsultaModule {}

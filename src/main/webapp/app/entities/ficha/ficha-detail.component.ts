@@ -3,11 +3,18 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { IFicha } from 'app/shared/model/ficha.model';
 
-import { HttpResponse, HttpEventType } from '@angular/common/http';
+import { HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { FichaService } from './ficha.service';
 import { Observable } from 'rxjs';
 import { FileUpload } from 'primeng/components/fileupload/fileupload';
 import { TreeNode } from 'primeng/primeng';
+import { ConsultaService, ConsultaModalComponent } from '../consulta';
+import { IConsulta } from '../../shared/model/consulta.model';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import dayjs = require('dayjs');
+import { AdjuntosFicha } from 'app/shared/model/adjuntos-ficha.model';
+import { AdjuntosFichaService } from '../adjuntos-ficha';
+import * as fileSaver from 'file-saver';
 
 @Component({
     selector: 'jhi-ficha-detail',
@@ -17,7 +24,7 @@ export class FichaDetailComponent implements OnInit {
     ficha: IFicha;
 
     // Variables para archivos
-    fileUploads: Observable<string[]>;
+    fileUploads: any[] = []; //Observable<string[]>;
     showFile = false;
     selectedFiles: FileList;
     currentFileUpload: File;
@@ -30,13 +37,24 @@ export class FichaDetailComponent implements OnInit {
 
     // fin primeng upload
 
-    // Para consultas
-    isFoo = false;
     // Para arbol de consultas
-    files: TreeNode[];
+    // arbolConsultas: TreeNode[];
+    listaConsultas: IConsulta[];
     // fin arbol de consultas
 
-    constructor(private activatedRoute: ActivatedRoute, private fichaService: FichaService, private router: Router) {}
+    // modal para las consultas
+    modalRef: NgbModalRef;
+
+    jhiAlertService: any;
+
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private fichaService: FichaService,
+        private consultaService: ConsultaService,
+        private modalService: NgbModal,
+        private router: Router,
+        private adjuntosService: AdjuntosFichaService
+    ) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ ficha }) => {
@@ -45,40 +63,34 @@ export class FichaDetailComponent implements OnInit {
         this.showFile = false;
         this.showFiles(true);
 
-        this.files = [
-            {
-                label: '2019',
-                collapsedIcon: 'fa-folder',
-                expandedIcon: 'fa-folder-open',
-                children: [
-                    {
-                        label: 'Folder 2',
-                        collapsedIcon: 'fa-folder',
-                        expandedIcon: 'fa-folder-open',
-                        children: [
-                            {
-                                label: 'File 2',
-                                icon: 'fa-file-o'
-                            }
-                        ]
-                    },
-                    {
-                        label: 'Folder 2',
-                        collapsedIcon: 'fa-folder',
-                        expandedIcon: 'fa-folder-open'
-                    },
-                    {
-                        label: 'File 1',
-                        icon: 'fa-file-o'
-                    }
-                ]
+        dayjs.locale('es');
+        this.consultaService.getConsultasXFicha(this.ficha.id).subscribe(
+            (res: HttpResponse<IConsulta[]>) => {
+                this.listaConsultas = res.body;
             },
-            {
-                label: '2018',
-                collapsedIcon: 'fa-folder',
-                expandedIcon: 'fa-folder-open'
+            (res: HttpErrorResponse) => {
+                console.log('paso por aca error');
+                this.onError(res.message);
             }
-        ];
+        );
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
+    }
+    // Modal para ver la consulta seleccionada
+    openFormModal(consulta) {
+        this.modalRef = this.modalService.open(ConsultaModalComponent as Component, { size: 'lg', backdrop: 'static' });
+        this.modalRef.componentInstance.consulta = consulta;
+
+        // al volver
+        this.modalRef.result
+            .then(result => {
+                // reload del timeline?
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     previousState() {
@@ -88,13 +100,23 @@ export class FichaDetailComponent implements OnInit {
     showFiles(enable: boolean) {
         this.showFile = enable;
         if (enable) {
-            this.fileUploads = this.fichaService.getFiles(this.ficha.id);
+            const listaDeNombres = this.fichaService.getFilesName(this.ficha.id);
+            const archivos = this.fileUploads;
+
+            listaDeNombres.forEach(function(nom) {
+                nom.forEach(function(contenido) {
+                    const sep = contenido.split(',');
+                    archivos.push(sep);
+                });
+            });
+
+            this.fileUploads = archivos;
         }
     }
 
     // Función para que el progressbar se muestre un ratito...
     async delay(ms: number) {
-        await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
+        await new Promise<void>(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
     }
 
     onUploadEnd(event, form) {
@@ -126,29 +148,20 @@ export class FichaDetailComponent implements OnInit {
     }
 
     descargarArchivo(nombreArchivo) {
-        /* console.log("paso previo");
-        this.fichaService.getFile(nombreArchivo).subscribe(res=>{
-            console.log("paso por acá");
-            const url = "file://127.1.1.1/upload/Fichas/"+nombreArchivo;
-            console.log(url);*/
-        const link = document.createElement('a');
-        link.target = '_blank';
-        link.href = 'file:///127.1.1.1:9000/upload/Fichas/' + nombreArchivo; // URL.createObjectURL(res);
-        link.setAttribute('visibility', 'hidden');
-        link.click();
-        // });*/
+        this.adjuntosService.getFileToDownload(nombreArchivo).subscribe(data => {
+            console.log('volvió: ' + data.headers.get('filename'));
+            this.saveFile(data.body, data.headers.get('filename'));
+        });
+    }
 
-        /* const fileURL = URL.createObjectURL(this.fichaService.getFile(nombreArchivo));
-        // return this.fichaService.getFile(nombreArchivo);
-       // file://localhost/upload/Fichas/1_1_2.png
-       // console.log("Ruta archivo: " + ruta.);
-        window.open('file:///127.1.1.1:8080/upload/Fichas/'+nombreArchivo);
-       console.log(fileURL);
-      const link = document.createElement('a');
-link.target = '_blank';
-link.href = fileURL;
-link.setAttribute('visibility', 'hidden');
-link.click();*/
+    saveFile(data: any, filename?: string) {
+        const blob = new Blob([data], { type: 'octet-stream' });
+        // opción 1 funciona pero abre el archivo en una página aparte
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+
+        // opción 2 funciona pero cdo descarga después da error al abrir
+        //fileSaver.saveAs(blob, filename);
     }
 
     getSizeInMegaBytes(file: File) {
@@ -160,7 +173,7 @@ link.click();*/
         uploader.remove(event, index);
     }
 
-    private consultaNueva() {
+    public consultaNueva() {
         // Agregamos skipLocationChange: true para que no se vean los parámetros en la url
         let navigationExtras: NavigationExtras = {
             queryParams: {
@@ -171,57 +184,3 @@ link.click();*/
         this.router.navigate(['/consulta/new'], navigationExtras);
     }
 }
-
-/* Para descarga de archivos
- this.fichaService.getFile(nombreArchivo).subscribe(x => {
-            // It is necessary to create a new blob object with mime-type explicitly set
-            // otherwise only Chrome works like it should
-            var newBlob = new Blob([x], { type: "multipart/form-data;" });
-
-            // IE doesn't allow using a blob object directly as link href
-            // instead it is necessary to use msSaveOrOpenBlob
-            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(newBlob);
-                return;
-            }
-
-            // For other browsers:
-            // Create a link pointing to the ObjectURL containing the blob.
-            const data = window.URL.createObjectURL(newBlob);
-
-            var link = document.createElement('a');
-            link.href = data;
-            link.download = "Je kar.pdf";
-            // this is necessary as link.click() does not work on the latest firefox
-            link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-
-            setTimeout(function () {
-                // For Firefox it is necessary to delay revoking the ObjectURL
-                window.URL.revokeObjectURL(data);
-            }, 100);
-        });
-
-Para carga de archivos
-    onFileChanged(event) {
-        this.selectedFiles = event.target.files;
-    }
-
-    onUpload() {
-        this.progress.percentage = 0;
-
-        this.currentFileUpload = this.selectedFiles.item(0);
-
-         this.fichaService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progress.percentage = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
-            this.delay(3000).then(any=>{
-               this.currentFileUpload = null;
-               this.progress.percentage = 0;
-            });
-          }
-        });
-
-        this.selectedFiles = undefined;
-    }*/

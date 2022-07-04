@@ -1,4 +1,4 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 
 export interface IAdjuntosFicha {
     id?: number;
@@ -9,7 +9,7 @@ export interface IAdjuntosFicha {
     ruta?: string;
     nombreOriginal?: string;
     nombreActual?: string;
-    fecha?: Moment;
+    fecha?: Dayjs;
     usuario?: number;
 }
 
@@ -23,7 +23,7 @@ export class AdjuntosFicha implements IAdjuntosFicha {
         public ruta?: string,
         public nombreOriginal?: string,
         public nombreActual?: string,
-        public fecha?: Moment,
+        public fecha?: Dayjs,
         public usuario?: number
     ) {}
 }

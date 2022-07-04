@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -57,13 +57,13 @@ export class ObsAntecFamiliarService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fecha = res.body.fecha != null ? moment(res.body.fecha) : null;
+        res.body.fecha = res.body.fecha != null ? dayjs(res.body.fecha) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((obsAntecFamiliar: IObsAntecFamiliar) => {
-            obsAntecFamiliar.fecha = obsAntecFamiliar.fecha != null ? moment(obsAntecFamiliar.fecha) : null;
+            obsAntecFamiliar.fecha = obsAntecFamiliar.fecha != null ? dayjs(obsAntecFamiliar.fecha) : null;
         });
         return res;
     }

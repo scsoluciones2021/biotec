@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { BloqueosComponent } from 'app/entities/bloqueos/bloqueos.component';
 import { BloqueosService } from 'app/entities/bloqueos/bloqueos.service';
 import { Bloqueos } from 'app/shared/model/bloqueos.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [BloqueosComponent],
                 providers: [
                     {

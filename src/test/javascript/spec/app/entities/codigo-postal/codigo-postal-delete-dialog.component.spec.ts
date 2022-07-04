@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { CodigoPostalDeleteDialogComponent } from 'app/entities/codigo-postal/codigo-postal-delete-dialog.component';
 import { CodigoPostalService } from 'app/entities/codigo-postal/codigo-postal.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [CodigoPostalDeleteDialogComponent]
             })
                 .overrideTemplate(CodigoPostalDeleteDialogComponent, '')

@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.config.audit.AuditEventConverter;
 import rpt.domain.PersistentAuditEvent;
 import rpt.repository.PersistenceAuditEventRepository;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

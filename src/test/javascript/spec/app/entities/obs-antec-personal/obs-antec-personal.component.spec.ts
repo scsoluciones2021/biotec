@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { ObsAntecPersonalComponent } from 'app/entities/obs-antec-personal/obs-antec-personal.component';
 import { ObsAntecPersonalService } from 'app/entities/obs-antec-personal/obs-antec-personal.service';
 import { ObsAntecPersonal } from 'app/shared/model/obs-antec-personal.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [ObsAntecPersonalComponent],
                 providers: [
                     {

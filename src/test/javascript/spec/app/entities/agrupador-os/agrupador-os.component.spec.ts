@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AgrupadorOSComponent } from 'app/entities/agrupador-os/agrupador-os.component';
 import { AgrupadorOSService } from 'app/entities/agrupador-os/agrupador-os.service';
 import { AgrupadorOS } from 'app/shared/model/agrupador-os.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AgrupadorOSComponent],
                 providers: [
                     {

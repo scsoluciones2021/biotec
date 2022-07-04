@@ -1,4 +1,4 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 
 export interface ITurno {
     id?: number;
@@ -7,8 +7,8 @@ export interface ITurno {
     nombre?: string;
     telefono?: string;
     email?: string;
-    dia?: Moment;
-    hora?: Moment;
+    dia?: Dayjs;
+    hora?: Dayjs;
     tur_esp_relNombreEspecialidad?: string;
     tur_prof_relNombreProfesional?: string;
     idHorario?: number;
@@ -30,8 +30,8 @@ export class Turno implements ITurno {
         public nombre?: string,
         public telefono?: string,
         public email?: string,
-        public dia?: Moment,
-        public hora?: Moment,
+        public dia?: Dayjs,
+        public hora?: Dayjs,
         public tur_esp_relNombreEspecialidad?: string,
         public tur_prof_relNombreProfesional?: string,
         public idHorario?: number,

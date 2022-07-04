@@ -2,20 +2,8 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-consulta-heading">Consulta - {{paciente.apellidoPaciente + ", " + paciente.nombrePaciente}}</h2>
-
-            <div class="card">
-                <div class="card-body">
-
-                </div>
-            </div>
-
-
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <!--div class="form-group" [hidden]="!consulta.id">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="consulta.id" readonly />
-                </div-->
                 <div class="form-group">
                     <label class="form-control-label" for="field_fechaConsulta">Fecha</label>
                     <div class="input-group">
@@ -24,17 +12,17 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-control-label" for="field_observacionesConsulta">Síntomas</label>
-                        <textarea class="form-control" rows="5" name="observacionesConsulta"
-                            id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                        <label class="form-control-label" for="field_sintomasConsulta">Síntomas</label>
+                        <textarea class="form-control" rows="5" name="sintomasConsulta"
+                            id="field_sintomasConsulta" [(ngModel)]="consulta.sintomasConsulta"></textarea>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <label class="form-control-label" for="field_observacionesConsulta">Diagnóstico</label>
-                        <textarea class="form-control" rows="5" name="observacionesConsulta"
-                            id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                        <label class="form-control-label" for="field_diagnosticoConsulta">Diagnóstico</label>
+                        <textarea class="form-control" rows="5" name="diagnosticoConsulta"
+                            id="field_diagnosticoConsulta" [(ngModel)]="consulta.diagnosticoConsulta"></textarea>
                     </div>
                 </div>
 
@@ -44,34 +32,18 @@
                         id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
                 </div>
 
-                <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
-                    <label class="form-control-label" for="field_observacionesConsulta">Medicamentos</label>
-                    <textarea class="form-control" rows="5" name="observacionesConsulta"
-                        id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tratamientoConsulta">Medicamentos</label>
+                    <textarea class="form-control" rows="5" name="tratamientoConsulta"
+                        id="field_tratamientoConsulta" [(ngModel)]="consulta.tratamientoConsulta"></textarea>
                 </div>
 
-                <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
-                    <label class="form-control-label" for="field_observacionesConsulta">Indicaciones</label>
-                    <textarea class="form-control" rows="5" name="observacionesConsulta"
-                        id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta"></textarea>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_indicacionesConsulta">Indicaciones</label>
+                    <textarea class="form-control" rows="5" name="indicacionesConsulta"
+                        id="field_indicacionesConsulta" [(ngModel)]="consulta.indicacionesConsulta"></textarea>
                 </div>
 
-                <!--div class="form-group">
-                    <label class="form-control-label" for="field_constantesConsulta">Constantes</label>
-                    <select
-                        class="form-control"
-                        id="field_constantesConsulta"
-                        name="constantesConsulta"
-                        [(ngModel)]="consulta.constantesConsultaId"
-                    >
-                        <option [ngValue]="null"></option>
-                        <option
-                            [ngValue]="constantesOption.id"
-                            *ngFor="let constantesOption of constantesconsultas; trackBy: trackConstantesById"
-                            >{{ constantesOption.id }}</option
-                        >
-                    </select>
-                </div-->
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()"

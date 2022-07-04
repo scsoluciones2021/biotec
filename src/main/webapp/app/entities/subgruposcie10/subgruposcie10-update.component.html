@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-subgruposcie10-heading" jhiTranslate="gestWebApp.subgruposcie10.home.createOrEditLabel">Create or edit a Subgruposcie 10</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestWebApp.subgruposcie10.clave" for="field_clave">Clave</label>
+                    <input type="text" class="form-control" name="clave" id="field_clave"
+                           formControlName="clave"/>
+                    <div *ngIf="editForm.get('clave')!.invalid && (editForm.get('clave')!.dirty || editForm.get('clave')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('clave')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestWebApp.subgruposcie10.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                           formControlName="descripcion"/>
+                    <div *ngIf="editForm.get('descripcion')!.invalid && (editForm.get('descripcion')!.dirty || editForm.get('descripcion')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descripcion')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestWebApp.subgruposcie10.idGrupo" for="field_idGrupo">Id Grupo</label>
+                    <input type="number" class="form-control" name="idGrupo" id="field_idGrupo"
+                           formControlName="idGrupo"/>
+                    <div *ngIf="editForm.get('idGrupo')!.invalid && (editForm.get('idGrupo')!.dirty || editForm.get('idGrupo')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('idGrupo')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('idGrupo')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestWebApp.subgruposcie10.rel_grupo_subgrupo_cie10" for="field_rel_grupo_subgrupo_cie10">Rel Grupo Subgrupo Cie 10</label>
+                    <select class="form-control" id="field_rel_grupo_subgrupo_cie10" name="rel_grupo_subgrupo_cie10" formControlName="rel_grupo_subgrupo_cie10">
+                        <option [ngValue]="gruposcie10Option.id === editForm.get('rel_grupo_subgrupo_cie10')!.value?.id ? editForm.get('rel_grupo_subgrupo_cie10')!.value : gruposcie10Option" *ngFor="let gruposcie10Option of gruposcie10s; trackBy: trackById">{{ gruposcie10Option.descripcion }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

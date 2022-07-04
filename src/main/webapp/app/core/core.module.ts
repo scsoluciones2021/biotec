@@ -17,7 +17,7 @@ import locale from '@angular/common/locales/en';
         DatePipe
     ]
 })
-export class CpsjCoreModule {
+export class GestWebCoreModule {
     constructor() {
         registerLocaleData(locale);
     }

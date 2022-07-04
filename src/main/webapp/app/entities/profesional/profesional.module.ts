@@ -1,9 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
-import { CpsjAdminModule } from 'app/admin/admin.module';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { GestWebSharedModule } from 'app/shared';
+import { GestWebAdminModule } from 'app/admin/admin.module';
 import {
     ProfesionalComponent,
     ProfesionalDetailComponent,
@@ -13,12 +12,14 @@ import {
     profesionalRoute,
     profesionalPopupRoute
 } from './';
-
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageHelper } from 'app/core/language/language.helper';
 
 const ENTITY_STATES = [...profesionalRoute, ...profesionalPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, CpsjAdminModule, RouterModule.forChild(ENTITY_STATES), AutoCompleteModule, ],
+    imports: [GestWebSharedModule, GestWebAdminModule, RouterModule.forChild(ENTITY_STATES), AutoCompleteModule],
     declarations: [
         ProfesionalComponent,
         ProfesionalDetailComponent,
@@ -29,4 +30,12 @@ const ENTITY_STATES = [...profesionalRoute, ...profesionalPopupRoute];
     entryComponents: [ProfesionalComponent, ProfesionalUpdateComponent, ProfesionalDeleteDialogComponent, ProfesionalDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjProfesionalModule {}
+export class GestWebProfesionalModule {
+    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
+        this.languageHelper.language.subscribe((languageKey: string) => {
+            if (languageKey) {
+                this.languageService.changeLanguage(languageKey);
+            }
+        });
+    }
+}

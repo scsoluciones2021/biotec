@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { DiagnosticoUpdateComponent } from 'app/entities/diagnostico/diagnostico-update.component';
 import { DiagnosticoService } from 'app/entities/diagnostico/diagnostico.service';
 import { Diagnostico } from 'app/shared/model/diagnostico.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [DiagnosticoUpdateComponent]
             })
                 .overrideTemplate(DiagnosticoUpdateComponent, '')

@@ -2,9 +2,10 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="myUserLabel">
-                Create or edit a User
+               <span jhiTranslate="GestWebApp.usuario.home.createOrEditLabel">Create or edit a User</span> 
             </h2>
             <div>
+                <jhi-alert></jhi-alert>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!user.id">
                     <label>ID</label>
@@ -13,7 +14,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label">Login</label>
+                    <label class="form-control-label" >Login</label>
                     <input type="text" class="form-control" name="login" #loginInput="ngModel"
                         [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
 
@@ -36,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label">First Name</label>
+                    <label class="form-control-label" jhiTranslate="GestWebApp.usuario.first-name">First Name</label>
                     <input type="text" class="form-control" name="firstName" #firstNameInput="ngModel"
                         [(ngModel)]="user.firstName" maxlength="50">
 
@@ -49,12 +50,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Last Name</label>
+                    <label jhiTranslate="GestWebApp.usuario.lastname">Last Name</label>
                     <input type="text" class="form-control" name="lastName" #lastNameInput="ngModel"
                         [(ngModel)]="user.lastName" maxlength="50">
 
                     <div *ngIf="lastNameInput.dirty && lastNameInput.invalid">
                         <small class="form-text text-danger"
+                        jhiTranslate="global.messages.validate.entity.maxlength"
                         *ngIf="lastNameInput.errors.maxlength"
                        >
                             This field cannot be longer than 50 characters.
@@ -68,23 +70,25 @@
 
                     <div *ngIf="emailInput.dirty && emailInput.invalid">
                         <small class="form-text text-danger"
+                        jhiTranslate="global.messages.validate.email.required"
                         *ngIf="emailInput.errors.required">
                             This field is required.
                         </small>
 
                         <small class="form-text text-danger"
+                        jhiTranslate="global.messages.validate.email.maxlength"
                         *ngIf="emailInput.errors.maxlength"
                        >
                             This field cannot be longer than 100 characters.
                         </small>
 
-                        <small class="form-text text-danger"
+                        <small class="form-text text-danger" jhiTranslate="global.messages.validate.email.minlength"
                         *ngIf="emailInput.errors.minlength"
                        >
                             This field is required to be at least 5 characters.
                         </small>
 
-                        <small class="form-text text-danger"
+                        <small class="form-text text-danger" jhiTranslate="global.messages.validate.email.invalid"
                         *ngIf="emailInput.errors.email">
                             Your email is invalid.
                         </small>
@@ -93,24 +97,34 @@
                 <div class="form-check">
                     <label class="form-check-label" for="activated">
                         <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
-                        <span>Activated</span>
+                        <span jhiTranslate="GestWebApp.usuario.activated">Activated</span>
                     </label>
                 </div>
 
                 <div class="form-group">
-                    <label>Profiles</label>
+                    <label jhiTranslate="GestWebApp.usuario.profile"> Profiles</label>
                     <select class="form-control" multiple name="authority" [(ngModel)]="user.authorities">
                         <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
                     </select>
                 </div>
+
+                <!-- Agregado para selección del personal/profesional (según corresponda) -->
+
+                <!-- Si el rol seleccionado es médico se muestra el combo para asociar el profesional -->
+<div class="form-group" *ngIf="user.authorities!=null && user.authorities.indexOf('ROLE_MEDICO') > -1">
+    <label class="form-control-label" for="profesional">Profesional</label>
+    <select class="form-control" name="profesional" [(ngModel)]="idProfesional" (change)="checkProfesionalWithUser($event.target.value)">
+        <option *ngFor="let profesionales of profesionales" [value]="profesionales.id">{{profesionales.apellidoProfesional.concat(", ").concat(profesionales.nombreProfesional)}}</option>
+    </select>
+</div>
+<!-- Fin del agregado -->
             </div>
             <div>
                 <button type="button" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
-                   >Cancel</span>
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
                 <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

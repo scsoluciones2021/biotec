@@ -163,15 +163,16 @@ export class HorariosProfesionalUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         // Fechas
-        const moment = require('moment');
-        this.horariosProfesional.fechaDesde = moment(this.dateD);
+        const dayjs = require('dayjs');
+        this.horariosProfesional.fechaDesde = dayjs(this.dateD);
         if (this.dateH != null) {
-            this.horariosProfesional.fechaHasta = moment(this.dateH);
+            this.horariosProfesional.fechaHasta = dayjs(this.dateH);
         } else {
             this.horariosProfesional.fechaHasta = null;
         }
 
         // this.horariosProfesional.especialidadId = this.especialidad.id;
+        console.log(this.horariosProfesional.id);
         if (this.horariosProfesional.id !== undefined) {
             this.subscribeToSaveResponseCreate(this.horariosProfesionalService.update(this.horariosProfesional));
         } else {
@@ -192,6 +193,7 @@ export class HorariosProfesionalUpdateComponent implements OnInit {
 
     private onSaveSuccessCreate() {
         this.isSaving = false;
+        this.previousState();
     }
 
     private onSaveSuccess() {

@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Consultorios Privados San Justo",
+        "title": "CPSJ",
         "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
         "menu": {
             "home": {
@@ -14,6 +14,10 @@
                 "turno": "Turno",
                 "obraSocial": "Obra Social",
                 "pagoConsulta": "Pago Consulta",
+                "gruposcie10": "Grupos CIE 10",
+                "subgruposcie10": "Subgrupos CIE 10",
+                "categoriascie10": "Categorias CIE 10",
+                "diagnosticoscie10": "Diagnosticos CIE 10",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -83,7 +87,7 @@
                     "required": "Se requiere un correo electrónico.",
                     "invalid": "Su correo electrónico no es válido.",
                     "minlength": "Se requiere que su correo electrónico tenga por lo menos 5 caracteres",
-                    "maxlength": "Su correo electrónico no puede tener más de 50 caracteres"
+                    "maxlength": "Su correo electrónico no puede tener más de 100 caracteres"
                 }
             }
         },
@@ -101,11 +105,11 @@
             "addimage": "Añadir imagen",
             "back": "Volver",
             "cancel": "Cancelar",
-            "delete": "Eliminar",
+            "delete": "Borrar",
             "edit": "Editar",
-            "open": "Open",
+            "open": "Abrir",
             "save": "Guardar",
-            "view": "Vista"
+            "view": "Ver"
         },
         "detail": {
             "field": "Campo",

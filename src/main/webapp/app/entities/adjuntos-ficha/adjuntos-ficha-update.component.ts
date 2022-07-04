@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IAdjuntosFicha } from 'app/shared/model/adjuntos-ficha.model';
@@ -32,7 +32,7 @@ export class AdjuntosFichaUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.adjuntos_ficha.fecha = moment(this.fecha, DATE_TIME_FORMAT);
+        this.adjuntos_ficha.fecha = dayjs(this.fecha, DATE_TIME_FORMAT);
         if (this.adjuntos_ficha.id !== undefined) {
             this.subscribeToSaveResponse(this.adjuntos_fichaService.update(this.adjuntos_ficha));
         } else {
@@ -58,6 +58,6 @@ export class AdjuntosFichaUpdateComponent implements OnInit {
 
     set adjuntos_ficha(adjuntos_ficha: IAdjuntosFicha) {
         this._adjuntos_ficha = adjuntos_ficha;
-        this.fecha = moment(adjuntos_ficha.fecha).format(DATE_TIME_FORMAT);
+        this.fecha = dayjs(adjuntos_ficha.fecha).format(DATE_TIME_FORMAT);
     }
 }

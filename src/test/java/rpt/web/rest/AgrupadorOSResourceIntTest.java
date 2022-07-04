@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.AgrupadorOS;
 import rpt.repository.AgrupadorOSRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AgrupadorOSResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class AgrupadorOSResourceIntTest {
 
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";

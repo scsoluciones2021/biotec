@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { HorariosProfesionalDeleteDialogComponent } from 'app/entities/horarios-profesional/horarios-profesional-delete-dialog.component';
 import { HorariosProfesionalService } from 'app/entities/horarios-profesional/horarios-profesional.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [HorariosProfesionalDeleteDialogComponent]
             })
                 .overrideTemplate(HorariosProfesionalDeleteDialogComponent, '')

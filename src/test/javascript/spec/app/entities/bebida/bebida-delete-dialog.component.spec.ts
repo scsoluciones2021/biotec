@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { BebidaDeleteDialogComponent } from 'app/entities/bebida/bebida-delete-dialog.component';
 import { BebidaService } from 'app/entities/bebida/bebida.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [BebidaDeleteDialogComponent]
             })
                 .overrideTemplate(BebidaDeleteDialogComponent, '')

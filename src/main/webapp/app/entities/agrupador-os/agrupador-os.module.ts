@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     AgrupadorOSComponent,
     AgrupadorOSDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...agrupadorOSRoute, ...agrupadorOSPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         AgrupadorOSComponent,
         AgrupadorOSDetailComponent,
@@ -26,4 +26,4 @@ const ENTITY_STATES = [...agrupadorOSRoute, ...agrupadorOSPopupRoute];
     entryComponents: [AgrupadorOSComponent, AgrupadorOSUpdateComponent, AgrupadorOSDeleteDialogComponent, AgrupadorOSDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjAgrupadorOSModule {}
+export class GestWebAgrupadorOSModule {}

@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     TituloShortComponent,
     TituloShortDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...tituloShortRoute, ...tituloShortPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         TituloShortComponent,
         TituloShortDetailComponent,
@@ -26,4 +26,4 @@ const ENTITY_STATES = [...tituloShortRoute, ...tituloShortPopupRoute];
     entryComponents: [TituloShortComponent, TituloShortUpdateComponent, TituloShortDeleteDialogComponent, TituloShortDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjTituloShortModule {}
+export class GestWebTituloShortModule {}

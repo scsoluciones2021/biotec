@@ -1,6 +1,6 @@
 package rpt.repository;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import rpt.config.Constants;
 import rpt.config.audit.AuditEventConverter;
 import rpt.domain.PersistentAuditEvent;
@@ -31,7 +31,7 @@ import static rpt.repository.CustomAuditEventRepository.EVENT_DATA_COLUMN_MAX_LE
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

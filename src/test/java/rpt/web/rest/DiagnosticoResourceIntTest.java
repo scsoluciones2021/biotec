@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Diagnostico;
 import rpt.repository.DiagnosticoRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see DiagnosticoResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class DiagnosticoResourceIntTest {
 
     private static final String DEFAULT_CODIGO_DIAGNOSTICO = "AAAAAAAAAA";

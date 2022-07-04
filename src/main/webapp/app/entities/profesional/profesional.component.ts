@@ -51,9 +51,9 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
     ) {
         this.languageHelper.language.subscribe((languageKey: string) => {
             if (languageKey !== undefined) {
-              this.languageService.changeLanguage(languageKey);
+                this.languageService.changeLanguage(languageKey);
             }
-           });
+        });
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data.pagingParams.page;
@@ -63,15 +63,21 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
         });
 
         // Seteo de variable de búsqueda
-        this.currentSearch =
-            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search']
-                ? this.activatedRoute.snapshot.params['search']
+        this.busquedaA =
+            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['searchA']
+                ? this.activatedRoute.snapshot.params['searchA']
+                : '';
+        this.busquedaN =
+            this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['searchN']
+                ? this.activatedRoute.snapshot.params['searchN']
                 : '';
     }
 
     loadAll() {
         // Para búsqueda
-        if (this.currentSearch) {
+        const camposBusqueda = [this.busquedaA, this.busquedaN];
+
+        if (this.busquedaA || this.busquedaN) {
             this.profesionalService
                 .searchProfesional({
                     page: this.page - 1,
@@ -107,7 +113,6 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
     }
 
     transition() {
-
         this.router.navigate(['/profesional'], {
             queryParams: {
                 page: this.page,
@@ -122,7 +127,8 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
         this.page = 0;
 
         // Variable de búsqueda
-        this.currentSearch = '';
+        this.busquedaA = '';
+        this.busquedaN = '';
 
         this.router.navigate([
             '/profesional',
@@ -135,6 +141,10 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // Variable de búsqueda
+        this.busquedaA = '';
+        this.busquedaN = '';
+
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;

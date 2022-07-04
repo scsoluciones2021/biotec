@@ -4,3 +4,4 @@ export * from './consulta-delete-dialog.component';
 export * from './consulta-detail.component';
 export * from './consulta.component';
 export * from './consulta.route';
+export * from './consulta-modal.component';

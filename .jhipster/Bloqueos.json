@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nombreBloqueo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDesde",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaHasta",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "horaDesde",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "horaHasta",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20190123212755",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "bloqueos",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

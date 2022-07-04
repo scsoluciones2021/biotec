@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestWebApp.categoriascie10.home.title">Categorias Cie 10</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-categoriascie10" [routerLink]="['/categoriascie10/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="gestWebApp.categoriascie10.home.createLabel">
+            Create a new Categoriascie 10
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="categoriascie10s?.length === 0">
+        <span jhiTranslate="gestWebApp.categoriascie10.home.notFound">No categoriascie10s found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="categoriascie10s && categoriascie10s.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="clave"><span jhiTranslate="gestWebApp.categoriascie10.clave">Clave</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descripcion"><span jhiTranslate="gestWebApp.categoriascie10.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="idsubgrupo"><span jhiTranslate="gestWebApp.categoriascie10.idsubgrupo">Idsubgrupo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rel_subrupos_categorias_cie10.descripcion"><span jhiTranslate="gestWebApp.categoriascie10.rel_subrupos_categorias_cie10">Rel Subrupos Categorias Cie 10</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categoriascie10 of categoriascie10s ;trackBy: trackId">
+                    <td><a [routerLink]="['/categoriascie10', categoriascie10.id, 'view']">{{ categoriascie10.id }}</a></td>
+                    <td>{{ categoriascie10.clave }}</td>
+                    <td>{{ categoriascie10.descripcion }}</td>
+                    <td>{{ categoriascie10.idsubgrupo }}</td>
+                    <td>
+                        <div *ngIf="categoriascie10.rel_subrupos_categorias_cie10">
+                            <a [routerLink]="['/subgruposcie10', categoriascie10.rel_subrupos_categorias_cie10?.id, 'view']" >{{ categoriascie10.rel_subrupos_categorias_cie10?.descripcion }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/categoriascie10', categoriascie10.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/categoriascie10', categoriascie10.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(categoriascie10)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="categoriascie10s && categoriascie10s.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

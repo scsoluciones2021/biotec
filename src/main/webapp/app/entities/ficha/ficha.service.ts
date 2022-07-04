@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpRequest, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map, tap } from 'rxjs/operators';
 
@@ -57,13 +57,13 @@ export class FichaService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fechaIngreso = res.body.fechaIngreso != null ? moment(res.body.fechaIngreso) : null;
+        res.body.fechaIngreso = res.body.fechaIngreso != null ? dayjs(res.body.fechaIngreso) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((ficha: IFicha) => {
-            ficha.fechaIngreso = ficha.fechaIngreso != null ? moment(ficha.fechaIngreso) : null;
+            ficha.fechaIngreso = ficha.fechaIngreso != null ? dayjs(ficha.fechaIngreso) : null;
         });
         return res;
     }
@@ -96,5 +96,34 @@ export class FichaService {
             .set('profesionales', req.query[2])
             .set('especialidades', req.query[3]);
         return this.http.get<IFicha[]>(`${this.resourceUrl}/filtros`, { params: options, observe: 'response' });
+    }
+
+    getFilesName(id: number): Observable<String[]> {
+        return this.http.get<String[]>(`${this.resourceUrl}/getallfiles/${id}`);
+    }
+
+    existeFichaIdPac(id: number): Observable<HttpResponse<any>> {
+        return this.http.get<any>(`${this.resourceUrl}/busquedaXIdPac/${id}`, { observe: 'response' });
+    }
+
+    public downloadExcelFile() {
+        const url = 'http://localhost:8080/upload/Fichas';
+        const encodedAuth = window.localStorage.getItem('encodedAuth');
+
+        return this.http
+            .get(url, {
+                headers: new HttpHeaders({
+                    Authorization: 'Basic ' + encodedAuth,
+                    'Content-Type': 'application/octet-stream'
+                }),
+                responseType: 'blob'
+            })
+            .pipe(
+                tap(
+                    // Log the result or error
+                    data => console.log('You received data'),
+                    error => console.log(error)
+                )
+            );
     }
 }

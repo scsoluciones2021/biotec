@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.AntecedentesPersonales;
 import rpt.repository.AntecedentesPersonalesRepository;
@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AntecedentesPersonalesResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class AntecedentesPersonalesResourceIntTest {
 
     private static final Boolean DEFAULT_TABACO = false;

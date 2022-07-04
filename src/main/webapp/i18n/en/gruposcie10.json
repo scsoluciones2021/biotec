@@ -1,0 +1,23 @@
+{
+    "gestWebApp": {
+        "gruposcie10": {
+            "home": {
+                "title": "Gruposcie 10 S",
+                "createLabel": "Create a new Gruposcie 10",
+                "createOrEditLabel": "Create or edit a Gruposcie 10",
+                "notFound": "No Gruposcie 10 S found"
+            },
+            "created": "A new Gruposcie 10 is created with identifier {{ param }}",
+            "updated": "A Gruposcie 10 is updated with identifier {{ param }}",
+            "deleted": "A Gruposcie 10 is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Gruposcie 10 {{ id }}?"
+            },
+            "detail": {
+                "title": "Gruposcie 10"
+            },
+            "clave": "Clave",
+            "descripcion": "Descripcion"
+        }
+    }
+}

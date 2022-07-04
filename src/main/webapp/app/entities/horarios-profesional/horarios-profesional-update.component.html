@@ -4,18 +4,8 @@
             <h2 id="jhi-horarios-profesional-heading">Horarios</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <!--div class="form-group" [hidden]="!horariosProfesional.id">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="horariosProfesional.id"
-                        readonly />
-                </div-->
                 <label class="form-control-label" for="field_horario_prof_rel">Profesional</label>
                 <div class="form-group">
-                        <!--select class="form-control" id="field_horario_prof_rel" name="horario_prof_rel" [(ngModel)]="horariosProfesional.horario_prof_relId">
-                            <option [ngValue]="null"></option>
-                            <option [ngValue]="profesionalOption.id" *ngFor="let profesionalOption of profesionals; trackBy: trackProfesionalById">{{
-                                profesionalOption.nombreProfesional }}</option>
-                        </select-->
                         <p-autoComplete [disabled] = "horariosProfesional.id" id="horario_prof_rel" name="horario_prof_rel" [(ngModel)]="profesional" [suggestions]="filteredProfesionalSingle" (completeMethod)="filterProfesionalSingle($event)" inputStyleClass="form-control; padding-left: initial;" dataKey="profesional.Id"  field="nombreProfesional"  (onSelect)="seleccionProfesional($event)" (onUnselect)="borrarProfesional()" (onClear)="borrarProfesional()"  [size]="50" placeholder="Profesional" forceSelection = "true" inputId="profesional.Id" required [dropdown]="true"></p-autoComplete>
                     </div>
                 <div class="form-group">
@@ -93,7 +83,13 @@
                                         <td class="d-none">{{detalle.idHorario}}</td>
                                         <td>{{detalle.horaDesde}}</td>
                                         <td>{{detalle.horaHasta}}</td>
-                                        <td>{{detalle.lunes + " - " + detalle.martes}}</td>
+                                        <td>{{(detalle.lunes==1?"L":"")
+                                            + " - " + (detalle.martes==1?"M":"")
+                                            + " - " + (detalle.miercoles==1?"X":"")
+                                            + " - " + (detalle.jueves==1?"J":"")
+                                            + " - " + (detalle.viernes==1?"V":"")
+                                            + " - " + (detalle.sabado==1?"S":"")
+                                            + " - " + (detalle.domingo==1?"D":"") }}</td>
                                         <td>{{detalle.intervalo}}</td>
                                         <td>{{detalle.frecuencia}}</td>
                                         <td>{{detalle.cantidadPacientes}}</td>
@@ -109,10 +105,10 @@
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Volver</span>
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
                 <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

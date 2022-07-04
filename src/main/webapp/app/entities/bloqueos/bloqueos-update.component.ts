@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IBloqueos } from 'app/shared/model/bloqueos.model';
@@ -35,8 +35,8 @@ export class BloqueosUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.bloqueos.horaDesde = moment(this.horaDesde, DATE_TIME_FORMAT);
-        this.bloqueos.horaHasta = moment(this.horaHasta, DATE_TIME_FORMAT);
+        this.bloqueos.horaDesde = dayjs(this.horaDesde, DATE_TIME_FORMAT);
+        this.bloqueos.horaHasta = dayjs(this.horaHasta, DATE_TIME_FORMAT);
         if (this.bloqueos.id !== undefined) {
             this.subscribeToSaveResponse(this.bloqueosService.update(this.bloqueos));
         } else {
@@ -62,7 +62,7 @@ export class BloqueosUpdateComponent implements OnInit {
 
     set bloqueos(bloqueos: IBloqueos) {
         this._bloqueos = bloqueos;
-        this.horaDesde = moment(bloqueos.horaDesde).format(DATE_TIME_FORMAT);
-        this.horaHasta = moment(bloqueos.horaHasta).format(DATE_TIME_FORMAT);
+        this.horaDesde = dayjs(bloqueos.horaDesde).format(DATE_TIME_FORMAT);
+        this.horaHasta = dayjs(bloqueos.horaHasta).format(DATE_TIME_FORMAT);
     }
 }

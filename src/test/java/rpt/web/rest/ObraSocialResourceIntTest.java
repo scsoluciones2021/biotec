@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.ObraSocial;
 import rpt.repository.ObraSocialRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ObraSocialResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ObraSocialResourceIntTest {
 
     private static final String DEFAULT_CODIGO_OBRA_SOCIAL = "AAAAAAAAAA";

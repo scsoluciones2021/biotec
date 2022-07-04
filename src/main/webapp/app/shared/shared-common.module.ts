@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { CpsjSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './';
+import { GestWebSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './';
 
 @NgModule({
-    imports: [CpsjSharedLibsModule],
+    imports: [GestWebSharedLibsModule],
     declarations: [JhiAlertComponent, JhiAlertErrorComponent],
-    exports: [CpsjSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
+    exports: [GestWebSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
 })
-export class CpsjSharedCommonModule {}
+export class GestWebSharedCommonModule {}

@@ -1,0 +1,25 @@
+{
+    "gestWebApp": {
+        "subgruposcie10": {
+            "home": {
+                "title": "Subgruposcie 10 S",
+                "createLabel": "Crear nuevo Subgruposcie 10",
+                "createOrEditLabel": "Crear o editar Subgruposcie 10",
+                "notFound": "Ningún Subgruposcie 10 S encontrado"
+            },
+            "created": "Un nuevo Subgruposcie 10 ha sido creado con el identificador {{ param }}",
+            "updated": "Un Subgruposcie 10 ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Subgruposcie 10 ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Subgruposcie 10 {{ id }}?"
+            },
+            "detail": {
+                "title": "Subgruposcie 10"
+            },
+            "clave": "Clave",
+            "descripcion": "Descripcion",
+            "idGrupo": "Id Grupo",
+            "rel_grupo_subgrupo_cie10": "Rel Grupo Subgrupo Cie 10"
+        }
+    }
+}

@@ -11,6 +11,7 @@ import { ConsultaDetailComponent } from './consulta-detail.component';
 import { ConsultaUpdateComponent } from './consulta-update.component';
 import { ConsultaDeletePopupComponent } from './consulta-delete-dialog.component';
 import { IConsulta } from 'app/shared/model/consulta.model';
+import { ConsultaModalComponent } from './consulta-modal.component';
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaResolve implements Resolve<IConsulta> {
@@ -81,8 +82,21 @@ export const consultaPopupRoute: Routes = [
             consulta: ConsultaResolve
         },
         data: {
-            authorities: ['ROLE_MEDICO', 'ROLE_ADMIN'],
+            authorities: ['ROLE_MEDICO', 'ROLE_ADMIN', 'ROLE_USER'],
             pageTitle: 'Consultas'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'consulta/newModal',
+        component: ConsultaModalComponent,
+        resolve: {
+            consulta: ConsultaResolve
+        },
+        data: {
+            authorities: ['ROLE_MEDICO', 'ROLE_ADMIN', 'ROLE_USER'],
+            pageTitle: 'Consulta'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

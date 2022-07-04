@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AntecedentesPersonalesComponent } from 'app/entities/antecedentes-personales/antecedentes-personales.component';
 import { AntecedentesPersonalesService } from 'app/entities/antecedentes-personales/antecedentes-personales.service';
 import { AntecedentesPersonales } from 'app/shared/model/antecedentes-personales.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AntecedentesPersonalesComponent],
                 providers: []
             })

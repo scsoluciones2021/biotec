@@ -50,59 +50,63 @@
                     </div>
                     <div class="col-sm">
                         <label class="form-control-label" for="edad">Edad (años)</label>
-                    </div> 
+                    </div>
                     <div class="col-sm">
-                            <label class="form-control-label" for="edad">meses</label>
-                    </div>                    
-                  </div>
-                  <div class="row">
+                        <label class="form-control-label" for="edad">meses</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="form-group col-sm">
-                   
 
-                        <p-calendar id="field_fechaNacimiento" name="field_fechaNacimiento" [(ngModel)]="fechaNac" [showIcon]="true"
-                            placeholder="Fecha" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2030"  [maxDate]="maxDateValue"
-                            dateFormat="dd/mm/yy" [locale]="es" (onSelect)="seleccionDia($event)" ></p-calendar>
+
+                        <p-calendar id="field_fechaNacimiento" name="field_fechaNacimiento" [(ngModel)]="fechaNac"
+                            [showIcon]="true" placeholder="Fecha" [monthNavigator]="true" [yearNavigator]="true"
+                            yearRange="1900:2030" [maxDate]="maxDateValue" dateFormat="dd/mm/yy" [locale]="es"
+                            (onSelect)="seleccionDia($event)"></p-calendar>
                     </div>
                     <div class="form-group col-sm">
-                                
-                        <input type="text" class="form-control" id="edad" name="edad" [(ngModel)]="paciente.edad" readonly />
+
+                        <input type="text" class="form-control" id="edad" name="edad" [(ngModel)]="paciente.edad"
+                            readonly />
                     </div>
                     <div class="form-group col-sm">
                         <input type="text" class="form-control" id="meses" name="meses" [(ngModel)]="meses" readonly />
                     </div>
-                  </div>
-                
-                  
-                
-                
-                    
-                       
-                    
-                
+                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" for="field_provincia">Provincia</label>
-                    <select class="form-control" id="field_provincia" name="field_provincia" [(ngModel)]="paciente.provinciaId" required (change)="seleccionProvincia($event.target)" >
+                    <select class="form-control" id="field_provincia" name="field_provincia"
+                        [(ngModel)]="paciente.provinciaId" required (change)="seleccionProvincia($event.target)">
                         <!--option [ngValue]="null"></option-->
-                        <option [value]="provincia.id" *ngFor="let provincia of provincias; trackBy: trackProvinciaById">{{
+                        <option [value]="provincia.id"
+                            *ngFor="let provincia of provincias; trackBy: trackProvinciaById">{{
                             provincia.nombreProvincia
-                        }}</option>
+                            }}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_codigoPostal">Localidad</label>
                 </div>
                 <div class="form-group">
-                        <div class="ui-grid-row">
-                                <div class="ui-grid-col-12">
-                                    <p-autoComplete [disabled]="!locCompleta" inputStyleClass="form-control" dataKey="codigoPostal.Id" field="nombreCiudad"
-                                        id="field_codigoPostal" name="field_codigoPostal" [(ngModel)]="codigoPostal"
-                                        [suggestions]="filteredCPSingle" (completeMethod)="filterCPSingle($event)"
-                                        (onSelect)="seleccionCP($event)" (onUnselect)="borrarCP()" (onClear)="borrarCP()" [size]="30"
-                                        placeholder="Buscar Ciudad (Min. 3 caracteres)" [minLength]="3" forceSelection="true"
-                                        inputId="codigoPostal.Id" required ></p-autoComplete>
-                                
-                                </div>
-                            </div>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                            <p-autoComplete [disabled]="!locCompleta" inputStyleClass="form-control"
+                                dataKey="codigoPostal.Id" field="nombreCiudad" id="field_codigoPostal"
+                                name="field_codigoPostal" [(ngModel)]="codigoPostal" [suggestions]="filteredCPSingle"
+                                (completeMethod)="filterCPSingle($event)" (onSelect)="seleccionCP($event)"
+                                (onUnselect)="borrarCP()" (onClear)="borrarCP()" [size]="30"
+                                placeholder="Buscar Ciudad (Min. 3 caracteres)" [minLength]="3" forceSelection="true"
+                                inputId="codigoPostal.Id" required>
+                                <ng-template let-codigoPostal pTemplate="item">
+                                    <div>
+                                        {{codigoPostal.nombreCiudad.concat("(").concat(codigoPostal.codigo).concat(")")}}
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_direccionPaciente">Dirección</label>
@@ -138,14 +142,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!--div class="form-group">
-                    <label class="form-control-label" for="field_usuario">Usuario</label>
-                    <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="paciente.usuarioId" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
-                    </select>
-                </div-->
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">

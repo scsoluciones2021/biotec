@@ -1,8 +1,8 @@
 <div>
     <h2>
-        <span>Users</span>
+        <span jhiTranslate="GestWebApp.usuario.home.title">Users</span>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
-            <fa-icon [icon]="'plus'"></fa-icon> <span>Create a new User</span>
+            <fa-icon [icon]="'plus'"></fa-icon> <span jhiTranslate="GestWebApp.usuario.home.createLabel">Create a new User</span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -11,13 +11,13 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
                 <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="login"><span>Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="login"><span jhiTranslate="GestWebApp.usuario.user">Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="email"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
-                <th><span>Profiles</span></th>
-                <th jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span jhiTranslate="GestWebApp.usuario.profile">Profiles</span></th>
+                <th jhiSortBy="createdDate"><span jhiTranslate="GestWebApp.usuario.created-date">Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="lastModifiedBy"><span jhiTranslate="GestWebApp.usuario.user-modification">Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="lastModifiedDate"><span jhiTranslate="GestWebApp.usuario.modification-date">Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
             </thead>
@@ -47,19 +47,19 @@
                                 [routerLink]="['./', user.login, 'view']"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['./', user.login, 'edit']"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="button" (click)="deleteUser(user)"
                                 class="btn btn-danger btn-sm" [disabled]="currentAccount.login === user.login">
                             <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>

@@ -71,7 +71,7 @@
                 <label class="form-control-label" for="field_provincia">Provincia</label>
                 <select class="form-control" id="field_provincia" name="field_provincia" [(ngModel)]="paciente.provinciaId" required (change)="seleccionProvincia($event.target)" >
                     <!--option [ngValue]="null"></option-->
-                    <option [value]="provincia.id" *ngFor="let provincia of provincias; trackBy: trackProvinciaById">{{
+                    <option [value]="provincia.id" *ngFor="let provincia of provincias">{{
                         provincia.nombreProvincia
                     }}</option>
                 </select>

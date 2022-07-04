@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AgrupadorOSDetailComponent } from 'app/entities/agrupador-os/agrupador-os-detail.component';
 import { AgrupadorOS } from 'app/shared/model/agrupador-os.model';
 
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AgrupadorOSDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })

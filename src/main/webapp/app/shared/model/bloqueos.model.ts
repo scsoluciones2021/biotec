@@ -1,21 +1,21 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 
 export interface IBloqueos {
     id?: number;
     nombreBloqueo?: string;
-    fechaDesde?: Moment;
-    fechaHasta?: Moment;
-    horaDesde?: Moment;
-    horaHasta?: Moment;
+    fechaDesde?: Dayjs;
+    fechaHasta?: Dayjs;
+    horaDesde?: Dayjs;
+    horaHasta?: Dayjs;
 }
 
 export class Bloqueos implements IBloqueos {
     constructor(
         public id?: number,
         public nombreBloqueo?: string,
-        public fechaDesde?: Moment,
-        public fechaHasta?: Moment,
-        public horaDesde?: Moment,
-        public horaHasta?: Moment
+        public fechaDesde?: Dayjs,
+        public fechaHasta?: Dayjs,
+        public horaDesde?: Dayjs,
+        public horaHasta?: Dayjs
     ) {}
 }

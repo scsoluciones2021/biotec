@@ -34,9 +34,9 @@
                 <constraints nullable="true" />
             </column>
 
-            <!--column name="consulta_id" type="bigint">
+            <column name="especialidad_id" type="bigint">
                 <constraints nullable="true" />
-            </column-->
+            </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

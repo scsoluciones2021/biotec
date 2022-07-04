@@ -30,7 +30,7 @@ export const personalRoute: Routes = [
         path: 'personal',
         component: PersonalComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_ADMIN'],
             pageTitle: 'Personals'
         },
         canActivate: [UserRouteAccessService]

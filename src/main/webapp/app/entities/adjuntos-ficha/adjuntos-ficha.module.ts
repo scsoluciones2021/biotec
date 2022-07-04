@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     AdjuntosFichaComponent,
     AdjuntosFichaDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...adjuntosFichaRoute, ...adjuntosFichaPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         AdjuntosFichaComponent,
         AdjuntosFichaDetailComponent,
@@ -31,4 +31,4 @@ const ENTITY_STATES = [...adjuntosFichaRoute, ...adjuntosFichaPopupRoute];
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjAdjuntosFichaModule {}
+export class GestWebAdjuntosFichaModule {}

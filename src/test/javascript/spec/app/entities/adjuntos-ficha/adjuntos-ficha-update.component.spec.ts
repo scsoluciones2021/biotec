@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AdjuntosFichaUpdateComponent } from 'app/entities/adjuntos-ficha/adjuntos-ficha-update.component';
 import { AdjuntosFichaService } from 'app/entities/adjuntos-ficha/adjuntos-ficha.service';
 import { AdjuntosFicha } from 'app/shared/model/adjuntos-ficha.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AdjuntosFichaUpdateComponent]
             })
                 .overrideTemplate(AdjuntosFichaUpdateComponent, '')

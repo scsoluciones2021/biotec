@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { ConsultaUpdateComponent } from 'app/entities/consulta/consulta-update.component';
 import { ConsultaService } from 'app/entities/consulta/consulta.service';
 import { Consulta } from 'app/shared/model/consulta.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [ConsultaUpdateComponent]
             })
                 .overrideTemplate(ConsultaUpdateComponent, '')

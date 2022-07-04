@@ -2,12 +2,12 @@
     "userManagement": {
         "home": {
             "title": "Usuarios",
-            "createLabel": "Crear un nuevo usuario",
+            "createLabel": "Nuevo",
             "createOrEditLabel": "Crear o editar un usuario"
         },
-        "created": "A new user is created with identifier {{ param }}",
-        "updated": "An user is updated with identifier {{ param }}",
-        "deleted": "An user is deleted with identifier {{ param }}",
+        "created": "Nuevo usuario creado con el identificador {{ param }}",
+        "updated": "Se ha actualizado el usuario con el identificador {{ param }}",
+        "deleted": "Se ha eliminado el usuario con el identificador {{ param }}",
         "delete": {
             "question": "¿Seguro que quieres eliminar el usuario {{ login }}?"
         },

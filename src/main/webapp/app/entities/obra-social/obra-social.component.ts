@@ -30,6 +30,11 @@ export class ObraSocialComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
+    // Variables para búsqueda
+    busquedaNombre: string;
+    camposBusqueda: string[];
+    // Fin variables para búsqueda
+
     constructor(
         private obraSocialService: ObraSocialService,
         private parseLinks: JhiParseLinks,
@@ -49,6 +54,27 @@ export class ObraSocialComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        // Para búsqueda
+        this.camposBusqueda = [this.busquedaNombre];
+
+        if (this.busquedaNombre) {
+            this.obraSocialService
+                .searchObraSocial({
+                    page: this.page - 1,
+                    query: this.camposBusqueda,
+                    size: this.itemsPerPage,
+                    sort: this.sort()
+                })
+                .subscribe(
+                    (res: HttpResponse<IObraSocial[]>) => {
+                        console.log(res.body);
+                        this.paginateObraSocials(res.body, res.headers);
+                    },
+                    (res: HttpErrorResponse) => this.onError(res.message)
+                );
+            return;
+        }
+        // Para búsqueda
         this.obraSocialService
             .query({
                 page: this.page - 1,
@@ -81,6 +107,9 @@ export class ObraSocialComponent implements OnInit, OnDestroy {
 
     clear() {
         this.page = 0;
+        // Variables de búsqueda
+        this.busquedaNombre = '';
+
         this.router.navigate([
             '/obra-social',
             {
@@ -92,6 +121,9 @@ export class ObraSocialComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // Variables de búsqueda
+        this.busquedaNombre = '';
+
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
@@ -129,4 +161,27 @@ export class ObraSocialComponent implements OnInit, OnDestroy {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+
+    // Métodos para búsqueda
+    search(nom) {
+        if (!nom) {
+            return this.clear();
+        }
+        this.page = 0;
+
+        this.busquedaNombre = nom;
+        this.camposBusqueda = [this.busquedaNombre];
+
+        this.router.navigate([
+            '/obra-social',
+            {
+                search: this.camposBusqueda,
+                page: this.page,
+                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            }
+        ]);
+        this.loadAll();
+    }
+
+    // Fin métodos para búsqueda
 }

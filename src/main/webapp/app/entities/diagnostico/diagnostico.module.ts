@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     DiagnosticoComponent,
     DiagnosticoDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...diagnosticoRoute, ...diagnosticoPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         DiagnosticoComponent,
         DiagnosticoDetailComponent,
@@ -26,4 +26,4 @@ const ENTITY_STATES = [...diagnosticoRoute, ...diagnosticoPopupRoute];
     entryComponents: [DiagnosticoComponent, DiagnosticoUpdateComponent, DiagnosticoDeleteDialogComponent, DiagnosticoDeletePopupComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjDiagnosticoModule {}
+export class GestWebDiagnosticoModule {}

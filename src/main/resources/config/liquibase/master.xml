@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-   <!-- <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181120224449_added_entity_Adjuntos_ficha.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190428172015_added_entity_AgrupadorOS.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20181001014143_added_entity_Alergia.xml" relativeToChangelogFile="false"/>
@@ -48,7 +48,14 @@
     <include file="config/liquibase/changelog/20191103002439_added_entity_PagoConsulta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191103002439_added_entity_constraints_PagoConsulta.xml" relativeToChangelogFile="false"/>
 
--->
+    <include file="config/liquibase/changelog/20210311224159_added_entity_Gruposcie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311225047_added_entity_Subgruposcie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311225047_added_entity_constraints_Subgruposcie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311225702_added_entity_Categoriascie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311225702_added_entity_constraints_Categoriascie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311230049_added_entity_Diagnosticoscie10.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210311230049_added_entity_constraints_Diagnosticoscie10.xml" relativeToChangelogFile="false"/>
+
 
 
 </databaseChangeLog>

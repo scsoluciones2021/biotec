@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { IntoleranciaComponent } from 'app/entities/intolerancia/intolerancia.component';
 import { IntoleranciaService } from 'app/entities/intolerancia/intolerancia.service';
 import { Intolerancia } from 'app/shared/model/intolerancia.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [IntoleranciaComponent],
                 providers: []
             })

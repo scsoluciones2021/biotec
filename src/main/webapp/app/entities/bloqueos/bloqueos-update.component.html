@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-bloqueos-heading" >Bloqueo</h2>
+            <h2 id="jhi-bloqueos-heading" >Feriado / día no laborable</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!bloqueos.id">
@@ -10,7 +10,7 @@
                         [(ngModel)]="bloqueos.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_nombreBloqueo">Nombre Bloqueo</label>
+                    <label class="form-control-label"  for="field_nombreBloqueo">Nombre</label>
                     <input type="text" class="form-control" name="nombreBloqueo" id="field_nombreBloqueo"
                         [(ngModel)]="bloqueos.nombreBloqueo" required/>
                     <div [hidden]="!(editForm.controls.nombreBloqueo?.dirty && editForm.controls.nombreBloqueo?.invalid)">
@@ -53,14 +53,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cpsjApp.bloqueos.horaDesde" for="field_horaDesde">Hora Desde</label>
+                    <label class="form-control-label" jhiTranslate="GestWebApp.bloqueos.horaDesde" for="field_horaDesde">Hora Desde</label>
                     <div class="d-flex">
                         <input id="field_horaDesde" type="datetime-local" class="form-control" name="horaDesde" [(ngModel)]="horaDesde"
                         />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="consultoriosPrivadosSanJustoApp.bloqueos.horaHasta" for="field_horaHasta">Hora Hasta</label>
+                    <label class="form-control-label" jhiTranslate="GestWebApp.bloqueos.horaHasta" for="field_horaHasta">Hora Hasta</label>
                     <div class="d-flex">
                         <input id="field_horaHasta" type="datetime-local" class="form-control" name="horaHasta" [(ngModel)]="horaHasta"
                         />

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpRequest, HttpEvent, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -58,13 +58,13 @@ export class ConsultaService {
     }
 
     private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fechaConsulta = res.body.fechaConsulta != null ? moment(res.body.fechaConsulta) : null;
+        res.body.fechaConsulta = res.body.fechaConsulta != null ? dayjs(res.body.fechaConsulta) : null;
         return res;
     }
 
     private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         res.body.forEach((consulta: IConsulta) => {
-            consulta.fechaConsulta = consulta.fechaConsulta != null ? moment(consulta.fechaConsulta) : null;
+            consulta.fechaConsulta = consulta.fechaConsulta != null ? dayjs(consulta.fechaConsulta) : null;
         });
         return res;
     }
@@ -76,12 +76,34 @@ export class ConsultaService {
         const req = new HttpRequest('POST', `${this.resourceUrl}/post`, formdata, {
             reportProgress: true,
             responseType: 'text'
-          });
-       return this.http.request(req);
-      }
+        });
+        return this.http.request(req);
+    }
 
-      getFiles(): Observable<any> {
-          console.log(`${this.resourceUrl}/getallfiles`);
+    getFiles(): Observable<any> {
+        console.log(`${this.resourceUrl}/getallfiles`);
         return this.http.get<any>(`${this.resourceUrl}/getallfiles`);
-      }
+    }
+
+    getConsultasXFicha(id: number): Observable<EntityArrayResponseType> {
+        const options = new HttpParams().set('idFicha', id.toString());
+        return this.http
+            .get<IConsulta[]>(`${this.resourceUrl}/fichas`, { params: options, observe: 'response' })
+            .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    }
+    setFichaConsulta(
+        idConsulta: number,
+        idPaciente: number,
+        idProfesional: number,
+        idTurno: number,
+        idEspecialidad: number
+    ): Observable<HttpResponse<any>> {
+        const options = new HttpParams()
+            .set('idConsulta', idConsulta.toString())
+            .set('idPaciente', idPaciente.toString())
+            .set('idProfesional', idProfesional.toString())
+            .set('idTurno', idTurno.toString())
+            .set('idEspecialidad', idEspecialidad.toString());
+        return this.http.get<any>(`${this.resourceUrl}/ficha-consulta`, { params: options, observe: 'response' });
+    }
 }

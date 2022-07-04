@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Data } from '@angular/router';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AdjuntosFichaComponent } from 'app/entities/adjuntos-ficha/adjuntos-ficha.component';
 import { AdjuntosFichaService } from 'app/entities/adjuntos-ficha/adjuntos-ficha.service';
 import { AdjuntosFicha } from 'app/shared/model/adjuntos-ficha.model';
@@ -17,7 +17,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AdjuntosFichaComponent],
                 providers: [
                     {

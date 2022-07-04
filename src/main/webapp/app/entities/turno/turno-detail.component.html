@@ -1,49 +1,49 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="turno">
-            <h2><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.detail.title">Turno</span> {{turno.id}}</h2>
+            <h2><span jhiTranslate="GestWebApp.turno.detail.title">Turno</span> {{turno.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.dni">Dni</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.dni">Dni</span></dt>
                 <dd>
                     <span>{{turno.dni}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.apellido">Apellido</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.apellido">Apellido</span></dt>
                 <dd>
                     <span>{{turno.apellido}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.nombre">Nombre</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.nombre">Nombre</span></dt>
                 <dd>
                     <span>{{turno.nombre}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.telefono">Telefono</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.telefono">Telefono</span></dt>
                 <dd>
                     <span>{{turno.telefono}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.email">Email</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.email">Email</span></dt>
                 <dd>
                     <span>{{turno.email}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.dia">Dia</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.dia">Dia</span></dt>
                 <dd>
                     <span>{{turno.dia}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.hora">Hora</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.hora">Hora</span></dt>
                 <dd>
                     <span>{{turno.hora}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.idHorario">Id Horario</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.idHorario">Id Horario</span></dt>
                 <dd>
                     <span>{{turno.idHorario}}</span>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.tur_esp_rel">Tur Esp Rel</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.tur_esp_rel">Tur Esp Rel</span></dt>
                 <dd>
                     <div *ngIf="turno.tur_esp_relId">
                         <a [routerLink]="['/especialidad', turno.tur_esp_relId, 'view']">{{turno.tur_esp_relNombreEspecialidad}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="consultoriosPrivadosSanJustoApp.turno.tur_prof_rel">Tur Prof Rel</span></dt>
+                <dt><span jhiTranslate="GestWebApp.turno.tur_prof_rel">Tur Prof Rel</span></dt>
                 <dd>
                     <div *ngIf="turno.tur_prof_relId">
                         <a [routerLink]="['/profesional', turno.tur_prof_relId, 'view']">{{turno.tur_prof_relNombreProfesional}}</a>

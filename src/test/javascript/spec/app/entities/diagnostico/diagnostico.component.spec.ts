@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { DiagnosticoComponent } from 'app/entities/diagnostico/diagnostico.component';
 import { DiagnosticoService } from 'app/entities/diagnostico/diagnostico.service';
 import { Diagnostico } from 'app/shared/model/diagnostico.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [DiagnosticoComponent],
                 providers: []
             })

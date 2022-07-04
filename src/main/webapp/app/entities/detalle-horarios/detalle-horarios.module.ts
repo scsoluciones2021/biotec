@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     DetalleHorariosComponent,
     DetalleHorariosDetailComponent,
@@ -18,7 +18,7 @@ import { DetalleHorariosModalComponent } from './detalle-horarios-modal.componen
 const ENTITY_STATES = [...detalleHorariosRoute, ...detalleHorariosPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES),
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES),
         // Para los días
         CheckboxModule,
         // Para la hora desde/hasta
@@ -39,4 +39,4 @@ const ENTITY_STATES = [...detalleHorariosRoute, ...detalleHorariosPopupRoute];
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjDetalleHorariosModule {}
+export class GestWebDetalleHorariosModule {}

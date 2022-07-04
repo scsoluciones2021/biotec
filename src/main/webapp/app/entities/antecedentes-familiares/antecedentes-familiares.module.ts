@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     AntecedentesFamiliaresComponent,
     AntecedentesFamiliaresDetailComponent,
@@ -15,7 +15,7 @@ import {
 const ENTITY_STATES = [...antecedentesFamiliaresRoute, ...antecedentesFamiliaresPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [GestWebSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         AntecedentesFamiliaresComponent,
         AntecedentesFamiliaresDetailComponent,
@@ -32,4 +32,4 @@ const ENTITY_STATES = [...antecedentesFamiliaresRoute, ...antecedentesFamiliares
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [AntecedentesFamiliaresUpdateComponent],
 })
-export class CpsjAntecedentesFamiliaresModule {}
+export class GestWebAntecedentesFamiliaresModule {}

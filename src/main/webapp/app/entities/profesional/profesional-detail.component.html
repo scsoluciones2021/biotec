@@ -17,6 +17,10 @@
                         <img [src]="imagenUrl" style="width: 250px; height: 200px" />
                     </div>
                 </dd>
+                <dt><span>Apellido</span></dt>
+                <dd>
+                    <span>{{profesional.apellidoProfesional}}</span>
+                </dd>
                 <dt><span>Nombre</span></dt>
                 <dd>
                     <span>{{profesional.nombreProfesional}}</span>
@@ -74,11 +78,11 @@
             </dl>
 
             <button type="submit" (click)="previousState()" class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Atrás</span>
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
             <button type="button" [routerLink]="['/profesional', profesional.id, 'edit']" class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Editar</span>
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
     </div>

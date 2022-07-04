@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.AntecedentesFamiliares;
 import rpt.repository.AntecedentesFamiliaresRepository;
@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AntecedentesFamiliaresResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class AntecedentesFamiliaresResourceIntTest {
 
     private static final Boolean DEFAULT_VIVO_AF = false;

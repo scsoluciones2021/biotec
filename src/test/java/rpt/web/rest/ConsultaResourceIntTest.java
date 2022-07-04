@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.Consulta;
 import rpt.repository.ConsultaRepository;
@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ConsultaResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ConsultaResourceIntTest {
 
     private static final LocalDate DEFAULT_FECHA_CONSULTA = LocalDate.ofEpochDay(0L);

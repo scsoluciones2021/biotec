@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { ObsAntecFamiliarUpdateComponent } from 'app/entities/obs-antec-familiar/obs-antec-familiar-update.component';
 import { ObsAntecFamiliarService } from 'app/entities/obs-antec-familiar/obs-antec-familiar.service';
 import { ObsAntecFamiliar } from 'app/shared/model/obs-antec-familiar.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [ObsAntecFamiliarUpdateComponent]
             })
                 .overrideTemplate(ObsAntecFamiliarUpdateComponent, '')

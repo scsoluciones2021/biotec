@@ -30,6 +30,12 @@ export class HorariosProfesionalComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
+    // Variables para búsqueda
+    busquedaNombre: string;
+    busquedaEspecialidad: string;
+    camposBusqueda: string[];
+    // Fin variables para búsqueda
+
     constructor(
         private horariosProfesionalService: HorariosProfesionalService,
         private parseLinks: JhiParseLinks,
@@ -49,6 +55,28 @@ export class HorariosProfesionalComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        // Para búsqueda
+        this.camposBusqueda = [this.busquedaNombre, this.busquedaEspecialidad];
+
+        if (this.busquedaNombre || this.busquedaEspecialidad) {
+            this.horariosProfesionalService
+                .searchHorarios({
+                    page: this.page - 1,
+                    query: this.camposBusqueda,
+                    size: this.itemsPerPage,
+                    sort: this.sort()
+                })
+                .subscribe(
+                    (res: HttpResponse<IHorariosProfesional[]>) => {
+                        console.log(res.body);
+                        this.paginateHorariosProfesionals(res.body, res.headers);
+                    },
+                    (res: HttpErrorResponse) => this.onError(res.message)
+                );
+            return;
+        }
+        // Para búsqueda
+
         this.horariosProfesionalService
             .query({
                 page: this.page - 1,
@@ -81,6 +109,10 @@ export class HorariosProfesionalComponent implements OnInit, OnDestroy {
 
     clear() {
         this.page = 0;
+        // Variables de búsqueda
+        this.busquedaNombre = '';
+        this.busquedaEspecialidad = '';
+
         this.router.navigate([
             '/horarios-profesional',
             {
@@ -92,6 +124,10 @@ export class HorariosProfesionalComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // Variables de búsqueda
+        this.busquedaNombre = '';
+        this.busquedaEspecialidad = '';
+
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
@@ -129,4 +165,28 @@ export class HorariosProfesionalComponent implements OnInit, OnDestroy {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+
+    // Métodos para búsqueda
+    search(nom, esp) {
+        if (!nom && !esp) {
+            return this.clear();
+        }
+        this.page = 0;
+
+        this.busquedaNombre = nom;
+        this.busquedaEspecialidad = esp;
+        this.camposBusqueda = [this.busquedaNombre, this.busquedaEspecialidad];
+
+        this.router.navigate([
+            '/horarios-profesional',
+            {
+                search: this.camposBusqueda,
+                page: this.page,
+                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+            }
+        ]);
+        this.loadAll();
+    }
+
+    // Fin métodos para búsqueda
 }

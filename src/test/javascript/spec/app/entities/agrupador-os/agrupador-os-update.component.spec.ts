@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AgrupadorOSUpdateComponent } from 'app/entities/agrupador-os/agrupador-os-update.component';
 import { AgrupadorOSService } from 'app/entities/agrupador-os/agrupador-os.service';
 import { AgrupadorOS } from 'app/shared/model/agrupador-os.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AgrupadorOSUpdateComponent]
             })
                 .overrideTemplate(AgrupadorOSUpdateComponent, '')

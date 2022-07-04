@@ -10,18 +10,14 @@
     <div>
             <div class="hero" *ngIf="!isAuthenticated() && !notRegistering">
 
-                <h1 style="color:chocolate;">CPSJ</h1>
-                    <h3 style="color:#1abc9c;">Consultorios Privados San Justo</h3>        
+                <h1 style="color:chocolate;" jhiTranslate="global.title">Nombre Empresa</h1>
+                    <h3 style="color:#1abc9c;">GestWeb</h3>        
       
                    <a (click)="login()" class="btn btn-hero btn-lg">Turnos Online</a>
               </div>
-        <ngb-carousel *ngIf="!isAuthenticated() && !notRegistering" #myCarousel="ngbCarousel">
+        <ngb-carousel *ngIf="!isAuthenticated() && !notRegistering && images.length>0" #myCarousel="ngbCarousel">
             <ng-template ngbSlide *ngFor="let image of images; let i = index" id="{{i}}">
-                <img [class.active]="i==1" [src]="image.source" alt="image.alt" class="d-block w-100" />
-                <!-- <div class="carousel-caption">
-                    <h3 class="h3-responsive">{{ image.alt }}</h3>
-                    <p>{{ image.title }}</p> 
-                </div> -->
+                <img *ngIf="images.length>0" [class.active]="i==1" [src]="image.source" alt="image.alt" class="d-block w-100" />               
             </ng-template>
         </ngb-carousel>
     </div>

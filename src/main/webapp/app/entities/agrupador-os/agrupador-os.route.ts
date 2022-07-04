@@ -36,7 +36,7 @@ export const agrupadorOSRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             defaultSort: 'id,asc',
-            pageTitle: 'consultoriosPrivadosSanJustoApp.agrupadorOS.home.title'
+            pageTitle: 'GestWebApp.agrupadorOS.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -48,7 +48,7 @@ export const agrupadorOSRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'consultoriosPrivadosSanJustoApp.agrupadorOS.home.title'
+            pageTitle: 'GestWebApp.agrupadorOS.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -60,7 +60,7 @@ export const agrupadorOSRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'consultoriosPrivadosSanJustoApp.agrupadorOS.home.title'
+            pageTitle: 'GestWebApp.agrupadorOS.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -72,7 +72,7 @@ export const agrupadorOSRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'consultoriosPrivadosSanJustoApp.agrupadorOS.home.title'
+            pageTitle: 'GestWebApp.agrupadorOS.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -87,7 +87,7 @@ export const agrupadorOSPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'consultoriosPrivadosSanJustoApp.agrupadorOS.home.title'
+            pageTitle: 'GestWebApp.agrupadorOS.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

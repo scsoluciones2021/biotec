@@ -1,6 +1,6 @@
 import { IFicha } from 'app/shared/model//ficha.model';
 import { IObraSocial } from './obra-social.model';
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 
 export interface IPaciente {
     id?: number;
@@ -17,7 +17,7 @@ export interface IPaciente {
     codigoPostalId?: number;
     provinciaNombreProvincia?: string;
     provinciaId?: number;
-    fechaNacimiento?: Moment;
+    fechaNacimiento?: Dayjs;
     edad?: number;
 }
 
@@ -37,7 +37,7 @@ export class Paciente implements IPaciente {
         public codigoPostalId?: number,
         public provinciaNombreProvincia?: string,
         public provinciaId?: number,
-        public fechaNacimiento?: Moment,
+        public fechaNacimiento?: Dayjs,
         public edad?: number
-    ) { }
+    ) {}
 }

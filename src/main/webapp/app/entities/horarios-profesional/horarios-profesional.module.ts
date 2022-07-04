@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CpsjSharedModule } from 'app/shared';
+import { GestWebSharedModule } from 'app/shared';
 import {
     HorariosProfesionalComponent,
     HorariosProfesionalDetailComponent,
@@ -12,22 +12,26 @@ import {
     horariosProfesionalPopupRoute
 } from './';
 
-import {MultiSelectModule} from 'primeng/multiselect';
-import {CheckboxModule} from 'primeng/checkbox';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {KeyFilterModule} from 'primeng/keyfilter';
-import {InputMaskModule} from 'primeng/inputmask';
-import {AutoCompleteModule} from 'primeng/autocomplete';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputMaskModule } from 'primeng/inputmask';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForDiasPipe } from '../../shared/util/forDias.pipe';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 
+import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageHelper } from 'app/core/language/language.helper';
 
 const ENTITY_STATES = [...horariosProfesionalRoute, ...horariosProfesionalPopupRoute];
 
 @NgModule({
-    imports: [CpsjSharedModule, RouterModule.forChild(ENTITY_STATES),
+    imports: [
+        GestWebSharedModule,
+        RouterModule.forChild(ENTITY_STATES),
         // Módulos para días
         MultiSelectModule,
         // CheckboxModule,
@@ -36,11 +40,11 @@ const ENTITY_STATES = [...horariosProfesionalRoute, ...horariosProfesionalPopupR
         // Para los horarios
         KeyFilterModule,
         InputMaskModule,
-        CalendarModule, 
+        CalendarModule,
         // Para los profesionales
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        AutoCompleteModule,       
+        AutoCompleteModule
     ],
     declarations: [
         HorariosProfesionalComponent,
@@ -48,8 +52,8 @@ const ENTITY_STATES = [...horariosProfesionalRoute, ...horariosProfesionalPopupR
         HorariosProfesionalUpdateComponent,
         HorariosProfesionalDeleteDialogComponent,
         HorariosProfesionalDeletePopupComponent,
-         // Para mostrar días 
-         ForDiasPipe,
+        // Para mostrar días
+        ForDiasPipe
     ],
     entryComponents: [
         HorariosProfesionalComponent,
@@ -59,4 +63,12 @@ const ENTITY_STATES = [...horariosProfesionalRoute, ...horariosProfesionalPopupR
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CpsjHorariosProfesionalModule {}
+export class GestWebHorariosProfesionalModule {
+    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
+        this.languageHelper.language.subscribe((languageKey: string) => {
+            if (languageKey !== undefined) {
+                this.languageService.changeLanguage(languageKey);
+            }
+        });
+    }
+}

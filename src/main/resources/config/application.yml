@@ -34,7 +34,7 @@ management:
 
 spring:
     application:
-        name: Cpsj
+        name: GestWeb
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -85,11 +85,11 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: Cpsj@localhost
+        from: GestWeb@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: Cpsj API
-        description: Cpsj API documentation
+        title: GestWeb API
+        description: GestWeb API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:
@@ -108,3 +108,9 @@ jhipster:
 # ===================================================================
 
 # application:
+
+application:
+    client-data: 
+        name: CPSJ
+    ArchivoProperties: 
+        base-url: "upload\\Fichas"

@@ -31,7 +31,7 @@ export const calendarioRoute: Routes = [
         component: CalendarioComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.calendario.home.title'
+            pageTitle: 'GestWebApp.calendario.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -43,7 +43,7 @@ export const calendarioRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.calendario.home.title'
+            pageTitle: 'GestWebApp.calendario.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -55,7 +55,7 @@ export const calendarioRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.calendario.home.title'
+            pageTitle: 'GestWebApp.calendario.home.title'
         },
         canActivate: [UserRouteAccessService]
     },
@@ -67,7 +67,7 @@ export const calendarioRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.calendario.home.title'
+            pageTitle: 'GestWebApp.calendario.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -82,7 +82,7 @@ export const calendarioPopupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'cpsjApp.calendario.home.title'
+            pageTitle: 'GestWebApp.calendario.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

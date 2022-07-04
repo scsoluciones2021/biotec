@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AgrupadorOSDeleteDialogComponent } from 'app/entities/agrupador-os/agrupador-os-delete-dialog.component';
 import { AgrupadorOSService } from 'app/entities/agrupador-os/agrupador-os.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AgrupadorOSDeleteDialogComponent]
             })
                 .overrideTemplate(AgrupadorOSDeleteDialogComponent, '')

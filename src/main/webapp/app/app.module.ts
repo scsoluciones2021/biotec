@@ -10,15 +10,15 @@ import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { CpsjSharedModule } from 'app/shared';
-import { CpsjCoreModule } from 'app/core';
-import { CpsjAppRoutingModule } from './app-routing.module';
-import { CpsjHomeModule } from './home/home.module';
-import { CpsjAccountModule } from './account/account.module';
-import { CpsjEntityModule } from './entities/entity.module';
-import { GalleriaModule } from 'primeng/galleria';
+import { GestWebSharedModule } from 'app/shared';
+import { GestWebCoreModule } from 'app/core';
+import { GestWebAppRoutingModule } from './app-routing.module';
+import { GestWebHomeModule } from './home/home.module';
+import { GestWebAccountModule } from './account/account.module';
+import { GestWebEntityModule } from './entities/entity.module';
+// import { GalleriaModule } from 'primeng/galleria';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent,  ActiveMenuDirective, ErrorComponent } from './layouts';
+import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JhiLanguageHelper } from './core/language/language.helper';
@@ -26,20 +26,20 @@ import { JhiLanguageHelper } from './core/language/language.helper';
 @NgModule({
     imports: [
         BrowserModule,
-        CpsjAppRoutingModule,
+        GestWebAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
-        CpsjSharedModule,
-        CpsjCoreModule,
-        CpsjHomeModule,
-        CpsjAccountModule,
-        CpsjEntityModule,
+        GestWebSharedModule,
+        GestWebCoreModule,
+        GestWebHomeModule,
+        GestWebAccountModule,
+        GestWebEntityModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        GalleriaModule,
+        // GalleriaModule,
         NgbModule.forRoot(),
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent,  ActiveMenuDirective, FooterComponent],
+    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
@@ -66,14 +66,14 @@ import { JhiLanguageHelper } from './core/language/language.helper';
             deps: [Injector]
         }
     ],
-    bootstrap: [JhiMainComponent],
+    bootstrap: [JhiMainComponent]
 })
-export class CpsjAppModule {
+export class GestWebAppModule {
     constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
         this.languageHelper.language.subscribe((languageKey: string) => {
-         if (languageKey !== undefined) {
-           this.languageService.changeLanguage(languageKey);
-         }
+            if (languageKey !== undefined) {
+                this.languageService.changeLanguage(languageKey);
+            }
         });
-       }
+    }
 }

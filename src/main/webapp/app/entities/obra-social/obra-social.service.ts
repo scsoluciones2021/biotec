@@ -42,10 +42,15 @@ export class ObraSocialService {
         return this.http.get<IObraSocial[]>(this.resourceSearchUrl2, { params: options, observe: 'response' });
     }
 
-    
     // Para buscar todas las obras sociales sin paginación
     buscarOSTodas(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IObraSocial[]>(`${this.resourceUrl}/todas`, { params: options, observe: 'response' });
+    }
+
+    searchObraSocial(req?: any): Observable<EntityArrayResponseType> {
+        const options = new HttpParams().set('nombre', req.query[0]);
+
+        return this.http.get<IObraSocial[]>(`${this.resourceUrl}/busqueda-general`, { params: options, observe: 'response' });
     }
 }

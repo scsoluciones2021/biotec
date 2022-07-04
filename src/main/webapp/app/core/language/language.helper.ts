@@ -57,7 +57,7 @@ export class JhiLanguageHelper {
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'cpsjApp';
+        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'GestWebApp';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }

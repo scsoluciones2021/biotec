@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AntecedentesFamiliaresUpdateComponent } from 'app/entities/antecedentes-familiares/antecedentes-familiares-update.component';
 import { AntecedentesFamiliaresService } from 'app/entities/antecedentes-familiares/antecedentes-familiares.service';
 import { AntecedentesFamiliares } from 'app/shared/model/antecedentes-familiares.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AntecedentesFamiliaresUpdateComponent]
             })
                 .overrideTemplate(AntecedentesFamiliaresUpdateComponent, '')

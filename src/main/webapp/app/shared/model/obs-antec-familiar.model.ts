@@ -1,11 +1,11 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 
 export interface IObsAntecFamiliar {
     id?: number;
     idEspecialidad?: number;
     idMedico?: number;
     observaciones?: string;
-    fecha?: Moment;
+    fecha?: Dayjs;
     antecedentesFamiliaresId?: number;
 }
 
@@ -15,7 +15,7 @@ export class ObsAntecFamiliar implements IObsAntecFamiliar {
         public idEspecialidad?: number,
         public idMedico?: number,
         public observaciones?: string,
-        public fecha?: Moment,
+        public fecha?: Dayjs,
         public antecedentesFamiliaresId?: number
     ) {}
 }

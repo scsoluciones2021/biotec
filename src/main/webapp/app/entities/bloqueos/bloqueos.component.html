@@ -4,7 +4,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bloqueos" [routerLink]="['/bloqueos/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span>
-            Nuevo Bloqueo
+            Nuevo Feriado/día no laboral
             </span>
         </button>
     </h2>
@@ -15,11 +15,11 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombreBloqueo"><span>Nombre Bloqueo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreBloqueo"><span>Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="fechaDesde"><span>Fecha Desde</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="fechaHasta"><span>Fecha Hasta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="horaDesde"><span>Hora Desde</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="horaHasta"><span>Hora Hasta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!-- <th jhiSortBy="horaDesde"><span>Hora Desde</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="horaHasta"><span>Hora Hasta</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
             <th></th>
             </tr>
             </thead>
@@ -29,8 +29,8 @@
                 <td>{{bloqueos.nombreBloqueo}}</td>
                 <td>{{bloqueos.fechaDesde | date:'mediumDate'}}</td>
                 <td>{{bloqueos.fechaHasta | date:'mediumDate'}}</td>
-                <td>{{bloqueos.horaDesde | date:'medium'}}</td>
-                <td>{{bloqueos.horaHasta | date:'medium'}}</td>
+                <!-- <td>{{bloqueos.horaDesde | date:'medium'}}</td>
+                <td>{{bloqueos.horaHasta | date:'medium'}}</td> -->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

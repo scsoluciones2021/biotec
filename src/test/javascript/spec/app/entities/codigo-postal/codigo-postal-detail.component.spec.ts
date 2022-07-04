@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { CodigoPostalDetailComponent } from 'app/entities/codigo-postal/codigo-postal-detail.component';
 import { CodigoPostal } from 'app/shared/model/codigo-postal.model';
 
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [CodigoPostalDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })

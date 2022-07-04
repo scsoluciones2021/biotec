@@ -90,24 +90,6 @@ export class ProfesionalUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-       /* this.obraSocialService.query().subscribe(
-            (res: HttpResponse<IObraSocial[]>) => {
-                this.obrasocials = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-         this.especialidadService.query().subscribe(
-            (res: HttpResponse<IEspecialidad[]>) => {
-                this.especialidads = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );*/
-        /* this.codigoPostalService.query().subscribe(
-            (res: HttpResponse<ICodigoPostal[]>) => {
-                this.codigopostals = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );*/
 
         if (this.profesional.codigoPostalId) {
             this.codigoPostal = new CodigoPostal();
@@ -122,7 +104,6 @@ export class ProfesionalUpdateComponent implements OnInit {
         if (this.profesional.obrasocials) {
             this.obrasocials = this.profesional.obrasocials;
         }
-
     }
 
     buscarEspecialidad(event) {
@@ -145,16 +126,6 @@ export class ProfesionalUpdateComponent implements OnInit {
         }
         return filtered;
     }
-    /* onKeyUp(event: KeyboardEvent) {
-        if (event.key == "Enter") {
-         let tokenInput = event.srcElement as any;
-         if (tokenInput.value) {
-             console.log(tokenInput.value);
-          this.texts.push(tokenInput.value);
-          tokenInput.value = "";
-         }
-        }
-      }*/
 
     seleccionEspecialidad(event) {
         this.especialidad = new Especialidad();
@@ -207,7 +178,7 @@ export class ProfesionalUpdateComponent implements OnInit {
         const query = event.query;
         this.codigoPostalService.buscarCP(query).subscribe(
             (res: HttpResponse<ICodigoPostal[]>) => {
-               this.filteredCPSingle = this.filterCP(query, res.body);
+                this.filteredCPSingle = this.filterCP(query, res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

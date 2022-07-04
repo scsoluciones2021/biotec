@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { IntoleranciaUpdateComponent } from 'app/entities/intolerancia/intolerancia-update.component';
 import { IntoleranciaService } from 'app/entities/intolerancia/intolerancia.service';
 import { Intolerancia } from 'app/shared/model/intolerancia.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [IntoleranciaUpdateComponent]
             })
                 .overrideTemplate(IntoleranciaUpdateComponent, '')

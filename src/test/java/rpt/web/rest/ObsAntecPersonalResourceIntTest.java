@@ -1,6 +1,6 @@
 package rpt.web.rest;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 
 import rpt.domain.ObsAntecPersonal;
 import rpt.repository.ObsAntecPersonalRepository;
@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ObsAntecPersonalResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ObsAntecPersonalResourceIntTest {
 
     private static final Integer DEFAULT_ID_ESPECIALIDAD = 1;

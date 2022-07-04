@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CpsjTestModule } from '../../../test.module';
+import { GestWebTestModule } from '../../../test.module';
 import { AntecedentesFamiliaresDeleteDialogComponent } from 'app/entities/antecedentes-familiares/antecedentes-familiares-delete-dialog.component';
 import { AntecedentesFamiliaresService } from 'app/entities/antecedentes-familiares/antecedentes-familiares.service';
 
@@ -18,7 +18,7 @@ describe('Component Tests', () => {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [CpsjTestModule],
+                imports: [GestWebTestModule],
                 declarations: [AntecedentesFamiliaresDeleteDialogComponent]
             })
                 .overrideTemplate(AntecedentesFamiliaresDeleteDialogComponent, '')

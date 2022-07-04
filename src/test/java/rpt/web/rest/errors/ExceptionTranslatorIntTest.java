@@ -1,6 +1,6 @@
 package rpt.web.rest.errors;
 
-import rpt.CpsjApp;
+import rpt.GestWebApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ExceptionTranslator
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CpsjApp.class)
+@SpringBootTest(classes = GestWebApp.class)
 public class ExceptionTranslatorIntTest {
 
     @Autowired

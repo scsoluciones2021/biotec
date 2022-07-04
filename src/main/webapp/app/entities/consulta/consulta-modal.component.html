@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h4 class="modal-title">Consulta</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="clear()">&times;</button>
+</div>
+<form name="editForm" role="form" novalidate (ngSubmit)="guardarConsulta()" #editForm="ngForm">
+    <div class="modal-body">      
+        <div [style.visibility]="visibilidad"  class="input-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            <label class="form-control-label" for="field_habilitar_edic" >Habilitar Edición:</label>  
+            <toggle-button activo="ON" inactivo="OFF" (changed)="cambiaValor($event)">
+            </toggle-button>
+        </div>  
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            <label class="form-control-label" for="field_fechaConsulta">Fecha:</label>
+                <span>{{consulta.fechaConsulta | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            
+            <label class="form-control-label" for="field_sintomasconsulta">Síntomas</label>
+            <textarea class="form-control" rows="5" name="sintomasConsulta"
+                id="field_sintomasconsulta" [(ngModel)]="consulta.sintomasConsulta" [readonly]="soloLectura"></textarea>
+            
+        </div>
+
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            
+            <label class="form-control-label" for="field_diagnosticoconsulta">Diagnóstico</label>
+            <textarea class="form-control" rows="5" name="diagnosticoconsulta"
+                id="field_diagnosticoconsulta" [(ngModel)]="consulta.diagnosticoConsulta" [readonly]="soloLectura"></textarea>
+            
+        </div>
+
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            <label class="form-control-label" for="field_observacionesConsulta">Observaciones</label>
+            <textarea class="form-control" rows="5" name="observacionesConsulta"
+                id="field_observacionesConsulta" [(ngModel)]="consulta.observacionesConsulta" [readonly]="soloLectura"></textarea>
+        </div>
+
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            <label class="form-control-label" for="field_tratamientoconsulta">Medicamentos</label>
+            <textarea class="form-control" rows="5" name="tratamientoConsulta"
+                id="field_tratamientoconsulta" [(ngModel)]="consulta.tratamientoConsulta" [readonly]="soloLectura"></textarea>
+        </div>
+
+        <div class="form-group col-lg-6 col-md-6 col-xl-6 col-sm-12">
+            <label class="form-control-label" for="field_indicacionesconsulta">Indicaciones</label>
+            <textarea class="form-control" rows="5" name="indicacionesConsulta"
+                id="field_indicacionesconsulta" [(ngModel)]="consulta.indicacionesConsulta" [readonly]="soloLectura"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button [hidden]="habilitarBotones" type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Aceptar</span>
+        </button>
+        <button [hidden]="!habilitarBotones" type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+        <button [hidden]="!habilitarBotones" type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>

@@ -1,9 +1,9 @@
-import { Moment } from 'moment';
+import { Dayjs } from 'dayjs';
 import { IFicha } from 'app/shared/model//ficha.model';
 
 export interface IConsulta {
     id?: number;
-    fechaConsulta?: Moment;
+    fechaConsulta?: Dayjs;
     observacionesConsulta?: string;
     tratamientoConsulta?: string;
     indicacionesConsulta?: string;
@@ -16,7 +16,7 @@ export interface IConsulta {
 export class Consulta implements IConsulta {
     constructor(
         public id?: number,
-        public fechaConsulta?: Moment,
+        public fechaConsulta?: Dayjs,
         public observacionesConsulta?: string,
         public tratamientoConsulta?: string,
         public indicacionesConsulta?: string,

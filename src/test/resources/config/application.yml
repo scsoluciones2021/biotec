@@ -16,10 +16,10 @@
 
 spring:
     application:
-        name: Cpsj
+        name: GestWeb
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:Cpsj;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:GestWeb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         name:
         username:
         password:
