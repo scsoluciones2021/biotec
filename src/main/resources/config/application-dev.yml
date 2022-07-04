@@ -34,8 +34,6 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/GestWeb?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
         username: Programado
-        # url: jdbc:mysql://db4free.net:3306/cpsj_sj?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
-        # username: programado
         password: Pr0gr4m4d0r
         hikari:
             data-source-properties:
@@ -57,13 +55,10 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
-        #username: biotecweb.app@gmail.com
-        username: consprisanjusto@gmail.com
-        password: edxnwzjryjjdlkge
-        #password: skkvhlvqiqhfynov
+        username: biotecweb.app@gmail.com
+        password: skkvhlvqiqhfynov
         properties.mail.smtp:
-            from: consprisanjusto@gmail.com
-        #    from: biotecweb.app@gmail.com
+            from: biotecweb.app@gmail.com
             auth: true
             protocol: smtp
             starttls.enable: true
@@ -120,7 +115,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: consprisanjusto@gmail.com
+        from: biotecweb.app@gmail.com
         base-url: http://localhost:8080 
         #configurar según el nombre del host
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
@@ -146,6 +141,6 @@ jhipster:
 # ===================================================================
 application:
     client-data: 
-        name: CPSJ
+        name: BIOTEC
     ArchivoProperties: 
         base-url: "upload\\Fichas"

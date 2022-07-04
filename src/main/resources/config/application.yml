@@ -111,6 +111,6 @@ jhipster:
 
 application:
     client-data: 
-        name: CPSJ
+        name: BIOTEC
     ArchivoProperties: 
         base-url: "upload\\Fichas"

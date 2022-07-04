@@ -54,13 +54,10 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
-        #username: biotecweb.app@gmail.com
-        username: consprisanjusto@gmail.com
-        password: edxnwzjryjjdlkge
-        #password: skkvhlvqiqhfynov
+        username: biotecweb.app@gmail.com
+        password: skkvhlvqiqhfynov
         properties.mail.smtp:
-            from: consprisanjusto@gmail.com
-            #from: biotecweb.app@gmail.com
+            from: biotecweb.app@gmail.com
             mail.smtp.auth: true
             mail.transport.protocol: smtp
             mail.smtp.starttls.enable: true
@@ -114,7 +111,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: consprisanjusto@gmail.com
+        from: biotecweb.app@gmail.com
         base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
@@ -139,6 +136,6 @@ jhipster:
 # ===================================================================
 application:
     client-data: 
-        name: CPSJ
+        name: BIOTEC
     ArchivoProperties: 
         base-url: "upload\\Fichas"

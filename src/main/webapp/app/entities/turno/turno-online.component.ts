@@ -739,9 +739,9 @@ export class TurnoOnlineComponent implements OnInit {
         doc.text(20, 45, ' El día: ' + this.turno.dia.format('DD/MM/YYYY'));
         doc.text(62, 45, ' a las: ' + this.turno.hora.format('HH:mm'));
 
-        doc.text(50, 60, ' Atte., Consultorios Privados San Justo');
+        doc.text(50, 60, ' Atte., Biotec');
 
-        doc.save('turno_CPSJ.pdf');
+        doc.save('turnos.pdf');
     }
 }
 
