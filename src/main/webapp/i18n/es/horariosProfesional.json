@@ -1,0 +1,30 @@
+
+{
+    "GestWebApp": {
+        "horariosProfesional" : {
+            "home": {
+                "title": "Horarios Profesionals",
+                "createLabel": "Crear nuevo Horarios Profesional",
+                "createOrEditLabel": "Crear o editar Horarios Profesional"
+            },
+            "created": "Un nuevo Horarios Profesional ha sido creado con el identificador {{ param }}",
+            "updated": "Un Horarios Profesional ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Horarios Profesional ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Horarios Profesional {{ id }}?"
+            },
+            "detail": {
+                "title": "Horarios Profesional"
+            },
+            "consultorio": "Consultorio",
+            "dias": "Dias",
+            "fechaDesde": "Fecha Desde",
+            "fechaHasta": "Fecha Hasta",
+            "horaDesde": "Hora Desde",
+            "horaHasta": "Hora Hasta",
+            "intervalo": "Intervalo",
+            "horario_prof_rel": "Horario Prof Rel",
+            "horario_bloq_rel": "Horario Bloq Rel"
+        }
+    }
+}

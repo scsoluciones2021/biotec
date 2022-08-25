@@ -81,7 +81,7 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
             this.profesionalService
                 .searchProfesional({
                     page: this.page - 1,
-                    query: this.currentSearch,
+                    query: camposBusqueda,
                     size: this.itemsPerPage,
                     sort: this.sort()
                 })
@@ -199,11 +199,11 @@ export class ProfesionalComponent implements OnInit, OnDestroy {
         this.page = 0;
         this.busquedaA = prApe;
         this.busquedaN = prNom;
-        this.currentSearch = prApe + ', ' + prNom;
+        
         this.router.navigate([
             '/profesional',
             {
-                search: this.currentSearch,
+                search: [this.busquedaA, this.busquedaN],
                 page: this.page,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
             }
